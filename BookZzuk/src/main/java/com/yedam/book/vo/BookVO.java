@@ -1,5 +1,4 @@
 package com.yedam.book.vo;
-
 import java.util.Date;
 
 import lombok.Data;
