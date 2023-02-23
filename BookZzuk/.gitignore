@@ -1,0 +1,6 @@
+/build/
+/target/
+.classpath
+.project
+.jsdtscope
+src/main/webapp/sass
