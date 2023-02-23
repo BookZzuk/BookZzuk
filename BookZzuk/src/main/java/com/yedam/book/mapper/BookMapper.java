@@ -8,6 +8,6 @@ public interface BookMapper {
 
 	public List<BookVO> getBookList();
 
-	public List<BookVO> getLikeList();
+	public List<BookVO> getLikeList(String uid);
 	
 }

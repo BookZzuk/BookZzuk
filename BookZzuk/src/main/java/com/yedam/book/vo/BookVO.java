@@ -2,6 +2,9 @@ package com.yedam.book.vo;
 
 import java.util.Date;
 
+import lombok.Data;
+
+@Data
 public class BookVO {
 	public int itemId;
 	public String title;

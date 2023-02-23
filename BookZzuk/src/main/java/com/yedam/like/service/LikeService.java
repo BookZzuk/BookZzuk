@@ -6,5 +6,5 @@ import com.yedam.book.vo.BookVO;
 
 public interface LikeService {
 
-	public List<BookVO> getLikeList();
+	public List<BookVO> getLikeList(String uid);
 }
