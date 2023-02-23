@@ -2,4 +2,8 @@ package com.yedam.book.service;
 
 import java.util.List;
 
-public interface BookService {}
+import com.yedam.book.vo.BookVO;
+
+public interface BookService {
+
+	public List<BookVO> getBookList();}
