@@ -1,5 +1,18 @@
 package com.yedam.book.vo;
 
-public class BookVO {
+import java.util.Date;
 
+public class BookVO {
+	public int itemId;
+	public String title;
+	public String author;
+	public Date pubDate;
+	public String description;
+	public String isbn;
+	public int salePrice;
+	public int stdPrice;
+	public String cover;
+	public String category;
+	public String publisher;
+	public String adult;
 }

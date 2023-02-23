@@ -2,4 +2,12 @@ package com.yedam.book.mapper;
 
 import java.util.List;
 
-public interface BookMapper {}
+import com.yedam.book.vo.BookVO;
+
+public interface BookMapper {
+
+	public List<BookVO> getBookList();
+
+	public List<BookVO> getLikeList();
+	
+}
