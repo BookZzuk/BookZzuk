@@ -3,4 +3,51 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yedam.member.mapper.MemberMapper">
+	<select id="login" resultType="MemberVO">
+		select * from member where user_id=#{userId} and user_pw=#{userPw}
+	</select>
+	
+	<insert id="addMember" parameterType="MemberVO">
+		insert into member(user_id, user_pw, addr, email, phone, name, age, grade)
+		values(#{userId},#{userPw},#{userAddr}, #{userEmail}, #{userPhone}, #{userName}, #{userAge}, #{userGrade})
+	</insert>
+	
+	<select id="memberList" resultType="MemberVO">
+		select * from member order by user_id
+	</select>
+	
+	<select id="getMember" parameterType="string" resultType="MemberVO">
+		select * from member where user_id=#{id}
+	</select>
+	
+	<update id="updateMember" parameterType="MemberVO">
+		update member
+		<set>
+		<if test="image != null">
+			image = #{image},
+		</if>
+		<if test="memberName != null">
+			member_name = #{memberName},
+		</if>
+		<if test="memberPw != null">
+			member_pw = #{memberPw},
+		</if>
+		<if test="memberPhone != null">
+			member_phone = #{memberPhone},
+		</if>
+		<if test="memberAddr != null">
+			member_addr = #{memberAddr},
+		</if>
+		<if test="responsibility != null">
+			responsibility = #{responsibility}
+		</if>
+		</set> 
+		where user_id = #{userId}
+	</update>
+	
+	<delete id="deleteMember" parameterType="string">
+		delete from member
+		where user_id = #{mid}
+	</delete>
+	
 </mapper>

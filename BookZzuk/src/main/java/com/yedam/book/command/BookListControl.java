@@ -6,6 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.yedam.book.vo.BookVO;
 import com.yedam.common.Command;
 
 public class BookListControl implements Command {
