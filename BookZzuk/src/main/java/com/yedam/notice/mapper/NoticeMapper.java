@@ -2,4 +2,10 @@ package com.yedam.notice.mapper;
 
 import java.util.List;
 
-public interface NoticeMapper {}
+import com.yedam.notice.vo.NoticeVO;
+
+public interface NoticeMapper {
+	public List<NoticeVO> noticeList();
+	public NoticeVO getNotice(String noticeNum);
+	
+}

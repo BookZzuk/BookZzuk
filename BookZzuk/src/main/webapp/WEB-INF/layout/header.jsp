@@ -1,41 +1,191 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!-- Page content wrapper-->
-<div id="page-content-wrapper">
-	<!-- Top navigation-->
-	<nav
-		class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-		<div class="container-fluid">
-			<button class="btn btn-primary" id="sidebarToggle">Toggle Menu</button>
-			<button class="navbar-toggler" type="button"
-				data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-				aria-controls="navbarSupportedContent" aria-expanded="false"
-				aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav ms-auto mt-2 mt-lg-0">
-					<c:if test="${id == null }">
-						<li class="nav-item"><a class="nav-link" href="logInForm.do">로그인</a></li>
-					</c:if>
-					<c:if test="${id != null }">
-						<li class="nav-item active"><a class="nav-link" href="myPage.do">MyPage</a></li>
-						<li class="nav-item"><a class="nav-link" href="logOut.do">로그아웃</a></li>
-					</c:if>
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" id="navbarDropdown" href="#"
-						role="button" data-bs-toggle="dropdown" aria-haspopup="true"
-						aria-expanded="false">Dropdown</a>
-						<div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-							<c:if test="${Auth == 'admin' }">
-								<a class="dropdown-item" href="memberManagerForm.do">회원 관리</a>
-							</c:if>
-							<a class="dropdown-item" href="#!">Another action</a>
-							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" href="#!">Something else here</a>
-						</div></li>
-				</ul>
-			</div>
-		</div>
-	</nav>
+    <!-- Page Preloder -->
+    <div id="preloder">
+      <div class="loader"></div>
+    </div>
+
+    <!-- Humberger Begin -->
+    <div class="humberger__menu__overlay"></div>
+    <div class="humberger__menu__wrapper">
+      <div class="humberger__menu__logo">
+        <a href="#"><img src="img/logo.png" alt="" /></a>
+      </div>
+      <div class="humberger__menu__cart">
+        <ul>
+          <li>
+            <a href="#"><i class="fa fa-heart"></i> <span>1</span></a>
+          </li>
+          <li>
+            <a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a>
+          </li>
+        </ul>
+        <div class="header__cart__price">item: <span>$150.00</span></div>
+      </div>
+      <div class="humberger__menu__widget">
+        <div class="header__top__right__language">
+          <img src="img/language.png" alt="" />
+          <div>English</div>
+          <span class="arrow_carrot-down"></span>
+          <ul>
+            <li><a href="#">Spanis</a></li>
+            <li><a href="#">English</a></li>
+          </ul>
+        </div>
+        <div class="header__top__right__auth">
+          <a href="#"><i class="fa fa-user"></i> Login</a>
+        </div>
+      </div>
+      <nav class="humberger__menu__nav mobile-menu">
+        <ul>
+          <li class="active"><a href="./index.html">Home</a></li>
+          <li><a href="./shop-grid.html">Shop</a></li>
+          <li>
+            <a href="#">Pages</a>
+            <ul class="header__menu__dropdown">
+              <li><a href="./shop-details.html">Shop Details</a></li>
+              <li><a href="./shoping-cart.html">Shoping Cart</a></li>
+              <li><a href="./checkout.html">Check Out</a></li>
+              <li><a href="./blog-details.html">Blog Details</a></li>
+            </ul>
+          </li>
+          <li><a href="./blog.html">Blog</a></li>
+          <li><a href="./contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <div id="mobile-menu-wrap"></div>
+      <div class="header__top__right__social">
+        <a href="#"><i class="fa fa-facebook"></i></a>
+        <a href="#"><i class="fa fa-twitter"></i></a>
+        <a href="#"><i class="fa fa-linkedin"></i></a>
+        <a href="#"><i class="fa fa-pinterest-p"></i></a>
+      </div>
+      <div class="humberger__menu__contact">
+        <ul>
+          <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
+          <li>Free Shipping for all Order of $99</li>
+        </ul>
+      </div>
+    </div>
+    <!-- Humberger End -->
+
+    <!-- Header Section Begin -->
+    <header class="header">
+      <div class="header__top">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-6 col-md-6">
+              <div class="header__top__left">
+                <ul>
+                  <li><i class="fa fa-envelope"></i> 관리자 메일</li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-6">
+              <div class="header__top__right">
+                <div class="header__top__right__social">
+                  <a href="#"><i class="fa fa-facebook"></i></a>
+                  <a href="#"><i class="fa fa-twitter"></i></a>
+                  <a href="#"><i class="fa fa-linkedin"></i></a>
+                </div>
+                <div class="header__top__right__auth">
+                  <a href="#"><i class="fa fa-user"></i> Login</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-3">
+            <div class="header__logo">
+              <a href="./index.html"><img src="img/logo.png" alt="" /></a>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <nav class="header__menu">
+              <ul>
+                <li class="active"><a href="main.do">메인페이지</a></li>
+                <li><a href="bookList.do">도서리스트</a></li>
+                <li><a href="memberInfo.do">마이페이지</a></li>
+                <li><a href="noticeList.do">고객 센터</a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+        <div class="humberger__open">
+          <i class="fa fa-bars"></i>
+        </div>
+      </div>
+    </header>
+    <!-- Header Section End -->
+
+    <!-- Hero Section Begin -->
+    <c:if test="${main != null }">
+    	<section class="hero">
+    </c:if>
+    <c:if test="${main == null }">
+    	<section class="hero hero-normal">
+    </c:if>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-3">
+            <div class="hero__categories">
+              <div class="hero__categories__all">
+                <i class="fa fa-bars"></i>
+                <span>All departments</span>
+              </div>
+              <ul>
+                <li><a href="#">Fresh Meat</a></li>
+                <li><a href="#">Vegetables</a></li>
+                <li><a href="#">Fruit & Nut Gifts</a></li>
+                <li><a href="#">Fresh Berries</a></li>
+                <li><a href="#">Ocean Foods</a></li>
+                <li><a href="#">Butter & Eggs</a></li>
+                <li><a href="#">Fastfood</a></li>
+                <li><a href="#">Fresh Onion</a></li>
+                <li><a href="#">Papayaya & Crisps</a></li>
+                <li><a href="#">Oatmeal</a></li>
+                <li><a href="#">Fresh Bananas</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-9">
+            <div class="hero__search">
+              <div class="hero__search__form">
+                <form action="#">
+                  <div class="hero__search__categories">
+                    All Categories
+                    <span class="arrow_carrot-down"></span>
+                  </div>
+                  <input type="text" placeholder="What do yo u need?" />
+                  <button type="submit" class="site-btn">SEARCH</button>
+                </form>
+              </div>
+              <div class="hero__search__phone">
+                <div class="hero__search__phone__icon">
+                  <i class="fa fa-phone"></i>
+                </div>
+                <div class="hero__search__phone__text">
+                  <h5>+65 11.188.888</h5>
+                  <span>support 24/7 time</span>
+                </div>
+              </div>
+            </div>
+            <c:if test="${main != null }">
+              <div class="hero__item set-bg" data-setbg="img/hero/banner.jpg">
+                <div class="hero__text">
+                  <span>FRUIT FRESH</span>
+                  <h2>Vegetable <br />100% Organic</h2>
+                  <p>Free Pickup and Delivery Available</p>
+                  <a href="#" class="primary-btn">SHOP NOW</a>
+                </div>
+              </div>
+            </c:if>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Hero Section End -->

@@ -1,17 +1,20 @@
 package com.yedam.book.vo;
+import java.util.Date;
 
+import lombok.Data;
 
+@Data
 public class BookVO {
-	private int itemId;
-	private String title;
-	private String author;
-	private String pubDate;
-	private String description;
-	private String isbn; 
-	private int salePrice;
-	private int stdPrice;
-	private String cover;
-	private String publisher;
-	private boolean adult;
-	private float rating;
+	public int itemId;
+	public String title;
+	public String author;
+	public Date pubDate;
+	public String description;
+	public String isbn;
+	public int salePrice;
+	public int stdPrice;
+	public String cover;
+	public String category;
+	public String publisher;
+	public String adult;
 }
