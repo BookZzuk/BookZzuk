@@ -28,6 +28,7 @@ pageEncoding="UTF-8"%>
           <table>
             <thead>
               <tr>
+                <th><input type="checkbox" /></th>
                 <th class="shoping__product">Books</th>
                 <th>Price</th>
                 <th></th>
@@ -35,6 +36,7 @@ pageEncoding="UTF-8"%>
             </thead>
             <tbody>
               <tr>
+                <td><input type="checkbox" /></td>
                 <td class="shoping__cart__item">
                   <img src="img/cart/cart-1.jpg" alt="" />
                   <h5>Vegetable’s Package</h5>
@@ -45,6 +47,7 @@ pageEncoding="UTF-8"%>
                 </td>
               </tr>
               <tr>
+                <td><input type="checkbox" /></td>
                 <td class="shoping__cart__item">
                   <img src="img/cart/cart-2.jpg" alt="" />
                   <h5>Fresh Garden Vegetable</h5>
@@ -55,6 +58,7 @@ pageEncoding="UTF-8"%>
                 </td>
               </tr>
               <tr>
+                <td><input type="checkbox" /></td>
                 <td class="shoping__cart__item">
                   <img src="img/cart/cart-3.jpg" alt="" />
                   <h5>Organic Bananas</h5>
@@ -72,32 +76,11 @@ pageEncoding="UTF-8"%>
     <div class="row">
       <div class="col-lg-12">
         <div class="shoping__cart__btns">
-          <a href="#" class="primary-btn cart-btn">CONTINUE SHOPPING</a>
-          <a href="#" class="primary-btn cart-btn cart-btn-right"
-            ><span class="icon_loading"></span> Upadate Cart</a
-          >
+          <a href="bookList.do" class="primary-btn cart-btn"><i class="fa fa-shopping-cart"></i> CONTINUE SHOPPING</a>
+          <a href="#" class="primary-btn cart-btn cart-btn-right">
+            <i class="fa fa-shopping-bag"></i> INTO THE CART</a>
         </div>
       </div>
-      <div class="col-lg-6">
-        <div class="shoping__continue">
-          <div class="shoping__discount">
-            <h5>Discount Codes</h5>
-            <form action="#">
-              <input type="text" placeholder="Enter your coupon code" />
-              <button type="submit" class="site-btn">APPLY COUPON</button>
-            </form>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-6">
-        <div class="shoping__checkout">
-          <h5>Cart Total</h5>
-          <ul>
-            <li>Subtotal <span>$454.98</span></li>
-            <li>Total <span>$454.98</span></li>
-          </ul>
-          <a href="#" class="primary-btn">PROCEED TO CHECKOUT</a>
-        </div>
       </div>
     </div>
   </div>
