@@ -13,7 +13,7 @@ public class FindIdFormControl implements Command {
 	@Override
 	public String exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		return null;
+		return "member/findId.tiles";
 	}
 
 }
