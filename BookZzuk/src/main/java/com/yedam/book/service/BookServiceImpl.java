@@ -12,7 +12,29 @@ public class BookServiceImpl implements BookService {
 	SqlSession session = DataSource.getInstance().openSession(true);
 	BookMapper mapper = session.getMapper(BookMapper.class);
 	@Override
-	public List<BookVO> getBookList() {
-		return mapper.getBookList();
+	public List<BookVO> bookList(String keyword, String sortMod) {
+		// TODO Auto-generated method stub
+		return mapper.getBookList(keyword, sortMod);
 	}
+	@Override
+	public BookVO getBook(int item_id) {
+		// TODO Auto-generated method stub
+		return mapper.getBook(item_id);
+	}
+	@Override
+	public int addBook(BookVO Book) {
+		// TODO Auto-generated method stub
+		return mapper.addBook(Book);
+	}
+	@Override
+	public int modBook(BookVO Book) {
+		// TODO Auto-generated method stub
+		return mapper.modBook(book);
+	}
+	@Override
+	public int remBook(int item_id) {
+		// TODO Auto-generated method stub
+		return mapper.remBook(item_id);
+	}
+	
 }

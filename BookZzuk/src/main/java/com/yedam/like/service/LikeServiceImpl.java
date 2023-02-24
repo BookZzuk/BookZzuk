@@ -13,7 +13,7 @@ public class LikeServiceImpl implements LikeService {
 	BookMapper mapper = session.getMapper(BookMapper.class);
 	
 	@Override
-	public List<BookVO> getLikeList() {
-		return mapper.getLikeList();
+	public List<BookVO> getLikeList(String uid) {
+		return mapper.getLikeList(uid);
 	}
 }
