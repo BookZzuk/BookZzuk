@@ -14,7 +14,7 @@ public class MainControl implements Command {
 	@Override
 	public String exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		BookService service = new BookServiceImpl();
-		req.setAttribute("list", service.getBookList());
+		//req.setAttribute("list", service.getBookList());
 		
 		req.setAttribute("main", "main");
 		

@@ -90,7 +90,7 @@
                   <a href="#"><i class="fa fa-linkedin"></i></a>
                 </div>
                 <div class="header__top__right__auth">
-                  <a href="#"><i class="fa fa-user"></i> Login</a>
+                  <a href="loginForm.do"><i class="fa fa-user"></i> Login</a>
                 </div>
               </div>
             </div>

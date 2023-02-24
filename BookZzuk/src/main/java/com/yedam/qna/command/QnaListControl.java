@@ -7,13 +7,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.common.Command;
+import com.yedam.qna.service.QnaService;
+import com.yedam.qna.service.QnaServiceImpl;
 
 public class QnaListControl implements Command {
 
 	@Override
 	public String exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		return null;
+//		HttpSession session = req.getSession();
+//		String id = (String) session.getAttribute("id")
+		
+		QnaService service = new QnaServiceImpl();
+		req.setAttribute("qnaList", service.qnaList("abcd"));
+		
+		return "qna/qnaList.tiles";
 	}
 
 }
