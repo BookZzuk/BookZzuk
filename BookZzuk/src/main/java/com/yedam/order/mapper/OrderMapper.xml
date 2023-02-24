@@ -3,4 +3,11 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yedam.order.mapper.OrderMapper">
+
+<!-- 주문관리 시작 -->
+	<select id="getAllOrder" resultType="OrderVO">
+		
+	</select>
+
+<!-- 주문관리 끝 -->
 </mapper>
