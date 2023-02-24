@@ -52,5 +52,4 @@
 		m.user_id = #{uid}
 	</select>
 
-
 </mapper>
