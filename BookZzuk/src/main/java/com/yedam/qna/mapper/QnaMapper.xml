@@ -3,4 +3,12 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yedam.qna.mapper.QnaMapper">
+
+<select id="qnaList" parameterType="string" resultType="QnaVO">
+		SELECT * FROM customer_service where user_id=#{id}
+	</select>
+<select id="getQna" parameterType="int" resultType="QnaVO">
+		SELECT * FROM customer_service where article_num = #{articleNum}
+	</select>
+
 </mapper>

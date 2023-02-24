@@ -2,4 +2,8 @@ package com.yedam.order.mapper;
 
 import java.util.List;
 
-public interface OrderMapper {}
+import com.yedam.order.vo.OrderVO;
+
+public interface OrderMapper {
+	public List<OrderVO> getAllOrder();
+}

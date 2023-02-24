@@ -3,18 +3,53 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yedam.book.mapper.BookMapper">
-	<select id="getBookList" resultType="BookVO">
-		SELECT * FROM book
+
+	<select id="getBookList" resultType="BookVO"
+		parameterType="hashmap">
+
+		SELECT item_id, cover, title, sale_price, std_price
+		from
+		(select ROWNUM RNUM, book.* from book
+		ORDER by ${sortCol} ${sortMod})
+		where RNUM BETWEEN ${page-1}*20+1 AND ${page}*20
 	</select>
+	
+	
+	<select id="getBook" resultType="BookVO" parameterType="int">
+		SELECT *
+		from
+		book
+		where item_id = #{item_id}
+	</select>
+
+	<select id="getRelatedBook" resultType="BookVO"
+		parameterType="int">
+		select item_id, cover, title, sale_Price,std_Price
+		from
+		book
+		where
+		category like '%'||(substr((SELECT category
+		from
+		book
+		where
+		item_id = ${itemId}),-3))||'%'
+		AND ROWNUM &lt; 5
+		ORDER BY dbms_random.value 
+
+	</select>
+
 	<select id="getLikeList" resultType="BookVO">
 		SELECT b.item_id
-      		 , cover
-       		 , title
-        	 , sale_price
-       		 , std_price
-    	  FROM member m, book b, book_like bLike
-   		 WHERE bLike.user_id = m.user_id
-     	   AND bLike.item_id = b.item_id
-     	   AND m.user_id = #{uid}
+		, cover
+		,
+		title
+		, sale_price
+		, std_price
+		FROM member m, book b, book_like bLike
+		WHERE bLike.user_id = m.user_id
+		AND bLike.item_id = b.item_id
+		AND
+		m.user_id = #{uid}
 	</select>
+
 </mapper>

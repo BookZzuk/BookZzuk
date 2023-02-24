@@ -8,6 +8,6 @@
 	<select id="getAllOrder" resultType="OrderVO">
 		
 	</select>
-</mapper>
+
 <!-- 주문관리 끝 -->
 </mapper>

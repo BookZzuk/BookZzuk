@@ -7,7 +7,7 @@
 		SELECT * FROM notice
 	</select>
 	
-	<select id="getNotice" parameterType="String" resultType="NoticeVO">
+	<select id="getNotice" parameterType="int" resultType="NoticeVO">
 		select * from notice where notice_num = #{noticeNum}
 	</select>
 </mapper>
