@@ -6,6 +6,6 @@ import com.yedam.notice.vo.NoticeVO;
 
 public interface NoticeMapper {
 	public List<NoticeVO> noticeList();
-	public NoticeVO getNotice(String noticeNum);
+	public NoticeVO getNotice(int noticeNum);
 	
 }
