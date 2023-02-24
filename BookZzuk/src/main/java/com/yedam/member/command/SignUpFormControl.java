@@ -12,8 +12,7 @@ public class SignUpFormControl implements Command {
 
 	@Override
 	public String exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		return null;
+		return "member/signUp.tiles";
 	}
 
 }

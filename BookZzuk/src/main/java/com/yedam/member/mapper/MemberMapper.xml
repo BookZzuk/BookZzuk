@@ -8,8 +8,8 @@
 	</select>
 	
 	<insert id="addMember" parameterType="MemberVO">
-		insert into member(user_id, user_pw, addr, email, phone, name, age, grade)
-		values(#{userId},#{userPw},#{userAddr}, #{userEmail}, #{userPhone}, #{userName}, #{userAge}, #{userGrade})
+		insert into member(user_id, user_pw, name, addr, email, phone, grade)
+		values(#{userId}, #{userPw}, #{name}, #{addr}, #{email}, #{phone}, #{grade})
 	</insert>
 	
 	<select id="memberList" resultType="MemberVO">
@@ -34,6 +34,12 @@
 		</if>
 		<if test="memberAddr != null">
 			addr = #{userAddr},
+		</if>
+		<if test="memberEmail != null">
+			email = #{userEmail},
+		</if>
+		<if test="memberGrade != null">
+			grade = #{userGrade},
 		</if>
 		</set> 
 		where user_id = #{userId}
