@@ -8,8 +8,8 @@
 	</select>
 	
 	<insert id="addMember" parameterType="MemberVO">
-		insert into member(user_id, user_pw, addr, email, phone, name, age, grade)
-		values(#{userId},#{userPw},#{userAddr}, #{userEmail}, #{userPhone}, #{userName}, #{userAge}, #{userGrade})
+		insert into member(user_id, user_pw, name, addr, email, phone, grade)
+		values(#{userId}, #{userPw}, #{name}, #{addr}, #{email}, #{phone}, #{grade})
 	</insert>
 	
 	<select id="memberList" resultType="MemberVO">
@@ -23,20 +23,23 @@
 	<update id="updateMember" parameterType="MemberVO">
 		update member
 		<set>
-		<if test="userPw != null">
+		<if test="memberPw != null">
 			user_pw = #{userPw},
 		</if>
-		<if test="name != null">
-			name = #{name},
+		<if test="memberName != null">
+			name = #{userName},
 		</if>
-		<if test="addr != null">
-			addr = #{addr},
+		<if test="memberPhone != null">
+			phone = #{userPhone},
 		</if>
-		<if test="phone != null">
-			phone = #{phone},
+		<if test="memberAddr != null">
+			addr = #{userAddr},
 		</if>
-		<if test="email != null">
-			email = #{email},
+		<if test="memberEmail != null">
+			email = #{userEmail},
+		</if>
+		<if test="memberGrade != null">
+			grade = #{userGrade},
 		</if>
 		</set> 
 		where user_id = #{userId}
@@ -44,7 +47,7 @@
 	
 	<delete id="deleteMember" parameterType="string">
 		delete from member
-		where user_id = #{mid}
+		where user_id = #{userId}
 	</delete>
 	
 </mapper>
