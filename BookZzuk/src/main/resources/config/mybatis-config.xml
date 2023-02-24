@@ -7,6 +7,7 @@
 	<settings>
 		<setting name="mapUnderscoreToCamelCase" value="true" />
 		<setting name="jdbcTypeForNull" value="NULL" />
+		<setting name="logImpl" value="LOG4J"/>
 	</settings>
 	<typeAliases>
 		<typeAlias alias="BookVO" type="com.yedam.book.vo.BookVO" />

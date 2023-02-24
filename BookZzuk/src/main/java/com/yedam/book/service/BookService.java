@@ -11,4 +11,5 @@ public interface BookService {
 	public int addBook(BookVO Book);//책 등록
 	public int modBook(BookVO Book);//책정보 수정.
 	public int remBook(int item_id);//책 삭제.
+	public List<BookVO> getBookList();//책 전체 조회
 }

@@ -36,5 +36,10 @@ public class BookServiceImpl implements BookService {
 		// TODO Auto-generated method stub
 		return mapper.remBook(item_id);
 	}
+	@Override
+	public List<BookVO> getBookList() {
+		// TODO Auto-generated method stub
+		return mapper.getAllList();
+	}
 	
 }

@@ -17,11 +17,12 @@ public class LikeBookControl implements Command {
 	public String exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
 		String uid = (String) session.getAttribute("uid");
+		uid = "admin"; // 임시로 가정
 		
 		LikeService service = new LikeServiceImpl();
 		req.setAttribute("list", service.getLikeList(uid));
 		
-		return "main/likeBook.tiles";
+		return "likeBook/likeBook.tiles";
 	}
 
 }
