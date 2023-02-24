@@ -19,7 +19,7 @@ public class NoticeDetailControl implements Command {
 		String noticeNum = req.getParameter("noticeNum");
 		
 		NoticeService service = new NoticeServiceImpl();
-		req.setAttribute("noticeDetail", service.getNotice(noticeNum));
+		req.setAttribute("noticeDetail", service.getNotice(Integer.parseInt(noticeNum)));
 		
 		
 		return "notice/noticeDetail.tiles";
