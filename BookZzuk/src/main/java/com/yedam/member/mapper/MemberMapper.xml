@@ -23,23 +23,20 @@
 	<update id="updateMember" parameterType="MemberVO">
 		update member
 		<set>
-		<if test="image != null">
-			image = #{image},
+		<if test="userPw != null">
+			user_pw = #{userPw},
 		</if>
-		<if test="memberName != null">
-			member_name = #{memberName},
+		<if test="name != null">
+			name = #{name},
 		</if>
-		<if test="memberPw != null">
-			member_pw = #{memberPw},
+		<if test="addr != null">
+			addr = #{addr},
 		</if>
-		<if test="memberPhone != null">
-			member_phone = #{memberPhone},
+		<if test="phone != null">
+			phone = #{phone},
 		</if>
-		<if test="memberAddr != null">
-			member_addr = #{memberAddr},
-		</if>
-		<if test="responsibility != null">
-			responsibility = #{responsibility}
+		<if test="email != null">
+			email = #{email},
 		</if>
 		</set> 
 		where user_id = #{userId}
