@@ -77,7 +77,7 @@
 					<ul>
 						<li>Total <span id="totalPrice"></span></li>
 					</ul>
-					<a href="#" class="primary-btn">PROCEED TO CHECKOUT</a>
+					<a href="#" class="primary-btn" id="toOrder">PROCEED TO CHECKOUT</a>
 				</div>
 			</div>
 		</div>
@@ -113,4 +113,54 @@
 		});
 
 	})
+
+	$(".icon_close").on("click", function() {
+   		let tr = this.closest("tr");
+    	tr.remove();
+    	let delNum = tr.children[0].children[1].value;
+
+    	$.ajax({
+     	 method: "post",
+     	 url: "cartDelete.do?itemId=" + delNum,
+    	  success: function(result) {
+      	  if(result.retCode == "Success"){
+      	  } else if (result.retCode == "Fail") {
+      	    alert("처리중 오류 발생");
+      	  }
+      	},
+      	error: function(reject) {
+      	  console.log(reject)
+    	  }
+    	})
+ 	})
+
+  $("#toOrder").on("click", function() {
+    let order = document.querySelectorAll('tbody tr');
+
+    if(order.length == 0) {
+      alert("장바구니가 비었습니다!");
+      return;
+    }
+
+    let str = "";
+    for (let i = 0; i < cart.length; i++) {
+      str += order[i].children[0].children[1].value + ",";
+    }
+
+    $.ajax({
+      method: "post",
+      url: "orderFrom.do",
+      data: {userId:uid,itemId:str},
+      success: function(result) {
+        if(result.retCode == "Success"){
+          alert("장바구니 추가 완료");
+        } else if (result.retCode == "Fail") {
+          alert("처리중 오류 발생");
+        }
+      },
+      error: function(reject) {
+        console.log(reject);
+      }
+    })
+  })
 </script>
