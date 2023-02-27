@@ -22,7 +22,7 @@ public class BookListControl implements Command {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		String page = req.getParameter("page");
 		String sortCol = req.getParameter("sortCol");
-		String sortMod = req.getParameter("desc");
+		String sortMod = req.getParameter("sortMod");
 		if (page != null)
 			map.put("page", page);
 		else
@@ -31,12 +31,12 @@ public class BookListControl implements Command {
 		if (sortCol != null)
 			map.put("sortCol", sortCol);
 		else
-			
-			map.put("sortCol", "pub_Date");
+			map.put("sortCol", "title");
+		
 		if (sortMod != null)
-			map.put("sortMod", "sortMod");
+			map.put("sortMod", sortMod);
 		else
-			map.put("sortMod", "ASC");
+			map.put("sortMod", "desc");
 		
 
 		req.setAttribute("list", service.getBookList(map));

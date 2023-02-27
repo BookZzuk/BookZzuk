@@ -16,9 +16,8 @@ public class BookDetailControl implements Command {
 	public String exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String sbid=req.getParameter("bid");
 		int bid = Integer.parseInt(sbid) ;
-
 		BookService service = new BookServiceImpl();
-
+		
 		req.setAttribute("book", service.getBook(bid));
 		req.setAttribute("related", service.getRelatedBook(bid));
 		return "book/bookDetail.tiles";
