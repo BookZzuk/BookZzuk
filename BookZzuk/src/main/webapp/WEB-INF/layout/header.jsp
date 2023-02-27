@@ -90,7 +90,15 @@
                   <a href="#"><i class="fa fa-linkedin"></i></a>
                 </div>
                 <div class="header__top__right__auth">
-                  <a href="loginForm.do"><i class="fa fa-user"></i> Login</a>
+                 <c:choose>
+                                  <c:when test="${!empty logId }">
+                                   <a href="logout.do"><i class="fa fa-user"></i> Logout(${logName })</a>
+                                  </c:when>
+                                  <c:otherwise>
+                                    <a href="loginForm.do"><i class="fa fa-user"></i> Login</a>
+                                  </c:otherwise>
+                 </c:choose>
+                  
                 </div>
               </div>
             </div>

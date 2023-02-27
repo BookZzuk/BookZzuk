@@ -70,6 +70,7 @@
                             <h4>1:1문의</h4> -->
                                 
                                 <div class="checkout__order__products" onclick="location.href='memberInfoMod.do'">회원정보 수정하기</div>
+                                 <div class="checkout__order__products" onclick="location.href='delivery.do'">배송조회</div>
       							  <div class="checkout__order__products">찜 목록</div>
       							    <div class="checkout__order__products">장바구니</div>
       							      <div class="checkout__order__products" onclick="location.href='qnaList.do'">1:1문의</div>

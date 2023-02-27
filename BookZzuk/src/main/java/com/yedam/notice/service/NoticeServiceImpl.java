@@ -17,8 +17,8 @@ public class NoticeServiceImpl implements NoticeService {
 		return mapper.noticeList();
 	}
 	@Override
-	public NoticeVO getNotice(int NoticeNum) {
-		return mapper.getNotice(NoticeNum);
+	public NoticeVO getNotice(int noticeNum) {
+		return mapper.getNotice(noticeNum);
 	}
 	
 	

@@ -16,6 +16,7 @@
 
 }
 </style>
+
 <form action="memberMod.do" method="post">
 <div class="container">
 	<div class="checkout__form">
@@ -37,7 +38,7 @@
 						<p>
 							NAME
 						</p>
-						<input style="color: black;" type="text" name=name value="${vo.name}">
+						<input style="color: black;" type="text" name=userName value="${vo.name}">
 					</div>
 				</div>
 			</div>
@@ -45,26 +46,32 @@
 				<p>
 					PASSWORD
 				</p>
-				<input type="text"  style="color: black;" value=userPw "${vo.userPw}"> 
+				<input type="text"  style="color: black;" name=userPw value="${vo.userPw}"> 
 			</div>
 			<div class="checkout__input">
 				<p>
 					ADDRESS
 				</p>
-				<input type="text"  style="color: black;" name=addr value="${vo.addr}"> 
+				<input type="text"  style="color: black;" name=userAddr  value="${vo.addr}"> 
 			</div>
 			<div class="checkout__input">
 				<p>
 					PHONE
 				</p>
 				<input type="text" style="color: black;"
-					class="checkout__input__add"  name=phone value="${vo.phone}"> 
+					class="checkout__input__add"  name=userPhone value="${vo.phone}"> 
 			</div>
 			<div class="checkout__input">
 				<p>
 					EMAIL
 				</p>
-				<input style="color: black;" type="text" name=email value="${vo.email}">
+				<input style="color: black;" type="text" name=userEmail value="${vo.email}">
+			</div>
+			<div class="checkout__input">
+				<p>
+					GRADE
+				</p>
+				<input style="color: black;" type="text" name=userGrade value="${vo.grade}">
 			</div>
 		</div>
 	</div>

@@ -19,6 +19,14 @@ public class QnaServiceImpl implements QnaService {
 	public QnaVO getQna(int articleNum) {
 		return mapper.getQna(articleNum);
 	}
+	@Override
+	public int addQna(QnaVO qna) {
+		return mapper.addQna(qna);
+	}
+	@Override
+	public int delQna(int articleNum) {
+		return mapper.delQna(articleNum);
+	}
 
 	
 	

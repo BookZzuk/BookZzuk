@@ -21,23 +21,27 @@ public class MemberModControl implements Command {
 	public String exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String userId = req.getParameter("userId");
 		String userPw = req.getParameter("userPw");
-		String name = req.getParameter("name");
-		String addr = req.getParameter("addr");
-		String phone = req.getParameter("phone");
-		String email= req.getParameter("email");
+		String userName = req.getParameter("userName");
+		String userAddr = req.getParameter("userAddr");
+		String userPhone = req.getParameter("userPhone");
+		String userEmail= req.getParameter("userEmail");
+		String userGrade= req.getParameter("userGrade");
 		
 		MemberVO vo = new MemberVO();
 		
 		vo.setUserId(userId);
 		vo.setUserPw(userPw);
-		vo.setName(name);
-		vo.setAddr(addr);
-		vo.setPhone(phone);
-		vo.setEmail(email);
+		vo.setName(userName);
+		vo.setAddr(userAddr);
+		vo.setPhone(userPhone);
+		vo.setEmail(userEmail);
+		vo.setEmail(userGrade);
 		
 		
 		MemberService service = new MemberServiceImpl();
-		service.updateMember(vo);
+		
+		service.modifyMember(vo);
+		
 		
 //		Map<String, Object> resultMap = new HashMap<>();
 //		resultMap.put("member",vo);
