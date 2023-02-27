@@ -37,7 +37,7 @@ public class FrontController extends HttpServlet{
 		map.put("/main.do", new MainControl()); // 메인 페이지
 		map.put("/likeBook.do", new LikeBookControl()); // 찜 목록 페이지
 		map.put("/likeBookAdd.do", new LikeBookAddControl()); // 찜 추가 기능
-		map.put("/listBookDelete.do", new LikeBookDeleteControl()); // 찜 취소 기능
+		map.put("/likeBookDelete.do", new LikeBookDeleteControl()); // 찜 취소 기능
 		map.put("/cart.do", new CartControl()); // 장바구니 페이지
 		map.put("/cartAdd.do", new CartAddControl()); // 장바구니에 담기 기능
 		map.put("/cartDelete.do", new CartDeleteControl()); // 장바구니에서 빼기 기능
@@ -75,11 +75,15 @@ public class FrontController extends HttpServlet{
 		map.put("/noticeList.do", new NoticeListControl()); // 공지사항 목록 조회 페이지
 		map.put("/noticeDetail.do", new NoticeDetailControl()); // 공지사항 단건 조회 페이지
 		map.put("/memberInfo.do", new MemberInfoControl()); // 회원 정보 페이지(with 수정 버튼)
+		map.put("/memberInfoMod.do", new MemberInfoModControl()); // 회원 수정 페이지
 		map.put("/memberMod.do", new MemberModControl()); // 회원 정보 수정 기능
 		map.put("/delivery.do", new DeliveryControl()); // 배송 조회 페이지
+		map.put("/deliveryDetail.do", new DeliveryDetailControl()); // 배송 상세 페이지
 		map.put("/qnaList.do", new QnaListControl()); // 나의 1:1 문의 내역 페이지
 		map.put("/qnaDetail.do", new QnaDetailControl()); // 1:1 문의 상세 페이지
 		map.put("/qnaAdd.do", new QnaAddControl()); // 1:1 문의 등록 기능
+		map.put("/qnaAddProcess.do", new QnaAddProcessControl()); // 1:1 문의 등록 처리 기능
+		map.put("/qnaDel.do", new QnaDelControl()); // 1:1 문의 삭제기능
 		map.put("/replyList.do", new ReplyListControl()); // 문의글 댓글 조회 기능
 		// 수정 기능 대신에 삭제 후 추가하는 식으로 진행한다고 가정했음
 		map.put("/replyAdd.do", new ReplyAddControl()); // 문의글 댓글 등록 기능(관리자 답변)
@@ -107,6 +111,7 @@ public class FrontController extends HttpServlet{
 		resp.setCharacterEncoding(charset);
 		
 		String uri = req.getRequestURI();
+		System.out.println(uri);
 		String context = req.getContextPath();
 		String page = uri.substring(context.length());
 		

@@ -3,4 +3,20 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yedam.qna.mapper.QnaMapper">
+
+	<select id="qnaList" parameterType="string" resultType="QnaVO">
+		SELECT *
+		FROM customer_service where user_id=#{id} order by article_num desc
+	</select>
+	<select id="getQna" parameterType="int" resultType="QnaVO">
+		SELECT * FROM
+		customer_service where article_num = #{articleNum}
+	</select>
+	<insert id="addQna" parameterType="QnaVO">
+		INSERT INTO customer_service(article_num, title, user_id, contents)
+		VALUES(article_pk_seq.NEXTVAL, #{title},#{userId},#{contents})
+	</insert>
+	<delete id="delQna" parameterType="int">
+		delete from customer_service where article_num = #{articleNum}
+</delete>
 </mapper>
