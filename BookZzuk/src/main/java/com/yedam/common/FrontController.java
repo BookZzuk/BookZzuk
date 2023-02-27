@@ -77,9 +77,12 @@ public class FrontController extends HttpServlet{
 		map.put("/memberInfoMod.do", new MemberInfoModControl()); // 회원 수정 페이지
 		map.put("/memberMod.do", new MemberModControl()); // 회원 정보 수정 기능
 		map.put("/delivery.do", new DeliveryControl()); // 배송 조회 페이지
+		map.put("/deliveryDetail.do", new DeliveryDetailControl()); // 배송 상세 페이지
 		map.put("/qnaList.do", new QnaListControl()); // 나의 1:1 문의 내역 페이지
 		map.put("/qnaDetail.do", new QnaDetailControl()); // 1:1 문의 상세 페이지
 		map.put("/qnaAdd.do", new QnaAddControl()); // 1:1 문의 등록 기능
+		map.put("/qnaAddProcess.do", new QnaAddProcessControl()); // 1:1 문의 등록 처리 기능
+		map.put("/qnaDel.do", new QnaDelControl()); // 1:1 문의 삭제기능
 		map.put("/replyList.do", new ReplyListControl()); // 문의글 댓글 조회 기능
 		// 수정 기능 대신에 삭제 후 추가하는 식으로 진행한다고 가정했음
 		map.put("/replyAdd.do", new ReplyAddControl()); // 문의글 댓글 등록 기능(관리자 답변)

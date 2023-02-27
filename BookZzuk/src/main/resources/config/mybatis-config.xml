@@ -16,6 +16,7 @@
 		<typeAlias alias="MemberVO" type="com.yedam.member.vo.MemberVO" />
 		<typeAlias alias="NoticeVO" type="com.yedam.notice.vo.NoticeVO" />
 		<typeAlias alias="OrderVO" type="com.yedam.order.vo.OrderVO" />
+		<typeAlias alias="OrderDetailVO" type="com.yedam.order.vo.OrderDetailVO" />
 		<typeAlias alias="QnaVO" type="com.yedam.qna.vo.QnaVO" />
 		<typeAlias alias="QnaReplyVO" type="com.yedam.qnaReply.vo.QnaReplyVO" />
 		<typeAlias alias="ReviewVO" type="com.yedam.review.vo.ReviewVO" />
