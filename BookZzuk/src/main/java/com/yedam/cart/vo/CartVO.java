@@ -7,4 +7,5 @@ public class CartVO {
 	private int cartNum;
 	private String userId;
 	private int itemId;
+	private int itemCnt;
 }

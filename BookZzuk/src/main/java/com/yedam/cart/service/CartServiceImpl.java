@@ -22,4 +22,14 @@ public class CartServiceImpl implements CartService {
 	public List<BookVO> getCartList(String uid) {
 		return mapper.getCartList(uid);
 	}
+
+	@Override
+	public int addCnt(String uid, String itemId, String itemCnt) {
+		return mapper.addCnt(uid, itemId, itemCnt);
+	}
+
+	@Override
+	public int delCart(String uid, String itemId) {
+		return mapper.delCart(uid, itemId);
+	}
 }

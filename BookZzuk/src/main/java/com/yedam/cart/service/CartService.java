@@ -10,5 +10,9 @@ public interface CartService {
 	public int cartAdd(CartVO vo);
 
 	public List<BookVO> getCartList(String uid);
+
+	public int addCnt(String uid, String itemId, String itemCnt);
+
+	public int delCart(String uid, String itemId);
 	
 }
