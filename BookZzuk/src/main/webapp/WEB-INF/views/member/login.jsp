@@ -15,11 +15,11 @@
 <form action="login.do" method="post">
   <table class="table">
     <tr>
-      <th>ID</th>
+      <th>아이디</th>
       <td><input type="text" name="mid" /></td>
     </tr>
     <tr>
-      <th>Pass</th>
+      <th>비밀번호</th>
       <td><input type="password" name="mpw" /></td>
     </tr>
     <tr>
@@ -27,6 +27,8 @@
         <input type="submit" value="로그인" />
         <input type="reset" value="취소" />
         <a href = "signUpForm.do"><input type="button" value="회원가입" /></a>
+        <a href="findIdForm.do">아이디 찾기</a>
+        <a href="findPwForm.do">비밀번호 찾기</a>
       </td>
     </tr>
   </table>

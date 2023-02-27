@@ -120,28 +120,22 @@ hr {
   <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
   <form class="modal-content" action="signon.do" enctype="multipart/form-data" method="post">
     <div class="container">
-      <h1>회원 가입</h1>
-      <p>Please fill in this form to create an account.</p>
+      <h1>아이디 찾기</h1>
       <hr>
-      <label for="member_id"><b>Member ID</b></label>
-      <input type="text" placeholder="Enter Email" name="member_id" required>
-
-      <label for="member_pw"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="member_pw" required>
+   	  <label for="member_email"><b>이메일</b></label>
+      <input type="text" placeholder="email" name="user_email" required>
       
-      <label for="member_name"><b>Name</b></label>
-      <input type="text" placeholder="Enter Name" name="member_name" required>
+      <label for="member_name"><b>이름</b></label>
+      <input type="text" placeholder="Name" name="member_name" required>
       
       <label for="member_phone"><b>연락처</b></label>
-      <input type="text" placeholder="Enter phone" name="member_phone" required>
-      
-      <label for="image"><b>이미지</b></label>
-      <input type="file" multiple="multiple" placeholder="Enter image" name="image">
+      <input type="text" placeholder="phone" name="member_phone" required>
 
 
       <div class="clearfix">
-        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-        <button type="submit" class="signupbtn">Sign Up</button>
+      <button type="submit" class="signupbtn">확인</button>
+      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">취소</button>
+        
       </div>
     </div>
   </form>

@@ -10,7 +10,6 @@ public interface BookMapper {
 
 	public List<BookVO>getBookList(HashMap<String, Object> map);
 
-
 	public List<BookVO> getLikeList(String uid);
 
 	public List<BookVO> getRelatedBook(int bid);
