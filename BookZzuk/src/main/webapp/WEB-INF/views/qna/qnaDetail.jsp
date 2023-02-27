@@ -20,10 +20,12 @@
      position: relative;
    top: -70px;
    right: -880px;
+   margin-left:10px;
 
 }
     </style>
-<%--     ${articeDetail} --%>
+
+
     
 <div class="container">
          
@@ -64,12 +66,18 @@
                             <div class="checkout__order">
                       
                                 <div class="checkout__order__products" onclick="location.href='memberInfoMod.do'">회원정보 수정하기</div>
+                                <div class="checkout__order__products" onclick="location.href='delivery.do'">배송조회</div>
       							  <div class="checkout__order__products">찜 목록</div>
       							    <div class="checkout__order__products">장바구니</div>
       							      <div class="checkout__order__products" onclick="location.href='qnaList.do'">1:1문의</div>
                             </div>
                         </div> 
                    <button class="site-btn" onclick="location.href='qnaList.do'">뒤로가기</button>
+                 
+                   <button class="site-btn" onclick="location.href='qnaDel.do?articleNum=${articeDetail.articleNum}'">삭제하기</button>
            
         </div>
+</div>
+</div>
+
 

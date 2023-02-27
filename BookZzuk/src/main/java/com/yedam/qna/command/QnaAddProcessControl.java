@@ -9,8 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 import com.yedam.common.Command;
 import com.yedam.qna.service.QnaService;
 import com.yedam.qna.service.QnaServiceImpl;
+import com.yedam.qna.vo.QnaVO;
 
-public class QnaAddControl implements Command {
+public class QnaAddProcessControl implements Command {
 
 	@Override
 	public String exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -18,9 +19,24 @@ public class QnaAddControl implements Command {
 //		String id = (String) session.getAttribute("id")
 		
 		
-		req.setAttribute("id", "abcd");
+		String title = req.getParameter("title");
+		String userId = req.getParameter("userId");
+		String contents = req.getParameter("contents");
 		
-		return "qna/qnaAdd.tiles";
+		QnaVO vo = new QnaVO();
+		
+		vo.setTitle(title);
+		vo.setUserId(userId);
+		vo.setContents(contents);
+		
+		QnaService service = new QnaServiceImpl();
+		
+		service.addQna(vo);
+		
+		
+		req.setAttribute("qnaList", service.qnaList("abcd"));
+		
+		return "qna/qnaList.tiles";
 	}
 
 }

@@ -1,5 +1,7 @@
 package com.yedam.member.service;
 
+import java.util.List;
+
 import com.yedam.member.vo.MemberVO;
 
 

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+      <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>  
+
     <style>
     .a{
 margin-top:-50px;
@@ -22,10 +23,11 @@ margin-top:-50px;
 
 }
     </style>
-<div class="container">
+   
+ <div class="container">
          
             <div class="checkout__form">
-                <h4>1:1문의내역</h4>
+                <h4>배송조회</h4>
               
                     <div class="row"> 
                       <div class="col-lg-8 col-md-6">
@@ -34,20 +36,20 @@ margin-top:-50px;
                      <div class="shoping-cart shoping__cart__table">
 	<table>
 		<thead><tr>
-			<th>글번호</th>
-			<th>제목</th>
-			<th>작성자</th>
-			<th>작성일자</th>
+			<th>주문번호</th>
+			<th>주문일</th>
+			<th>금액</th>
+			<th>주문상태</th>
 		</tr></thead>
 		<tbody>
-			<c:forEach var="qna" items="${qnaList}">
-				<tr onclick="location.href='qnaDetail.do?articleNum=${qna.articleNum}'" >
-					<td>${qna.articleNum}</td>
-					<td>${qna.title}</td>
-					<td>${qna.userId}</td>
-					<td>${qna.writeDate}</td>
+ 			<c:forEach var="list" items="${orderList}">
+				<tr onclick="location.href='deliveryDetail.do?orderNum=${list.orderNum}'" > 
+					 <td>${list.orderNum}</td>
+					<td>${list.orderDate}</td>
+					<td>${list.totalPrice}</td>
+					<td>${list.progress}</td> 	
 				</tr>
-			  </c:forEach>	
+			  </c:forEach>	 
 		</tbody>
 	</table>
 </div> 
@@ -69,4 +71,6 @@ margin-top:-50px;
                     </div>
            
         </div>
-         <button  onclick="location.href='qnaAdd.do'" class="site-btn" >문의글 작성</button> 
+        
+        </div>
+        
