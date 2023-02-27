@@ -21,5 +21,4 @@
         ON d.order_num = o.order_num
         where d.order_num = #{orderNum}
 	</select> 	
-	
 </mapper>
