@@ -112,7 +112,9 @@
       data: {userId:uid,itemId:str},
       success: function(result) {
         if(result.retCode == "Success"){
-          alert("장바구니 추가 완료");
+          if(confirm("장바구니에 추가되었습니다. \n장바구니로 이동하시겠습니까?")){
+            location.href="cart.do"
+          }
         } else if (result.retCode == "Fail") {
           alert("처리중 오류 발생");
         }

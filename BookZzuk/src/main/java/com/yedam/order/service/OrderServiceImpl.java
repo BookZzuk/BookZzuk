@@ -16,11 +16,10 @@ public class OrderServiceImpl implements OrderService {
 	public List<OrderVO> orderList(String userId) {
 		return mapper.orderList(userId);
 	}
-	
+  
 	 @Override 
 	 public List<OrderDetailVO> getOrder(int orderNum) { 
 		 return
 			 mapper.getOrder(orderNum); 
 	 }
-	
 }

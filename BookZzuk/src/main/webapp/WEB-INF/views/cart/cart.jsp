@@ -25,6 +25,7 @@
 <!-- Shoping Cart Section Begin -->
 <section class="shoping-cart spad">
 	<div class="container">
+		<form action="orderForm.do" method="post">
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="shoping__cart__table">
@@ -42,14 +43,14 @@
 							<c:forEach var="cart" items="${list}">
 								<tr>
 									<td class="shoping__cart__item"><input type="hidden"
-										value="${cart.itemId }"><img src="${cart.cover }"
+										value="${cart.itemId }" name="${cart.itemId }Id"><img src="${cart.cover }"
 										alt="" />
 										<h5>${cart.title }</h5></td>
 									<td class="shoping__cart__price">${cart.salePrice }</td>
 									<td class="shoping__cart__quantity">
 										<div class="quantity">
 											<div class="pro-qty">
-												<input type="text" value="1" />
+												<input type="text" value="1" name="${cart.itemId }Cnt"/>
 											</div>
 										</div>
 									</td>
@@ -77,10 +78,11 @@
 					<ul>
 						<li>Total <span id="totalPrice"></span></li>
 					</ul>
-					<a href="#" class="primary-btn" id="toOrder">PROCEED TO CHECKOUT</a>
+					<button type="submit" class="primary-btn" id="toOrder" style="border: none; width: 100%;">주문하러 가기</button>
 				</div>
 			</div>
 		</div>
+	</form>
 	</div>
 </section>
 <!-- Shoping Cart Section End -->
@@ -90,12 +92,20 @@
 		let temp = document.querySelectorAll(".pro-qty");
 		let $button2 = $(".pro-qty");
 		let toPri = 0;
-		for(let i = 0; i < temp.length; i++) {
-			temp[i].closest("tr").children[3].innerHTML = temp[i].closest("tr").children[1].innerHTML * $button2.parent().find("input").val();
-			toPri += parseInt(temp[i].closest("tr").children[3].innerHTML);
+
+		function getTotal(){
+			toPri = 0;
+			for(let i = 0; i < temp.length; i++) {
+				temp[i].closest("tr").children[3].innerHTML = temp[i].closest("tr").children[1].innerHTML * $button2.parent().find("input").val();
+				toPri += parseInt(temp[i].closest("tr").children[3].innerHTML);
+			}
+			$("#totalPrice").text(toPri);
 		}
-		$("#totalPrice").text(toPri);
+		getTotal();
+
 		var proQty = $(".pro-qty");
+		proQty.prepend('<span class="dec qtybtn">-</span>');
+	  proQty.append('<span class="inc qtybtn">+</span>');
 		proQty.on("click", ".qtybtn", function() {
 			var $button = $(this);
 			var oldValue = $button.parent().find("input").val();
@@ -103,13 +113,15 @@
 				var newVal = parseFloat(oldValue) + 1;
 			} else {
 				// Don't allow decrementing below zero
-				if (oldValue > 0) {
+				if (oldValue > 1) {
 					var newVal = parseFloat(oldValue) - 1;
 				} else {
-					newVal = 0;
+					newVal = 1;
 				}
 			}
+  	  $button.parent().find("input").val(newVal);
 			this.closest("tr").children[3].innerHTML = this.closest("tr").children[1].innerHTML * $button.parent().find("input").val();
+			getTotal();
 		});
 
 	})
@@ -117,7 +129,7 @@
 	$(".icon_close").on("click", function() {
    		let tr = this.closest("tr");
     	tr.remove();
-    	let delNum = tr.children[0].children[1].value;
+    	let delNum = tr.children[0].children[0].value;
 
     	$.ajax({
      	 method: "post",
@@ -133,34 +145,4 @@
     	  }
     	})
  	})
-
-  $("#toOrder").on("click", function() {
-    let order = document.querySelectorAll('tbody tr');
-
-    if(order.length == 0) {
-      alert("장바구니가 비었습니다!");
-      return;
-    }
-
-    let str = "";
-    for (let i = 0; i < cart.length; i++) {
-      str += order[i].children[0].children[1].value + ",";
-    }
-
-    $.ajax({
-      method: "post",
-      url: "orderFrom.do",
-      data: {userId:uid,itemId:str},
-      success: function(result) {
-        if(result.retCode == "Success"){
-          alert("장바구니 추가 완료");
-        } else if (result.retCode == "Fail") {
-          alert("처리중 오류 발생");
-        }
-      },
-      error: function(reject) {
-        console.log(reject);
-      }
-    })
-  })
 </script>
