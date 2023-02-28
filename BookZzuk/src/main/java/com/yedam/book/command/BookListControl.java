@@ -23,6 +23,8 @@ public class BookListControl implements Command {
 		String page = req.getParameter("page");
 		String sortCol = req.getParameter("sortCol");
 		String sortMod = req.getParameter("sortMod");
+		String category = req.getParameter("category");
+		String search = req.getParameter("search");
 		if (page != null)
 			map.put("page", page);
 		else
@@ -36,7 +38,17 @@ public class BookListControl implements Command {
 		if (sortMod != null)
 			map.put("sortMod", sortMod);
 		else
-			map.put("sortMod", "desc");
+			map.put("sortMod", "ASC");
+		
+		if (category != null)
+			map.put("category", category);
+		else
+			map.put("category", "");
+		
+		if (search != null)
+			map.put("search", search);
+		else
+			map.put("search", "");
 		
 
 		req.setAttribute("list", service.getBookList(map));

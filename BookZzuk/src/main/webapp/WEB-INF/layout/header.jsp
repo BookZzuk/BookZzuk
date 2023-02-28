@@ -163,13 +163,13 @@
           <div class="col-lg-9">
             <div class="hero__search">
               <div class="hero__search__form">
-                <form action="#">
+                <form>
                   <div class="hero__search__categories">
                     All Categories
                     <span class="arrow_carrot-down"></span>
                   </div>
-                  <input type="text" placeholder="What do yo u need?" />
-                  <button type="submit" class="site-btn">SEARCH</button>
+                  <input type="text" placeholder="찾는 도서명을 입력해주세요" id = "searchKey"/>
+                  <button type="button" class="site-btn" onclick="searchParam()" id="searchButton">검색</button>
                 </form>
               </div>
               <div class="hero__search__phone">
@@ -196,4 +196,27 @@
         </div>
       </div>
     </section>
+    <script>
+     
+     init();
+    function searchParam() {
+      let Val=document.getElementById("searchKey").value;
+      let URLSearch = new URLSearchParams(location.search);
+      URLSearch.set("search", String(Val));
+      let param = URLSearch.toString();
+      window.open(location.pathname + "?" + param, "_self");
+      console.log(param);
+  }
+  function init(){
+  let urlParams = new URL(location.href).searchParams;
+  let searchParamVal = urlParams.get('search');
+  document.getElementById("searchKey").value=searchParamVal
+  document.getElementById("searchKey")
+    .addEventListener("keyup", function(e) {
+        if (e.code === 'Enter') {
+            document.getElementById("searchButton").click();
+        }
+    });
+  }
+    </script>
     <!-- Hero Section End -->
