@@ -62,7 +62,8 @@
 			<div class="col-lg-12">
 				<div class="shoping__cart__btns">
 					<a href="bookList.do" class="primary-btn cart-btn"><i
-						class="fa fa-shopping-cart"></i> CONTINUE SHOPPING</a> <a href="#"
+						class="fa fa-shopping-cart"></i> CONTINUE SHOPPING</a>
+            <a href="#"
 						class="primary-btn cart-btn cart-btn-right" id="addCart"> <i
 						class="fa fa-shopping-bag"></i> INTO THE CART
 					</a>
@@ -115,9 +116,11 @@
           if(confirm("장바구니에 추가되었습니다. \n장바구니로 이동하시겠습니까?")){
             location.href="cart.do"
           }
+        } else if(result.duplication == "duplication"){
+          alert("이미 장바구니에 있습니다!")
         } else if (result.retCode == "Fail") {
-          alert("처리중 오류 발생");
-        }
+            alert("처리중 오류가 발생했습니다!");
+          }
       },
       error: function(reject) {
         console.log(reject);

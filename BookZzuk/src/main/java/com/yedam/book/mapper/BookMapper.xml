@@ -9,9 +9,11 @@
 
 		SELECT item_id, cover, title, sale_price, std_price
 		from
-		(select ROWNUM RNUM, book.* from book
-		ORDER by ${sortCol} ${sortMod})
-		where RNUM BETWEEN ${page-1}*20+1 AND ${page}*20
+		(select ROWNUM RNUM, b.* from
+		((select * from book
+		order by ${sortCol} ${sortMod}) b) 
+		where category Like '%${category}%' and title like '%${search}%')
+		where RNUM BETWEEN ${page-1}*20+1 AND ${page}*20 
 	</select>
 	
 	

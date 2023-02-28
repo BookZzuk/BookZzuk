@@ -1,11 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%> <%@ taglib uri="http://java.sun.com/jsp/jstl/core"
 prefix="c"%>
-<!-- Page Preloder
-<div id="preloder">
-	<div class="loader"></div>
-</div>
- -->
+
 <style></style>
 
 <!-- Product Section Begin -->
@@ -17,24 +13,28 @@ prefix="c"%>
           <div class="sidebar__item">
             <h4>도서분류</h4>
             <ul>
-              <li><a href="#">소설</a></li>
-              <li><a href="#">어쩌구</a></li>
-              <li><a href="#">외국문학</a></li>
-              <li><a href="#">구데기</a></li>
-              <li><a href="#">Ocean Foods</a></li>
-              <li><a href="#">Butter & Eggs</a></li>
-              <li><a href="#">Fastfood</a></li>
-              <li><a href="#">Fresh Onion</a></li>
-              <li><a href="#">Papayaya & Crisps</a></li>
-              <li><a href="#">Oatmeal</a></li>
+              <li><a onclick='changeParam("category","소설/시/희곡")'>소설/시/희곡</a></li>
+              <li><a onclick='changeParam("category","에세이")'>에세이</a></li>
+              <li><a onclick='changeParam("category","여행")'>여행</a></li>
+              <li><a onclick='changeParam("category","역사")'>역사</a></li>
+              <li><a onclick='changeParam("category","예술/대중문화")'>예술/대중문화</a></li>
+              <li><a onclick='changeParam("category","인문학")'>인문학</a></li>
+              <li><a onclick='changeParam("category","어린이")'>어린이</a></li>
+              <li><a onclick='changeParam("category","자기계발")'>자기계발</a></li>
+              <li><a onclick='changeParam("category","만화")'>만화</a></li>
+              <li><a onclick='changeParam("category","수험서")'>수험서</a></li>
             </ul>
           </div>
           <!-- 최근에 본 항목 -->
           <div class="sidebar__item">
+            <div id="recentView">
+
+            </div>
             <div class="latest-product__text">
-              <h4>Latest Products</h4>
+              <h4>최근 본 상품</h4>
               <div class="latest-product__slider owl-carousel">
                 <div class="latest-prdouct__slider__item">
+									
 
                   <!-- <a href="#" class="latest-product__item">
                     <div class="latest-product__item__pic">
@@ -43,10 +43,10 @@ prefix="c"%>
                     <div class="latest-product__item__text">
                       <h6>Crab Pool Security</h6>
                       <span>$30.00</span>
-                    </div>
-                  </a> -->
+                    </div> -->
+                  </a>
                 </div>
-                <!-- 최근에 본항목 3개씩 한div으로 구현할것 -->
+                <!-- -- 최근에 본항목 3개씩 한div으로 구현할것  -->
               </div>
             </div>
           </div>
@@ -175,6 +175,7 @@ prefix="c"%>
 </section>
 <script>
   initSortSelected();
+  addRecentView();
   function initSortSelected() {
     const searchParams = new URLSearchParams(location.search);
     const urlParams = new URL(location.href).searchParams;
@@ -215,5 +216,34 @@ prefix="c"%>
     let param = URLSearch.toString();
     window.open(location.pathname + "?" + param, "_self");
   }
+
+  function addRecentView(){
+
+      let recentView=JSON.parse(localStorage.getItem("recentItem")).reverse();
+      let recentTitle=JSON.parse(localStorage.getItem("recentTitle")).reverse();
+      let recentCover=JSON.parse(localStorage.getItem("recentCover")).reverse();
+      let recentPrice=JSON.parse(localStorage.getItem("recentPrice")).reverse();
+      for(i=0;i<recentView.length;i++){
+        let a = recentView[i];
+        let b = recentCover[i];
+        let c = recentTitle[i];
+        let d = recentPrice[i]
+
+        
+        // let single='<a href="'+a+'" class=""><img src="'+b+'" alt="" /><h6>'+c+'</h6></a>';
+        let single =  '<a href="bookDetail.do?bid='+a+'" class="latest-product__item">'+
+'                    <div class="latest-product__item__pic">'+
+'                      <img src="'+b+'" alt="" />' +
+'                    </div>' +
+'                    <div class="latest-product__item__text">'+
+'                      <h6>'+c+'</h6>' +
+' <span>'+d+'원</span>'+
+'                    </div>' +
+'                  </a>'
+        
+        document.getElementsByClassName("latest-prdouct__slider__item")[0].innerHTML+=single;
+                  console.log(single);
+                }
+              }
 </script>
 <!-- Product Section End -->
