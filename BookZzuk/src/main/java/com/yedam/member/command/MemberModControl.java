@@ -24,11 +24,11 @@ public class MemberModControl implements Command {
 		String userName = req.getParameter("userName");
 		String userAddr = req.getParameter("userAddr");
 		String userPhone = req.getParameter("userPhone");
-		String userEmail= req.getParameter("userEmail");
-		String userGrade= req.getParameter("userGrade");
-		
+		String userEmail = req.getParameter("userEmail");
+		String userGrade = req.getParameter("userGrade");
+
 		MemberVO vo = new MemberVO();
-		
+
 		vo.setUserId(userId);
 		vo.setUserPw(userPw);
 		vo.setName(userName);
@@ -36,37 +36,16 @@ public class MemberModControl implements Command {
 		vo.setPhone(userPhone);
 		vo.setEmail(userEmail);
 		vo.setEmail(userGrade);
-		
-		
-		MemberService service = new MemberServiceImpl();
-		
-		service.modifyMember(vo);
-		
-		
-//		Map<String, Object> resultMap = new HashMap<>();
-//		resultMap.put("member",vo);
-//		Gson gson = new GsonBuilder().create();
-//		
-//		
-//		if(service.updateMember(vo)>0) {
-//			resultMap.put("retCode", "Success");
-//		}
-//		else {
-//			resultMap.put("retCode", "Fail");
-//		}
-		
-//		return gson.toJson(resultMap) + ".json";
-		
 
-		
-		MemberVO member = service.getMember("abcd");	
+		MemberService service = new MemberServiceImpl();
+
+		service.modifyMember(vo);
+
+		MemberVO member = service.getMember("abcd");
 		req.setAttribute("vo", member);
-		
-		//return "member/mypage.tiles";
-	
-			return "memberInfo.do";
-	
-	
+
+		return "memberInfo.do";
+
 	}
 
 }

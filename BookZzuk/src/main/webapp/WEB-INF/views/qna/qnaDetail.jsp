@@ -49,7 +49,7 @@
                                         <input style="color: black;" type="text" value="${articeDetail.userId}">
                                     </div>
                                 </div>
-                       	
+                       	</div>
 					<div class="checkout__input">
 						<p>
 							내용
@@ -59,7 +59,7 @@
 					</div>
 					
                           
-                           </div>
+                       
                            
                         </div>
                         <div class="col-lg-4 col-md-6">
@@ -72,12 +72,32 @@
       							      <div class="checkout__order__products" onclick="location.href='qnaList.do'">1:1문의</div>
                             </div>
                         </div> 
-                   <button class="site-btn" onclick="location.href='qnaList.do'">뒤로가기</button>
-                 
-                   <button class="site-btn" onclick="location.href='qnaDel.do?articleNum=${articeDetail.articleNum}'">삭제하기</button>
+                        
+                   
+					
+                  
+                   
            
         </div>
-</div>
+          <c:choose>
+        <c:when test="${!empty qnaReplyDetail.contents}">
+             	 <div class="checkout__input"> 
+						<h4>
+							문의글 답변
+						</h4>
+						<%-- <input style="color: black;" type="text" value="${noticeDetail.noticeSubject}"> --%>
+					<textarea rows="10" cols="100">${qnaReplyDetail.contents}</textarea>
+					 </div>	 
+				</c:when>
+				</c:choose>	
+					 <button class="site-btn" onclick="location.href='qnaList.do'">뒤로가기</button>
+				
+				<c:choose>	 
+                 <c:when test="${empty qnaReplyDetail.contents}">							
+                   <button class="site-btn" onclick="location.href='qnaDel.do?articleNum=${articeDetail.articleNum}'">삭제하기</button>
+                   </c:when>
+                   </c:choose>
 </div>
 
-
+</div>
+     

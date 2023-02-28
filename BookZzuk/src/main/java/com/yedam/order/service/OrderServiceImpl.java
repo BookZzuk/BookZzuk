@@ -18,7 +18,7 @@ public class OrderServiceImpl implements OrderService {
 	}
   
 	 @Override 
-	 public List<OrderDetailVO> getOrder(int orderNum) { 
+	 public List<OrderDetailVO> getOrder(String orderNum) { 
 		 return
 			 mapper.getOrder(orderNum); 
 	 }

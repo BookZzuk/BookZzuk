@@ -6,8 +6,24 @@
 	<select id="noticeList" resultType="NoticeVO">
 		SELECT * FROM notice
 	</select>
-	
 	<select id="getNotice" parameterType="int" resultType="NoticeVO">
-		select * from notice where notice_num = #{noticeNum}
+		SELECT * FROM notice WHERE notice_num = #{noticeNum}
+	</select>
+	
+		<select id="countNotice" resultType="int">
+		SELECT COUNT(*) FROM notice
+	</select>
+	
+	<select id="selectNotice" resultType="NoticeVO">
+		SELECT * 
+		FROM (
+			SELECT ROWNUM RN, A.* 
+				FROM (
+						SELECT * 
+						FROM notice 
+						ORDER BY notice_num DESC 
+						) A
+				)
+	WHERE RN BETWEEN #{start} AND #{end}
 	</select>
 </mapper>

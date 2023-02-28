@@ -81,6 +81,7 @@ textarea {
 
 			</div>
 		</form>
-		<button class="site-btn" onclick="location.href='noticeList.do'">뒤로가기</button>
+		<button class="site-btn" onclick="location.href='noticePaging.do?nowPage=1&cntPerPage=10'">뒤로가기</button>
+		<!-- http://localhost:8081/BookZzuk_BookZzuk/noticePaging.do?nowPage=1&cntPerPage=5 -->
 	</div>
 </div>

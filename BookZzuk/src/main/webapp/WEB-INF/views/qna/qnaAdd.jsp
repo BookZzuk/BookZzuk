@@ -47,7 +47,7 @@ textarea {
                                <div class="col-lg-6">
                                     <div class="checkout__input">
                                         <p>작성자</p>
-                                        <input style="color: black;" type="text" name="userId" value=${id}>
+                                        <input readonly style="color: black;" type="text" name="userId" value=${id}>
                                     </div>
                                 </div>
                             </div>

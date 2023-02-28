@@ -4,21 +4,15 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yedam.order.mapper.OrderMapper">
 <select id="orderList" resultType="OrderVO">
-		select * from book_order where user_id=#{userId} order by order_num desc
+	SELECT * FROM book_order WHERE user_id=#{userId} ORDER BY order_num desc
 	</select>
- <select id="getOrder" parameterType="int" resultType="OrderDetailVO">
-		<!-- SELECT detail_num, order_num, o.item_id, item_cnt, price, title, author, publisher 
-		FROM
-		order_detail o JOIN book b
-        ON o.item_id  = b.item_id
-        where order_num = #{orderNum} -->
-        
+ <select id="getOrder" parameterType="String" resultType="OrderDetailVO">
         SELECT detail_num, d.order_num, d.item_id, item_cnt, price, title, author, publisher, total_price, cover
 		FROM
 		order_detail d JOIN book b 
         ON d.item_id  = b.item_id
         JOIN book_order o
         ON d.order_num = o.order_num
-        where d.order_num = #{orderNum}
+        WHERE d.order_num = #{orderNum}
 	</select> 	
 </mapper>

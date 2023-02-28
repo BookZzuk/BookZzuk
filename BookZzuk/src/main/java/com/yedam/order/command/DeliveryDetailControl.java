@@ -17,7 +17,7 @@ public class DeliveryDetailControl implements Command {
 		String orderNum = req.getParameter("orderNum");
 		
 		OrderService service = new OrderServiceImpl();
-		req.setAttribute("orderDetailList", service.getOrder(Integer.parseInt(orderNum)));
+		req.setAttribute("orderDetailList", service.getOrder(orderNum));
 		
 		return "member/deliveryDetail.tiles";
 	}

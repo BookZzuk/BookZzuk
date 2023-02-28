@@ -7,12 +7,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.common.Command;
+import com.yedam.qnaReply.service.QnaReplyService;
+import com.yedam.qnaReply.service.QnaReplyServiceImpl;
 
 public class ReplyListControl implements Command {
 
 	@Override
 	public String exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+
 		return null;
 	}
 

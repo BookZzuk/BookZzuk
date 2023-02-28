@@ -18,7 +18,7 @@
 						<p>
 							ID
 						</p>
-						<input style="color: black;" type="text" value="${vo.userId}">
+						<input readonly style="color: black;" type="text" value="${vo.userId}">
 					</div>
 				</div>
                           <div class="col-lg-6">
@@ -26,7 +26,7 @@
 						<p>
 							NAME
 						</p>
-						<input style="color: black;" type="text" value="${vo.name}">
+						<input readonly style="color: black;" type="text" value="${vo.name}">
 					</div>
 				</div>
                             </div>
@@ -34,26 +34,26 @@
 				<p>
 					ADDRESS
 				</p>
-				<input type="text"  style="color: black;" value="${vo.addr}"> 
+				<input readonly type="text"  style="color: black;" value="${vo.addr}"> 
 			</div>
                             <div class="checkout__input">
 				<p>
 					PHONE
 				</p>
-				<input type="text" style="color: black;"
+				<input readonly type="text" style="color: black;"
 					class="checkout__input__add"  value="${vo.phone}"> 
 			</div>
                             <div class="checkout__input">
 				<p>
 					EMAIL
 				</p>
-				<input style="color: black;" type="text" value="${vo.email}">
+				<input readonly style="color: black;" type="text" value="${vo.email}">
 			</div>
                            <div class="checkout__input">
 				<p>
 					GRADE
 				</p>
-				<input style="color: black;" type="text"  value="${vo.grade}">
+				<input readonly style="color: black;" type="text"  value="${vo.grade}">
 			</div>
                           
                      

@@ -16,10 +16,9 @@ public class QnaAddControl implements Command {
 	public String exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //		HttpSession session = req.getSession();
 //		String id = (String) session.getAttribute("id")
-		
-		
+
 		req.setAttribute("id", "abcd");
-		
+
 		return "qna/qnaAdd.tiles";
 	}
 

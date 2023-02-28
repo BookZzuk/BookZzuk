@@ -88,6 +88,7 @@ public class FrontController extends HttpServlet{
 		// 수정 기능 대신에 삭제 후 추가하는 식으로 진행한다고 가정했음
 		map.put("/replyAdd.do", new ReplyAddControl()); // 문의글 댓글 등록 기능(관리자 답변)
 		map.put("/replyDelete.do", new ReplyDeleteControl()); // 문의글 댓글 삭제 기능
+		map.put("/noticePaging.do", new NoticePagingControl()); // 문의글 댓글 삭제 기능
 		
 		
 		

@@ -14,17 +14,15 @@ public class QnaDelControl implements Command {
 
 	@Override
 	public String exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-String articleNum = req.getParameter("articleNum");
-		
-	
+		String articleNum = req.getParameter("articleNum");
+
 //HttpSession session = req.getSession();
 //String id = (String) session.getAttribute("id")
 
-QnaService service = new QnaServiceImpl();
-service.delQna(Integer.parseInt(articleNum));
-req.setAttribute("qnaList", service.qnaList("abcd"));
-	
-		
+		QnaService service = new QnaServiceImpl();
+		service.delQna(Integer.parseInt(articleNum));
+		req.setAttribute("qnaList", service.qnaList("abcd"));
+
 		return "qna/qnaList.tiles";
 	}
 

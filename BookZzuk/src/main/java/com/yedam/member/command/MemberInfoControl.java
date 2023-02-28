@@ -16,14 +16,14 @@ public class MemberInfoControl implements Command {
 
 	@Override
 	public String exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//		HttpSession session = req.getSession();
-//		String id = (String) session.getAttribute("id");
-		
+		//HttpSession session = req.getSession();
+		//String id = (String) session.getAttribute("id");
+
 		MemberService service = new MemberServiceImpl();
-		MemberVO member = service.getMember("abcd");	
+		MemberVO member = service.getMember("abcd");
+		//MemberVO member = service.getMember("id");
 		req.setAttribute("vo", member);
-		
-		
+
 		return "member/mypage.tiles";
 	}
 

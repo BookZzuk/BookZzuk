@@ -29,8 +29,8 @@
 					<div class="checkout__input">
 						<p>
 							ID
-						</p>
-						<input style="color: black;" type="text" name=userId value="${vo.userId}">
+						</p> 
+						<input readonly style="color: black;" type="text" name=userId value="${vo.userId}">
 					</div>
 				</div>
 				<div class="col-lg-6">
@@ -68,10 +68,10 @@
 				<input style="color: black;" type="text" name=userEmail value="${vo.email}">
 			</div>
 			<div class="checkout__input">
-				<p>
+				<!-- <p>
 					GRADE
-				</p>
-				<input style="color: black;" type="text" name=userGrade value="${vo.grade}">
+				</p> -->
+				<input  type="hidden" style="color: black;" type="text" name=userGrade value="${vo.grade}">
 			</div>
 		</div>
 	</div>

@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.yedam.common.Command;
 import com.yedam.qna.service.QnaService;
 import com.yedam.qna.service.QnaServiceImpl;
+import com.yedam.qnaReply.service.QnaReplyService;
+import com.yedam.qnaReply.service.QnaReplyServiceImpl;
 
 public class QnaListControl implements Command {
 
@@ -16,10 +18,10 @@ public class QnaListControl implements Command {
 	public String exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //		HttpSession session = req.getSession();
 //		String id = (String) session.getAttribute("id")
-		
+
 		QnaService service = new QnaServiceImpl();
 		req.setAttribute("qnaList", service.qnaList("abcd"));
-		
+
 		return "qna/qnaList.tiles";
 	}
 
