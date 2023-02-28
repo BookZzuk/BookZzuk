@@ -3,10 +3,10 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yedam.order.mapper.OrderMapper">
-<select id="orderList" resultType="OrderVO">
+	<select id="orderList" resultType="OrderVO">
 		select * from book_order where user_id=#{userId} order by order_num desc
 	</select>
- <select id="getOrder" parameterType="int" resultType="OrderDetailVO">
+	<select id="getOrder" parameterType="int" resultType="OrderDetailVO">
 		<!-- SELECT detail_num, order_num, o.item_id, item_cnt, price, title, author, publisher 
 		FROM
 		order_detail o JOIN book b
@@ -20,5 +20,17 @@
         JOIN book_order o
         ON d.order_num = o.order_num
         where d.order_num = #{orderNum}
-	</select> 	
+	</select>
+	<!-- 주문목록 추가 시작 -->
+	<insert id="addOrder" parameterType="OrderVO">
+		INSERT INTO book_order(order_num, user_id, order_addr, order_phone, total_price, request, pay_number, order_name)
+		VALUES (#{orderNum}, #{userId}, #{orderAddr}, #{orderPhone}, #{totalPrice}, #{request}, #{payNumber}, #{orderName}) 
+	</insert>
+	<!-- 주문목록 추가 끝 -->
+	<!-- 주문 상세 목록 추가 시작 -->
+	<insert id="addDetail" parameterType="OrderDetailVO">
+		INSERT INTO order_detail(detail_num, order_num, item_id, item_cnt, price)
+		VALUES (detail_pk_seq.nextval, #{orderNum}, #{itemId}, #{itemCnt}, #{price})
+	</insert>
+	<!-- 주문 상세 목록 추가 끝 -->
 </mapper>

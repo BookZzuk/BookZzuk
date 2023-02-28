@@ -38,14 +38,14 @@ pageEncoding="UTF-8"%>
   <div class="container">
     <div class="checkout__form">
       <h4>결제 상세 정보</h4>
-      <form action="orderAdd.do" method="post" id="form">
+      <form method="post" id="form">
         <div class="row">
           <div class="col-lg-8 col-md-6">
             <div class="row">
               <div class="col-lg-6">
                 <div class="checkout__input">
                   <p>이름<span>*</span></p>
-                  <input type="text" name="uid" value="${user.name}" />
+                  <input type="text" name="name" id="name" value="${user.name}" />
                 </div>
               </div>
             </div>
@@ -89,13 +89,23 @@ pageEncoding="UTF-8"%>
               <div class="col-lg-6">
                 <div class="checkout__input">
                   <p>전화번호<span>*</span></p>
-                  <input type="text" name="phone" value="${user.phone}" />
+                  <input
+                    type="text"
+                    name="phone"
+                    id="phone"
+                    value="${user.phone}"
+                  />
                 </div>
               </div>
               <div class="col-lg-6">
                 <div class="checkout__input">
                   <p>Email<span>*</span></p>
-                  <input type="text" name="email" value="${user.email}" />
+                  <input
+                    type="text"
+                    name="email"
+                    id="email"
+                    value="${user.email}"
+                  />
                 </div>
               </div>
             </div>
@@ -105,6 +115,7 @@ pageEncoding="UTF-8"%>
                 type="text"
                 placeholder="요청 사항을 적어 주세요"
                 name="request"
+                id="request"
               />
             </div>
           </div>
@@ -120,6 +131,9 @@ pageEncoding="UTF-8"%>
                     style="width: 70%; display: inline-block"
                     class="bookTitle"
                   >
+                    <input type="hidden" value="${cart.itemId}" class="itemId">
+                    <input type="hidden" value="${cart.itemCnt}" class="itemQty">
+                    <input type="hidden" value="${cart.itemCnt * cart.salePrice}" class="itemPrice">
                     ${cart.title}
                   </li>
                   <span style="float: right; margin-top: 7px" class="bookPrice">
@@ -176,50 +190,6 @@ pageEncoding="UTF-8"%>
     }
   });
 
-  var IMP = window.IMP;
-  IMP.init("imp22070876");
-  let books = document.querySelectorAll(".bookTitle");
-  let str = "";
-  for (let i = 0; i < books.length; i++) {
-    str += books[i].innerHTML;
-  }
-  console.log(str);
-
-  function requestPay() {
-    IMP.request_pay(
-      {
-        pg: "kakao.TC0ONETIME",
-        pay_method: "card",
-        merchant_uid: "",
-        name: "당근 10kg",
-        amount: 1004,
-        buyer_email: "Iamport@chai.finance",
-        buyer_name: "포트원 기술지원팀",
-        buyer_tel: "010-1234-5678",
-        buyer_addr: "서울특별시 강남구 삼성동",
-        buyer_postcode: "123-456",
-      },
-      function (rsp) {
-        if (rsp.success) {
-          // axios로 HTTP 요청
-          axios({
-            url: "",
-            method: "post",
-            headers: { "Content-Type": "application/json" },
-            data: {
-              imp_uid: rsp.imp_uid,
-              merchant_uid: rsp.merchant_uid,
-            },
-          }).then((data) => {
-            // 서버 결제 API 성공시 로직
-          });
-        } else {
-          alert(`결제에 실패하였습니다. 에러 내용: ${rsp.error_msg}`);
-        }
-      }
-    );
-  }
-
   $("#addrBtn").on("click", function () {
     new daum.Postcode({
       oncomplete: function (data) {
@@ -231,4 +201,72 @@ pageEncoding="UTF-8"%>
       },
     }).open();
   });
+
+  let str = "";
+  for(let temp of document.querySelectorAll(".itemId")){
+    str += temp.value + ",";
+  }
+  let itemQty = "";
+  for(let temp of document.querySelectorAll(".itemQty")){
+    itemQty += temp.value + ",";
+  }
+  let itemPrice = "";
+  for(let temp of document.querySelectorAll(".itemPrice")){
+    itemPrice += temp.value + ",";
+  }
+
+  
+  function requestPay() {
+    if(document.querySelector("#addr").value == "" || document.querySelector("#name").value == "" || document.querySelector("#phone").value == "" || document.querySelector("#email").value == "") {
+      alert("필수 정보를 입력해 주세요")
+      return;
+    }
+    let zoneCode = "" + $("#zoneCode").val();
+    let request = "" + $("#request").val();
+
+    var IMP = window.IMP; // 생략가능
+    IMP.init("imp22070876"); //iamport 대신 자신의 "가맹점 식별코드"를 사용
+    IMP.request_pay(
+      {
+        pg: "html5_inicis.INIpayTest",
+        pay_method: "card",
+        merchant_uid: "merchant_" + new Date().getTime(),
+        name: str,
+        amount: $("#toPri").text(),
+        buyer_email: $("#email").val(),
+        buyer_name: $("#name").val(),
+        buyer_tel: $("#phone").val(),
+        buyer_addr: $("#addr").val() + ", " + $("#addrDetail").val(),
+        buyer_postcode: zoneCode,
+      },
+      function (rsp) {
+        console.log(rsp);
+        if (rsp.success) {
+          var msg = "결제가 완료되었습니다.";
+          alert(msg);
+          $.ajax({
+		  	  	method: "post",
+		  	  	url: "orderAdd.do",
+            data: {"orderNum":rsp.merchant_uid, "orderName":rsp.buyer_name, "itemId":str, "itemQty":itemQty, "itemPrice":itemPrice, "orderAddr":rsp.buyer_addr, "orderPhone":rsp.buyer_tel, "totalPrice":rsp.paid_amount, "request":request, "payNumber":rsp.imp_uid},
+		  	  	success: function(result) {
+    	        if(result.retCode == "Success"){
+                if(confirm("마이 페이지로 이동하시겠습니까?")){
+                  location.href="delivery.do"
+                }
+    	        } else if (result.retCode == "Fail") {
+    	          alert("처리중 오류 발생");
+    	        }
+            },
+           	error: function(reject) {
+			      	console.log(reject)
+            }
+          })
+        } else {
+          var msg = "결제에 실패하였습니다.";
+          msg += "에러내용 : " + rsp.error_msg;
+          alert(msg);
+        }
+      }
+    );
+  }
 </script>

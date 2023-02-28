@@ -89,19 +89,7 @@
 
 <script>
 	$(window).on("load", function() {
-		let temp = document.querySelectorAll(".pro-qty");
-		let $button2 = $(".pro-qty");
 		let toPri = 0;
-
-		function getTotal(){
-			toPri = 0;
-			for(let i = 0; i < temp.length; i++) {
-				temp[i].closest("tr").children[3].innerHTML = temp[i].closest("tr").children[1].innerHTML * $button2.parent().find("input").val();
-				toPri += parseInt(temp[i].closest("tr").children[3].innerHTML);
-			}
-			$("#totalPrice").text(toPri);
-		}
-		getTotal();
 
 		var proQty = $(".pro-qty");
 		proQty.prepend('<span class="dec qtybtn">-</span>');
@@ -120,29 +108,41 @@
 				}
 			}
   	  $button.parent().find("input").val(newVal);
-			this.closest("tr").children[3].innerHTML = this.closest("tr").children[1].innerHTML * $button.parent().find("input").val();
+			
 			getTotal();
 		});
 
-	})
+		function getTotal(){
+			let temp = document.querySelectorAll(".pro-qty");
+			toPri = 0;
+			for(let i = 0; i < temp.length; i++) {
+				temp[i].closest("tr").children[3].innerHTML = temp[i].closest("tr").children[1].innerHTML * temp[i].children[1].value;
+				toPri += parseInt(temp[i].closest("tr").children[3].innerHTML);
+			}
+			$("#totalPrice").text(toPri);
+		}
+		getTotal();
 
-	$(".icon_close").on("click", function() {
-   		let tr = this.closest("tr");
-    	tr.remove();
-    	let delNum = tr.children[0].children[0].value;
-
-    	$.ajax({
-     	 method: "post",
-     	 url: "cartDelete.do?itemId=" + delNum,
-    	  success: function(result) {
-      	  if(result.retCode == "Success"){
-      	  } else if (result.retCode == "Fail") {
-      	    alert("처리중 오류 발생");
-      	  }
-      	},
-      	error: function(reject) {
-      	  console.log(reject)
+		
+		$(".icon_close").on("click", function() {
+			let tr = this.closest("tr");
+			let delNum = tr.children[0].children[0].value;
+			
+			$.ajax({
+				method: "post",
+				url: "cartDelete.do?itemId=" + delNum,
+				success: function(result) {
+    	  if(result.retCode == "Success"){
+    			tr.remove();
+					getTotal();
+    	  } else if (result.retCode == "Fail") {
+    	    alert("처리중 오류 발생");
     	  }
-    	})
- 	})
+    	},
+    	error: function(reject) {
+				console.log(reject)
+      }
+    })
+	})
+})
 </script>

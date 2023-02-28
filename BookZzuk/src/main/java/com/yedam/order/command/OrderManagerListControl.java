@@ -15,7 +15,6 @@ public class OrderManagerListControl implements Command {
 	@Override
 	public String exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		OrderService service = new OrderServiceImpl();
-		service.getAllOrder();
 		return "order/orderManagerList.tiles";
 	}
 
