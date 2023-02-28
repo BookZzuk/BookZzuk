@@ -12,6 +12,7 @@ import com.yedam.order.vo.OrderDetailVO;
 public class OrderServiceImpl implements OrderService {
 	SqlSession session = DataSource.getInstance().openSession(true);
 	OrderMapper mapper = session.getMapper(OrderMapper.class);
+	
 	@Override
 	public List<OrderVO> orderList(String userId) {
 		return mapper.orderList(userId);
@@ -19,7 +20,16 @@ public class OrderServiceImpl implements OrderService {
   
 	 @Override 
 	 public List<OrderDetailVO> getOrder(int orderNum) { 
-		 return
-			 mapper.getOrder(orderNum); 
+		 return mapper.getOrder(orderNum); 
 	 }
+
+	@Override
+	public int addOrder(OrderVO vo) {
+		return mapper.addOrder(vo);
+	}
+
+	@Override
+	public int addDetail(OrderDetailVO detailVo) {
+		return mapper.addDetail(detailVo);
+	}
 }
