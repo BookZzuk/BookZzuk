@@ -15,5 +15,4 @@ public class FindIdControl implements Command {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 }
