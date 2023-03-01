@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import com.yedam.book.mapper.BookMapper;
 import com.yedam.book.vo.BookVO;
 import com.yedam.common.DataSource;
+import com.yedam.review.vo.ReviewVO;
 
 public class BookServiceImpl implements BookService {
 	SqlSession session = DataSource.getInstance().openSession(true);
@@ -41,6 +42,30 @@ public class BookServiceImpl implements BookService {
 	public List<BookVO> getRelatedBook(int bid) {
 		// TODO Auto-generated method stub
 		return mapper.getRelatedBook(bid);
+	}
+	@Override
+	public List<BookVO> getAllBook() {
+		return mapper.getAllBook();
+	}
+	@Override
+	public int modifyRating(int itemId) {
+		return mapper.modifyRating(itemId);
+	}
+	@Override
+	public List<BookVO> recomanList(String uid) {
+		return mapper.recomanList(uid);
+	}
+	@Override
+	public List<BookVO> muchSellList() {
+		return mapper.muchSellList();
+	}
+	@Override
+	public List<BookVO> newBookList() {
+		return mapper.newBookList();
+	}
+	@Override
+	public List<ReviewVO> getReview() {
+		return mapper.getReview();
 	}
 	
 }
