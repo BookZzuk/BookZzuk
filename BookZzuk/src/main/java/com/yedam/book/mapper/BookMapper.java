@@ -18,6 +18,7 @@ public interface BookMapper {
 	public List<BookVO> getAllBook();
 	public int modifyRating(int itemId);
 	public List<BookVO> recomanList(String uid);
+	public List<BookVO> recomanList2();
 	public List<BookVO> muchSellList();
 	public List<BookVO> newBookList();
 	public List<ReviewVO> getReview();

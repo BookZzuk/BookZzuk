@@ -23,4 +23,10 @@
 		   AND item_id = #{itemId}
 	</delete>
 	<!-- 찜목록 삭제 기능 끝 -->
+	<!-- 찜목록 추가 기능 시작 -->
+	<insert id="likeAdd" parameterType="LikeVO">
+		INSERT INTO book_like
+		VALUES ( like_pk_seq.nextval, #{userId}, #{itemId})
+	</insert>
+	<!-- 찜목록 추가 기능 끝 -->
 </mapper>

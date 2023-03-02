@@ -6,7 +6,7 @@
 	<select id="orderList" resultType="OrderVO">
 		select * from book_order where user_id=#{userId} order by order_num desc
 	</select>
-	<select id="getOrder" parameterType="int" resultType="OrderDetailVO">
+	<select id="getOrder" parameterType="string" resultType="OrderDetailVO">
 		<!-- SELECT detail_num, order_num, o.item_id, item_cnt, price, title, author, publisher 
 		FROM
 		order_detail o JOIN book b

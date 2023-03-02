@@ -16,8 +16,7 @@ public class CartDeleteControl implements Command {
 	@Override
 	public String exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
-		//String uid = (String) session.getAttribute("uid");
-		String uid = "admin"; // 임시로 가정
+		String uid = (String) session.getAttribute("logId");
 		String itemId = req.getParameter("itemId");
 		
 		CartService service = new CartServiceImpl();

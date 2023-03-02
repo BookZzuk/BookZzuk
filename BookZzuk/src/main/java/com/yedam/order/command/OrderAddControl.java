@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.yedam.cart.service.CartService;
+import com.yedam.cart.service.CartServiceImpl;
 import com.yedam.common.Command;
 import com.yedam.order.service.OrderService;
 import com.yedam.order.service.OrderServiceImpl;
@@ -18,8 +20,7 @@ public class OrderAddControl implements Command {
 	@Override
 	public String exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
-		String userId = (String) session.getAttribute("uid");
-		userId = "admin";
+		String userId = (String) session.getAttribute("logId");
 		String orderNum = req.getParameter("orderNum");
 		String orderAddr = req.getParameter("orderAddr");
 		String orderPhone = req.getParameter("orderPhone");
@@ -58,6 +59,8 @@ public class OrderAddControl implements Command {
 		}
 		
 		if( r > 0 && s > 0 ) {
+			CartService cartVo = new CartServiceImpl();
+			cartVo.allDelete(userId);
 			return "{\"retCode\":\"Success\"}" + ".json";
 		} else {
 			return "{\"retCode\":\"Fail\"}" + ".json";

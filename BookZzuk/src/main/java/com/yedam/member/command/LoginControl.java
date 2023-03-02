@@ -35,14 +35,13 @@ public class LoginControl implements Command {
 
 			req.setAttribute("vo", mvo);
 			
-			page = "main/" + "main";
+			return "main.do";
 		} else {
 			
 			req.setAttribute("result", "아이디 또는 비밀번호를 잘못 입력했습니다.");
 			
-			page = "member/" + "login";
+			return "loginForm.do";
 		}
-		return page + ".tiles";
 	}
 
 }
