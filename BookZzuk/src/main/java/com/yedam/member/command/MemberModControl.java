@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -19,6 +20,9 @@ public class MemberModControl implements Command {
 
 	@Override
 	public String exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		HttpSession session = req.getSession();
+		String id = (String) session.getAttribute("logId");
+
 		String userId = req.getParameter("userId");
 		String userPw = req.getParameter("userPw");
 		String userName = req.getParameter("userName");
@@ -41,9 +45,14 @@ public class MemberModControl implements Command {
 
 		service.modifyMember(vo);
 
-		MemberVO member = service.getMember("abcd");
+		MemberVO member = service.getMember(id);
 		req.setAttribute("vo", member);
 
+		/*
+		 * // int r = service.modifyMember(vo); if( r > 0 ) {
+		 * req.setAttribute("retCode", "Success"); } else { req.setAttribute("retCode",
+		 * "Fail"); } //
+		 */	
 		return "memberInfo.do";
 
 	}

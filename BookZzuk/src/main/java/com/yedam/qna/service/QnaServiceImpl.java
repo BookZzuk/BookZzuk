@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.yedam.qna.mapper.QnaMapper;
 import com.yedam.common.DataSource;
+import com.yedam.common.PagingVO;
 import com.yedam.qna.vo.QnaVO;
 
 public class QnaServiceImpl implements QnaService {
@@ -26,6 +27,18 @@ public class QnaServiceImpl implements QnaService {
 	@Override
 	public int delQna(int articleNum) {
 		return mapper.delQna(articleNum);
+	}
+	@Override
+	public List<QnaVO> qnaAllList() {
+		return mapper.qnaAllList();
+	}
+	@Override
+	public int countQnaAll() {
+		return mapper.countQnaAll();
+	}
+	@Override
+	public List<QnaVO> selectQnaAll(PagingVO vo) {
+		return mapper.selectQnaAll(vo);
 	}
 
 	

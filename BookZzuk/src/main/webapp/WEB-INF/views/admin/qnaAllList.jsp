@@ -28,17 +28,25 @@ table {
 a {
 	text-decoration: none;
 }
+
+.nice-select {
+	position: relative;
+	top: 20px;
+	right: -50px;
+}
 </style>
+
 <script>
 	function selChange() {
 		var sel = document.getElementById('cntPerPage').value;
-		location.href = "noticePaging.do?nowPage=${paging.nowPage}&cntPerPage="
+		location.href = "qnaAllListPaging.do?nowPage=${paging.nowPage}&cntPerPage="
 				+ sel;
 	}
 </script>
+
 <div class="container">
 	<div class="checkout__form">
-		<h4>공지사항</h4>
+		<h4>1:1문의내역(관리자)</h4>
 		<div class="a">
 			<div class="shoping-cart shoping__cart__table">
 				<div style="float: right;">
@@ -61,20 +69,29 @@ a {
 					<div id="outter">
 						<thead>
 							<tr>
-								<th>번호</th>
+								<th>글번호</th>
 								<th>제목</th>
 								<th>작성자</th>
 								<th>작성일자</th>
+								<th>답변여부</th>
 							</tr>
 						</thead>
 						<tbody>
 							<c:forEach items="${viewAll }" var="list">
 								<tr
-									onclick="location.href='noticeDetail.do?noticeNum=${list.noticeNum}'">
-									<td>${list.noticeNum }</td>
+									onclick="location.href='qnaAllDetail.do?articleNum=${list.articleNum}'">
+									<td>${list.articleNum }</td>
 									<td>${list.title}</a></td>
 									<td>${list.userId }</td>
 									<td>${list.writeDate}</td>
+									<c:choose>
+										<c:when test="${list.replyNum != 0}">
+											<td>답변완료</td>
+										</c:when>
+										<c:otherwise>
+											<td>답변 대기중</td>
+										</c:otherwise>
+									</c:choose>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -84,7 +101,7 @@ a {
 		<div style="display: block; text-align: center;">
 			<c:if test="${paging.startPage != 1 }">
 				<a
-					href="http://localhost:8081/BookZzuk_BookZzuk/noticePaging.do?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
+					href="http://localhost:8081/BookZzuk_BookZzuk/qnaAllListPaging.do?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
 			</c:if>
 			<c:forEach begin="${paging.startPage }" end="${paging.endPage }"
 				var="p">
@@ -94,14 +111,15 @@ a {
 					</c:when>
 					<c:when test="${p != paging.nowPage }">
 						<a
-							href="http://localhost:8081/BookZzuk_BookZzuk/noticePaging.do?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
+							href="http://localhost:8081/BookZzuk_BookZzuk/qnaAllListPaging.do?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
 					</c:when>
 				</c:choose>
 			</c:forEach>
 			<c:if test="${paging.endPage != paging.lastPage}">
 				<a
-					href="http://localhost:8081/BookZzuk_BookZzuk/noticePaging.do?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
+					href="http://localhost:8081/BookZzuk_BookZzuk/qnaAllListPaging.do?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
 			</c:if>
 		</div>
+
 	</div>
 </div>

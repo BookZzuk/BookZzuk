@@ -8,16 +8,18 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.notice.service.NoticeService;
 import com.yedam.notice.service.NoticeServiceImpl;
+import com.yedam.qna.service.QnaService;
+import com.yedam.qna.service.QnaServiceImpl;
 
-public class NoticePagingControl implements Command {
+public class qnaAllListPagingControl implements Command {
 
 	@Override
 	public String exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		NoticeService service = new NoticeServiceImpl();
+		QnaService service = new QnaServiceImpl();
 		String nowPage = req.getParameter("nowPage");
 		String cntPerPage = req.getParameter("cntPerPage");
 
-		int total = service.countNotice();
+		int total = service.countQnaAll();
 
 		if (nowPage == null && cntPerPage == null) {
 			nowPage = "1";
@@ -30,9 +32,9 @@ public class NoticePagingControl implements Command {
 
 		PagingVO vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
 		req.setAttribute("paging", vo);
-		req.setAttribute("viewAll", service.selectNotice(vo));
+		req.setAttribute("viewAll", service.selectQnaAll(vo));
 
-		return "notice/noticePaging.tiles";
+		return "admin/qnaAllList.tiles";
 	}
 
 }

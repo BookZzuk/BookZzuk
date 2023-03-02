@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.yedam.common.Command;
 import com.yedam.qna.service.QnaService;
@@ -16,14 +17,15 @@ public class QnaDelControl implements Command {
 	public String exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String articleNum = req.getParameter("articleNum");
 
-//HttpSession session = req.getSession();
-//String id = (String) session.getAttribute("id")
+		HttpSession session = req.getSession();
+		String id = (String) session.getAttribute("logId");
 
 		QnaService service = new QnaServiceImpl();
 		service.delQna(Integer.parseInt(articleNum));
-		req.setAttribute("qnaList", service.qnaList("abcd"));
+		req.setAttribute("qnaList", service.qnaList(id));
 
 		return "qna/qnaList.tiles";
+
 	}
 
 }

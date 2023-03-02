@@ -5,6 +5,8 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import com.yedam.common.DataSource;
+import com.yedam.common.PagingVO;
+import com.yedam.qna.vo.QnaVO;
 import com.yedam.qnaReply.mapper.QnaReplyMapper;
 import com.yedam.qnaReply.vo.QnaReplyVO;
 
@@ -19,4 +21,14 @@ public class QnaReplyServiceImpl implements QnaReplyService {
 	public List<QnaReplyVO> qnaReplyList(String id) {
 		return mapper.qnaReplyList(id);
 	}
+	@Override
+	public int addReply(QnaReplyVO qnaReply) {
+		return mapper.addReply(qnaReply);
+	}
+	@Override
+	public int delReply(int replyNum) {
+		return mapper.delReply(replyNum);
+	}
+	
+
 }

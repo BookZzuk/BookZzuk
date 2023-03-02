@@ -11,19 +11,31 @@ import com.yedam.qna.service.QnaService;
 import com.yedam.qna.service.QnaServiceImpl;
 import com.yedam.qnaReply.service.QnaReplyService;
 import com.yedam.qnaReply.service.QnaReplyServiceImpl;
+import com.yedam.qnaReply.vo.QnaReplyVO;
 
-public class ReplyDeleteControl implements Command {
+public class ReplyAddProcessControl implements Command {
 
 	@Override
 	public String exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String replyNum = req.getParameter("replyNum");
+
 		String articleNum = req.getParameter("articleNum");
+		String userId = req.getParameter("userId");
+		String contents = req.getParameter("contents");
+
+		QnaReplyVO vo = new QnaReplyVO();
+
+		vo.setArticleNum(Integer.parseInt(articleNum));
+		vo.setUserId(userId);
+		vo.setContents(contents);
 
 		QnaReplyService service = new QnaReplyServiceImpl();
-		service.delReply(Integer.parseInt(replyNum));
+		service.addReply(vo);
 
-		QnaService QnaService = new QnaServiceImpl();
-		req.setAttribute("articeDetail", QnaService.getQna(Integer.parseInt(articleNum)));
+		QnaService qnaService = new QnaServiceImpl();
+		req.setAttribute("articeDetail", qnaService.getQna(Integer.parseInt(articleNum)));
+
+		QnaReplyService replyService = new QnaReplyServiceImpl();
+		req.setAttribute("qnaReplyDetail", replyService.getQnaReply(Integer.parseInt(articleNum)));
 
 		return "admin/qnaAllListDetail.tiles";
 	}
