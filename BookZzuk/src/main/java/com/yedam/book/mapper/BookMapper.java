@@ -21,5 +21,6 @@ public interface BookMapper {
 	public List<BookVO> muchSellList();
 	public List<BookVO> newBookList();
 	public List<ReviewVO> getReview();
+	public int addBook(BookVO book);
 
 }
