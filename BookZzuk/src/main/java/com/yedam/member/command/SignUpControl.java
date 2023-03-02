@@ -13,10 +13,13 @@ import com.yedam.member.service.MemberServiceImpl;
 import com.yedam.member.vo.MemberVO;
 
 public class SignUpControl implements Command {
+	
 
 	@Override
 	public String exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+		
+		
 		String id = req.getParameter("user_id");
 		String pw = req.getParameter("user_pw");
 		String nm = req.getParameter("user_name");
@@ -47,6 +50,7 @@ public class SignUpControl implements Command {
 		vo.setPhone(ph);
 
 		MemberService service = new MemberServiceImpl();
+
 		String page = "";
 		if (service.addMember(vo) > 0) {
 			//resp.sendRedirect("loginForm.do");
