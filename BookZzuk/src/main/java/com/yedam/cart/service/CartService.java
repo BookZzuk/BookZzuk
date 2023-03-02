@@ -14,5 +14,7 @@ public interface CartService {
 	public int addCnt(String uid, String itemId, String itemCnt);
 
 	public int delCart(String uid, String itemId);
+
+	public int allDelete(String uid);
 	
 }

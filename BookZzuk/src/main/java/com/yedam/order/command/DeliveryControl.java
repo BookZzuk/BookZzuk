@@ -17,10 +17,10 @@ public class DeliveryControl implements Command {
 	public String exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
 		String id = (String) session.getAttribute("logId");
-
+		
 		OrderService service = new OrderServiceImpl();
 		req.setAttribute("orderList", service.orderList(id));
-
+		
 		return "member/delivery.tiles";
 	}
 

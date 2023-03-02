@@ -99,8 +99,9 @@ prefix="c"%>
                 data-toggle="tab"
                 role="tab"
                 aria-selected="false"
-                >Reviews <span>(n개의 리뷰가 잇어요)</span></a
               >
+                Reviews
+              </a>
             </li>
           </ul>
           <div class="tab-content">

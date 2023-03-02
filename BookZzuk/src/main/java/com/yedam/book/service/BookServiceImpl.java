@@ -56,6 +56,10 @@ public class BookServiceImpl implements BookService {
 		return mapper.recomanList(uid);
 	}
 	@Override
+	public List<BookVO> recomanList2() {
+		return mapper.recomanList2();
+	}
+	@Override
 	public List<BookVO> muchSellList() {
 		return mapper.muchSellList();
 	}

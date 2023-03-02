@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import com.yedam.book.vo.BookVO;
 import com.yedam.common.DataSource;
 import com.yedam.like.mapper.LikeMapper;
+import com.yedam.like.vo.LikeVO;
 
 public class LikeServiceImpl implements LikeService {
 	SqlSession session = DataSource.getInstance().openSession(true);
@@ -20,5 +21,10 @@ public class LikeServiceImpl implements LikeService {
 	@Override
 	public int delLike(String uid, String itemId) {
 		return mapper.delLike(uid, itemId);
+	}
+
+	@Override
+	public int likeAdd(LikeVO vo) {
+		return mapper.likeAdd(vo);
 	}
 }

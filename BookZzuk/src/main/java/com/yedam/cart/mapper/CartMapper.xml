@@ -41,4 +41,10 @@
 		   AND item_id = #{itemId}
 	</delete>
 	<!-- 장바구니 삭제 기능 끝 -->
+	<!-- 장바구니 전체 삭제 기능 시작 -->
+	<delete id="allDelete" parameterType="string">
+		DELETE cart
+		 WHERE user_id = #{uid}
+	</delete>
+	<!-- 장바구니 전체 삭제 기능 끝 -->
 </mapper>

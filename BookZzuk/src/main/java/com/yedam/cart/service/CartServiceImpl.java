@@ -32,4 +32,9 @@ public class CartServiceImpl implements CartService {
 	public int delCart(String uid, String itemId) {
 		return mapper.delCart(uid, itemId);
 	}
+
+	@Override
+	public int allDelete(String uid) {
+		return mapper.allDelete(uid);
+	}
 }

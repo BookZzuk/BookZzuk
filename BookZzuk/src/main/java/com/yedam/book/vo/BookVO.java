@@ -17,5 +17,6 @@ public class BookVO {
 	private String category;
 	private String publisher;
 	private String adult;
+	private double avgGrade;
 	private int itemCnt;
 }

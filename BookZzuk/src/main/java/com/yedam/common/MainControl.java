@@ -1,6 +1,7 @@
 package com.yedam.common;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -9,7 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import com.yedam.book.service.BookService;
 import com.yedam.book.service.BookServiceImpl;
-import com.yedam.member.vo.MemberVO;
+import com.yedam.book.vo.BookVO;
 
 public class MainControl implements Command {
 
@@ -18,10 +19,21 @@ public class MainControl implements Command {
 		BookService service = new BookServiceImpl();
 		HttpSession session = req.getSession();
 		
-		String uid = (String) session.getAttribute("uid");
+		String uid = (String) session.getAttribute("logId");
 		
-		req.setAttribute("recomanList", service.recomanList(uid));
-		req.setAttribute("muchSellList", service.muchSellList());
+		List<BookVO> reco = service.recomanList(uid);
+		if(reco.size() == 0) {
+			req.setAttribute("recomanList", service.recomanList2());
+		} else {
+			req.setAttribute("recomanList", reco);			
+		}
+		List<BookVO> list = service.muchSellList();
+		for(BookVO temp : list) {
+			String category = temp.getCategory();
+			String newCate = category.replace("/", "_");
+			temp.setCategory(newCate);
+		}
+		req.setAttribute("muchSellList", list);
 		req.setAttribute("newBookList", service.newBookList());
 		req.setAttribute("review", service.getReview());
 		

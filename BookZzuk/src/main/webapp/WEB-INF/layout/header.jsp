@@ -1,222 +1,158 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-    <!-- Page Preloder -->
-    <div id="preloder">
-      <div class="loader"></div>
-    </div>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<!-- Page Preloder -->
+<div id="preloder">
+	<div class="loader"></div>
+</div>
 
-    <!-- Humberger Begin -->
-    <div class="humberger__menu__overlay"></div>
-    <div class="humberger__menu__wrapper">
-      <div class="humberger__menu__logo">
-        <a href="#"><img src="img/logo.png" alt="" /></a>
-      </div>
-      <div class="humberger__menu__cart">
-        <ul>
-          <li>
-            <a href="#"><i class="fa fa-heart"></i> <span>1</span></a>
-          </li>
-          <li>
-            <a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a>
-          </li>
-        </ul>
-        <div class="header__cart__price">item: <span>$150.00</span></div>
-      </div>
-      <div class="humberger__menu__widget">
-        <div class="header__top__right__language">
-          <img src="img/language.png" alt="" />
-          <div>English</div>
-          <span class="arrow_carrot-down"></span>
-          <ul>
-            <li><a href="#">Spanis</a></li>
-            <li><a href="#">English</a></li>
-          </ul>
-        </div>
-        <div class="header__top__right__auth">
-          <a href="#"><i class="fa fa-user"></i> Login</a>
-        </div>
-      </div>
-      <nav class="humberger__menu__nav mobile-menu">
-        <ul>
-          <li class="active"><a href="./index.html">Home</a></li>
-          <li><a href="./shop-grid.html">Shop</a></li>
-          <li>
-            <a href="#">Pages</a>
-            <ul class="header__menu__dropdown">
-              <li><a href="./shop-details.html">Shop Details</a></li>
-              <li><a href="./shoping-cart.html">Shoping Cart</a></li>
-              <li><a href="./checkout.html">Check Out</a></li>
-              <li><a href="./blog-details.html">Blog Details</a></li>
-            </ul>
-          </li>
-          <li><a href="./blog.html">Blog</a></li>
-          <li><a href="./contact.html">Contact</a></li>
-        </ul>
-      </nav>
-      <div id="mobile-menu-wrap"></div>
-      <div class="header__top__right__social">
-        <a href="#"><i class="fa fa-facebook"></i></a>
-        <a href="#"><i class="fa fa-twitter"></i></a>
-        <a href="#"><i class="fa fa-linkedin"></i></a>
-        <a href="#"><i class="fa fa-pinterest-p"></i></a>
-      </div>
-      <div class="humberger__menu__contact">
-        <ul>
-          <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
-          <li>Free Shipping for all Order of $99</li>
-        </ul>
-      </div>
-    </div>
-    <!-- Humberger End -->
+<!-- Header Section Begin -->
+<header class="header">
+	<div class="header__top">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6 col-md-6">
+				</div>
+				<div class="col-lg-6 col-md-6">
+					<div class="header__top__right">
+						<div class="header__top__right__social">
+							<a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i
+								class="fa fa-twitter"></i></a> <a href="#"><i
+								class="fa fa-linkedin"></i></a>
+						</div>
+						<div class="header__top__right__auth">
+							<c:choose>
+								<c:when test="${!empty logId }">
+									<a href="logout.do"><i class="fa fa-user"></i>
+										Logout(${logName })</a>
+								</c:when>
+								<c:otherwise>
+									<a href="loginForm.do"><i class="fa fa-user"></i> Login</a>
+								</c:otherwise>
+							</c:choose>
 
-    <!-- Header Section Begin -->
-    <header class="header">
-      <div class="header__top">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-6 col-md-6">
-              <div class="header__top__left">
-                <ul>
-                  <li><i class="fa fa-envelope"></i> 관리자 메일</li>
-                </ul>
-              </div>
-            </div>
-            <div class="col-lg-6 col-md-6">
-              <div class="header__top__right">
-                <div class="header__top__right__social">
-                  <a href="#"><i class="fa fa-facebook"></i></a>
-                  <a href="#"><i class="fa fa-twitter"></i></a>
-                  <a href="#"><i class="fa fa-linkedin"></i></a>
-                </div>
-                <div class="header__top__right__auth">
-                 <c:choose>
-                                  <c:when test="${!empty logId }">
-                                   <a href="logout.do"><i class="fa fa-user"></i> Logout(${logName })</a>
-                                  </c:when>
-                                  <c:otherwise>
-                                    <a href="loginForm.do"><i class="fa fa-user"></i> Login</a>
-                                  </c:otherwise>
-                 </c:choose>
-                  
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-3">
-            <div class="header__logo">
-              <a href="./index.html"><img src="img/logo.png" alt="" /></a>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <nav class="header__menu">
-              <ul>
-                <li class="active"><a href="main.do">메인페이지</a></li>
-                <li><a href="bookList.do">도서리스트</a></li>
-                <li><a href="memberInfo.do">마이페이지</a></li>
-                <li><a href="noticePaging.do?nowPage=1&cntPerPage=10">고객 센터</a></li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-        <div class="humberger__open">
-          <i class="fa fa-bars"></i>
-        </div>
-      </div>
-    </header>
-    <!-- Header Section End -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-3">
+				<div class="header__logo">
+					<a href="main.do"><img src="img/logo.png" alt="" /></a>
+				</div>
+			</div>
+			<div class="col-lg-6">
+				<nav class="header__menu">
+					<ul>
+						<li><a href="main.do">메인페이지</a></li>
+						<li><a href="bookList.do">도서리스트</a></li>
+						<li><a href="memberInfo.do">마이페이지</a></li>
+						<li><a href="noticeList.do">고객 센터</a></li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+		<div class="humberger__open">
+			<i class="fa fa-bars"></i>
+		</div>
+	</div>
+</header>
+<!-- Header Section End -->
 
-    <!-- Hero Section Begin -->
-    <c:if test="${main != null }">
-    	<section class="hero">
-    </c:if>
-    <c:if test="${main == null }">
-    	<section class="hero hero-normal">
-    </c:if>
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-3">
-            <div class="hero__categories">
-              <div class="hero__categories__all">
-                <i class="fa fa-bars"></i>
-                <span>All departments</span>
-              </div>
-              <ul>
-                <li><a href="#">Fresh Meat</a></li>
-                <li><a href="#">Vegetables</a></li>
-                <li><a href="#">Fruit & Nut Gifts</a></li>
-                <li><a href="#">Fresh Berries</a></li>
-                <li><a href="#">Ocean Foods</a></li>
-                <li><a href="#">Butter & Eggs</a></li>
-                <li><a href="#">Fastfood</a></li>
-                <li><a href="#">Fresh Onion</a></li>
-                <li><a href="#">Papayaya & Crisps</a></li>
-                <li><a href="#">Oatmeal</a></li>
-                <li><a href="#">Fresh Bananas</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-lg-9">
-            <div class="hero__search">
-              <div class="hero__search__form">
-                <form>
-                  <div class="hero__search__categories">
-                    All Categories
-                    <span class="arrow_carrot-down"></span>
-                  </div>
-                  <input type="text" placeholder="찾는 도서명을 입력해주세요" id = "searchKey"/>
-                  <button type="button" class="site-btn" onclick="searchParam()" id="searchButton">검색</button>
-                </form>
-              </div>
-              <div class="hero__search__phone">
-                <div class="hero__search__phone__icon">
-                  <i class="fa fa-phone"></i>
-                </div>
-                <div class="hero__search__phone__text">
-                  <h5>+65 11.188.888</h5>
-                  <span>support 24/7 time</span>
-                </div>
-              </div>
-            </div>
-            <c:if test="${main != null }">
-              <div class="hero__item set-bg" data-setbg="img/hero/banner.jpg">
-                <div class="hero__text">
-                  <span>FRUIT FRESH</span>
-                  <h2>Vegetable <br />100% Organic</h2>
-                  <p>Free Pickup and Delivery Available</p>
-                  <a href="#" class="primary-btn">SHOP NOW</a>
-                </div>
-              </div>
-            </c:if>
-          </div>
-        </div>
-      </div>
-    </section>
-    <script>
-     
-     init();
-    function searchParam() {
-      let Val=document.getElementById("searchKey").value;
-      let URLSearch = new URLSearchParams(location.search);
-      URLSearch.set("search", String(Val));
-      let param = URLSearch.toString();
-      window.open(location.pathname + "?" + param, "_self");
-      console.log(param);
+<!-- Hero Section Begin -->
+<c:if test="${main != null }">
+	<section class="hero">
+</c:if>
+<c:if test="${main == null }">
+	<section class="hero hero-normal">
+</c:if>
+<div class="container">
+	<div class="row">
+		<div class="col-lg-3">
+			<div class="hero__categories">
+				<div class="hero__categories__all">
+					<i class="fa fa-bars"></i> <span>All departments</span>
+				</div>
+				<ul>
+					<li><a href="#">Fresh Meat</a></li>
+					<li><a href="#">Vegetables</a></li>
+					<li><a href="#">Fruit & Nut Gifts</a></li>
+					<li><a href="#">Fresh Berries</a></li>
+					<li><a href="#">Ocean Foods</a></li>
+					<li><a href="#">Butter & Eggs</a></li>
+					<li><a href="#">Fastfood</a></li>
+					<li><a href="#">Fresh Onion</a></li>
+					<li><a href="#">Papayaya & Crisps</a></li>
+					<li><a href="#">Oatmeal</a></li>
+					<li><a href="#">Fresh Bananas</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="col-lg-9">
+			<div class="hero__search">
+				<div class="hero__search__form">
+					<form>
+						<div class="hero__search__categories">
+							All Categories <span class="arrow_carrot-down"></span>
+						</div>
+						<input type="text" placeholder="찾는 도서명을 입력해주세요" id="searchKey" onkeypress="searchEnter(event)" />
+						<button type="button" class="site-btn" onclick="searchParam()"
+							id="searchButton">검색</button>
+					</form>
+				</div>
+				<div class="hero__search__phone">
+					<div class="hero__search__phone__icon">
+						<i class="fa fa-phone"></i>
+					</div>
+					<div class="hero__search__phone__text">
+						<h5 style="padding-top: 15px;">+82 010-1234-5678</h5>
+					</div>
+				</div>
+			</div>
+			<c:if test="${main != null }">
+				<div class="hero__item set-bg"
+					data-setbg="https://img1.daumcdn.net/thumb/R1280x0.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/7PBF/image/b0KVeRRLDeOtIap0-KnApW1uW8Q"
+          style="background-size: contain;">
+				</div>
+			</c:if>
+		</div>
+	</div>
+</div>
+</section>
+<script>
+	init();
+	function searchParam() {
+		let Val = document.getElementById("searchKey").value;
+		let URLSearch = new URLSearchParams(location.search);
+		URLSearch.set("search", String(Val));
+		let param = URLSearch.toString();
+		location.href="bookList.do?"+param;
+		console.log(param);
+	}
+	function init() {
+		let urlParams = new URL(location.href).searchParams;
+		let searchParamVal = urlParams.get('search');
+		document.getElementById("searchKey").value = searchParamVal
+		document.getElementById("searchKey").addEventListener("keyup",
+				function(e) {
+					if (e.keyCode == 13) {
+						document.getElementById("searchButton").click();
+					}
+				});
+	}
+  function searchEnter(e) {
+    console.log(e.keyCode)
+    if (e.keyCode == 13) {
+			let Val = document.getElementById("searchKey").value;
+		  let URLSearch = new URLSearchParams(location.search);
+		  URLSearch.set("search", String(Val));
+		  let param = URLSearch.toString();
+		  location.href="bookList.do?"+param;
+		}
   }
-  function init(){
-  let urlParams = new URL(location.href).searchParams;
-  let searchParamVal = urlParams.get('search');
-  document.getElementById("searchKey").value=searchParamVal
-  document.getElementById("searchKey")
-    .addEventListener("keyup", function(e) {
-        if (e.code === 'Enter') {
-            document.getElementById("searchButton").click();
-        }
-    });
-  }
-    </script>
-    <!-- Hero Section End -->
+</script>
+<!-- Hero Section End -->
