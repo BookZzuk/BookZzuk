@@ -12,7 +12,7 @@ import com.yedam.qna.service.QnaServiceImpl;
 import com.yedam.qnaReply.service.QnaReplyService;
 import com.yedam.qnaReply.service.QnaReplyServiceImpl;
 
-public class QnaDetailControl implements Command {
+public class qnaAllDetailControl implements Command {
 
 	@Override
 	public String exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -24,7 +24,7 @@ public class QnaDetailControl implements Command {
 		QnaReplyService replyService = new QnaReplyServiceImpl();
 		req.setAttribute("qnaReplyDetail", replyService.getQnaReply(Integer.parseInt(articleNum)));
 
-		return "qna/qnaDetail.tiles";
+		return "admin/qnaAllListDetail.tiles";
 	}
 
 }

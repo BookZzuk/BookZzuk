@@ -5,18 +5,60 @@
 <mapper namespace="com.yedam.qna.mapper.QnaMapper">
 
 	<select id="qnaList" parameterType="string" resultType="QnaVO">
-		SELECT *
-		FROM customer_service where user_id=#{id} order by article_num desc
+		SELECT
+		c.article_num, title, c.user_id, c.write_date, c.contents, article_pw,
+		reply_num
+		FROM
+		customer_service c LEFT JOIN service_reply s
+		ON
+		c.article_num = s.article_num
+		WHERE c.user_id=#{id}
+		ORDER BY
+		c.article_num desc
 	</select>
 	<select id="getQna" parameterType="int" resultType="QnaVO">
 		SELECT * FROM
-		customer_service where article_num = #{articleNum}
+		customer_service WHERE article_num = #{articleNum}
 	</select>
 	<insert id="addQna" parameterType="QnaVO">
-		INSERT INTO customer_service(article_num, title, user_id, contents)
+		INSERT INTO
+		customer_service(article_num, title, user_id, contents)
 		VALUES(article_pk_seq.NEXTVAL, #{title},#{userId},#{contents})
 	</insert>
 	<delete id="delQna" parameterType="int">
-		delete from customer_service where article_num = #{articleNum}
-</delete>
+		DELETE FROM customer_service
+		WHERE article_num = #{articleNum}
+	</delete>
+	<select id="qnaAllList"  resultType="QnaVO">
+		SELECT
+		c.article_num, title, c.user_id, c.write_date, c.contents, article_pw,
+		reply_num
+		FROM
+		customer_service c LEFT JOIN service_reply s
+		ON c.article_num = s.article_num
+		ORDER BY c.article_num desc
+	</select>
+	
+	<select id="countQnaAll" resultType="int">
+		SELECT COUNT(*) FROM customer_service
+	</select>
+
+	<select id="selectQnaAll" resultType="QnaVO">
+		SELECT *
+		FROM (
+		SELECT ROWNUM RN, A.*
+		FROM (
+		SELECT
+		c.article_num, title, c.user_id, c.write_date, c.contents, article_pw,
+		reply_num
+		FROM
+		customer_service c LEFT JOIN service_reply s
+		ON
+		c.article_num = s.article_num
+		ORDER BY article_num DESC
+		) A
+		)
+		WHERE RN BETWEEN #{start} AND #{end}
+	</select>
+
 </mapper>

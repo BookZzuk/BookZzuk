@@ -16,39 +16,38 @@
 	</insert>
 
 	<select id="memberList" resultType="MemberVO">
-		select * from member order by
-		user_id
+		SELECT * FROM member ORDER BY user_id
 	</select>
-
-	<select id="getMember" parameterType="String"
-		resultType="MemberVO">
-		select * from member where user_id=#{id}
+	
+	<select id="getMember" parameterType="String" resultType="MemberVO">
+		SELECT * FROM member WHERE user_id=#{id}
 	</select>
-
-	<update id="updateMember" parameterType="MemberVO">
-		update member
+	
+	 <update id="updateMember" parameterType="MemberVO">
+		UPDATE member
 		<set>
-			<if test="userPw != null">
-				user_pw = #{userPw},
-			</if>
-			<if test="name != null">
-				name = #{name},
-			</if>
-			<if test="phone != null">
-				phone = #{phone},
-			</if>
-			<if test="addr != null">
-				addr = #{addr},
-			</if>
-			<if test="email != null">
-				email = #{email},
-			</if>
-			<if test="grade != null">
-				grade = #{grade},
-			</if>
-		</set>
-		where user_id = #{userId}
-	</update>
+		<if test="userPw != null">
+			user_pw = #{userPw},
+		</if>
+		<if test="name != null">
+			name = #{name},
+		</if>
+		<if test="phone != null">
+			phone = #{phone},
+		</if>
+		<if test="addr != null">
+			addr = #{addr},
+		</if>
+		<if test="email != null">
+			email = #{email},
+		</if>
+		<if test="grade != null">
+			grade = #{grade},
+		</if>
+		</set> 
+		WHERE user_id = #{userId}
+	</update> 
+	
 
 	<delete id="deleteMember" parameterType="String">
 		delete from member

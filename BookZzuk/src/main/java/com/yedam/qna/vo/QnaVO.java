@@ -9,7 +9,11 @@ public class QnaVO {
 	private String userId;
 	private String writeDate;
 	private String contents;
-	private String article_pw ;
+	private String articlePw;
+	private int replyNum;
+	
+	
+	
 	
 	
 }

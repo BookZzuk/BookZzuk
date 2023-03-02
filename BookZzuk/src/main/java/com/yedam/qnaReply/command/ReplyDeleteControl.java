@@ -7,13 +7,25 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.common.Command;
+import com.yedam.qna.service.QnaService;
+import com.yedam.qna.service.QnaServiceImpl;
+import com.yedam.qnaReply.service.QnaReplyService;
+import com.yedam.qnaReply.service.QnaReplyServiceImpl;
 
 public class ReplyDeleteControl implements Command {
 
 	@Override
 	public String exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		return null;
+		String replyNum = req.getParameter("replyNum");
+		String articleNum = req.getParameter("articleNum");
+
+		QnaReplyService service = new QnaReplyServiceImpl();
+		service.delReply(Integer.parseInt(replyNum));
+
+		QnaService QnaService = new QnaServiceImpl();
+		req.setAttribute("articeDetail", QnaService.getQna(Integer.parseInt(articleNum)));
+
+		return "admin/qnaAllListDetail.tiles";
 	}
 
 }
