@@ -8,10 +8,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.common.Command;
 
-public class FindPwControl implements Command {
+public class IdCheckControl implements Command {
 
 	@Override
 	public String exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		return null;
 	}
+
 }
