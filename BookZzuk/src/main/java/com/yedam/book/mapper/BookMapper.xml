@@ -88,7 +88,9 @@
 			 , title
 			 , sale_price
 			 , std_price
-		  FROM member m, book b, book_like bLike
+		  FROM member m
+			 , book b
+			 , book_like bLike
 		 WHERE bLike.user_id = m.user_id
 		   AND bLike.item_id = b.item_id
 		   AND m.user_id = #{uid}
@@ -97,7 +99,7 @@
 	<!-- 전체 리스트 조회 시작 -->
 	<select id="getAllBook" resultType="BookVO">
 		SELECT item_id
-		FROM book
+		  FROM book
 	</select>
 	<!-- 전체 리스트 조회 끝 -->
 	<!-- 평균 별점 갱신 시작 -->
@@ -115,7 +117,9 @@
 		  FROM ( SELECT *
 				   FROM book
 				  WHERE category IN ( SELECT category
-										FROM book b, book_order o, order_detail d
+										FROM book b
+										   , book_order o
+										   , order_detail d
 									   WHERE o.order_num = d.order_num
 										 AND d.item_id   = b.item_id
 										 AND o.user_id = #{uid} )
@@ -135,11 +139,13 @@
 	<!-- 화재 도서 조회 시작 -->
 	<select id="muchSellList" resultType="BookVO">
 		SELECT b.*
-		  FROM book b, ( SELECT b.item_id
-						   FROM book b, order_detail d
-						  WHERE b.item_id = d.item_id
-						  GROUP BY b.item_id
-						  ORDER BY SUM(item_cnt) DESC ) a
+		  FROM book b
+			 , ( SELECT b.item_id
+				  FROM book b
+					 , order_detail d
+				 WHERE b.item_id = d.item_id
+				 GROUP BY b.item_id
+				 ORDER BY SUM(item_cnt) DESC ) a
 		 WHERE b.item_id = a.item_id
 		   AND ROWNUM BETWEEN 1 AND 12
 	</select>
@@ -160,7 +166,8 @@
 				   FROM ( SELECT r.*
 							   , b.title
 							   , b.cover
-							FROM review r, book b
+							FROM review r
+							   , book b
 						   WHERE r.item_id = b.item_id ) a
 				  ORDER BY review_date DESC ) a
 		 WHERE ROWNUM BETWEEN 1 AND 6

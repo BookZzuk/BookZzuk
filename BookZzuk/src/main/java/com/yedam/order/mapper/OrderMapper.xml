@@ -7,23 +7,6 @@
 	<select id="orderList" resultType="OrderVO">
 		select * from book_order where user_id=#{userId} order by order_num desc
 	</select>
-	<select id="getOrder" parameterType="string" resultType="OrderDetailVO">
-		<!-- SELECT detail_num, order_num, o.item_id, item_cnt, price, title, author, publisher 
-		FROM
-		order_detail o JOIN book b
-        ON o.item_id  = b.item_id
-        where order_num = #{orderNum} -->
-        
-        SELECT detail_num, d.order_num, d.item_id, item_cnt, price, title, author, publisher, total_price, cover
-		FROM
-		order_detail d JOIN book b 
-        ON d.item_id  = b.item_id
-        JOIN book_order o
-        ON d.order_num = o.order_num
-        where d.order_num = #{orderNum}
-		select * from book_order where
-		user_id=#{userId} order by order_num desc
-	</select>
 	<select id="getOrder" parameterType="String"
 		resultType="OrderDetailVO" >
 			<!-- SELECT detail_num, order_num, o.item_id, item_cnt, price, title, 
@@ -41,21 +24,14 @@
 		</select>
 	<!-- 주문목록 추가 시작 -->
 	<insert id="addOrder" parameterType="OrderVO">
-		INSERT INTO
-		book_order(order_num, user_id, order_addr, order_phone, total_price,
-		request, pay_number, order_name)
-		VALUES (#{orderNum}, #{userId},
-		#{orderAddr}, #{orderPhone}, #{totalPrice}, #{request}, #{payNumber},
-		#{orderName})
+		INSERT INTO book_order(order_num, user_id, order_addr, order_phone, total_price, request, pay_number, order_name)
+		VALUES (#{orderNum}, #{userId}, #{orderAddr}, #{orderPhone}, #{totalPrice}, #{request}, #{payNumber}, #{orderName})
 	</insert>
 	<!-- 주문목록 추가 끝 -->
 	<!-- 주문 상세 목록 추가 시작 -->
 	<insert id="addDetail" parameterType="OrderDetailVO">
-		INSERT INTO
-		order_detail(detail_num, order_num, item_id, item_cnt, price)
-		VALUES
-		(detail_pk_seq.nextval, #{orderNum}, #{itemId}, #{itemCnt}, #{price})
+		INSERT INTO order_detail(detail_num, order_num, item_id, item_cnt, price)
+		VALUES (detail_pk_seq.nextval, #{orderNum}, #{itemId}, #{itemCnt}, #{price})
 	</insert>
 	<!-- 주문 상세 목록 추가 끝 -->
-
 </mapper>
