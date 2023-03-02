@@ -8,7 +8,7 @@ public class BookVO {
 	private int itemId;
 	private String title;
 	private String author;
-	private Date pubDate;
+	private String pubDate;
 	private String description;
 	private String isbn;
 	private int salePrice;
