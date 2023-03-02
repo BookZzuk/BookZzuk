@@ -92,7 +92,7 @@ prefix="c" %>
 </style>
 
 <div id="id01" class="">
-  <form class="modal-content" action="findPw" method="post">
+  <form class="modal-content" action="findPw.do" method="post">
     <div class="container2">
       <h1>비밀번호 찾기</h1>
       <hr />
@@ -110,7 +110,7 @@ prefix="c" %>
 
       <div class="clearfix">
         <button type="submit" class="signupbtn">확인</button>
-        <button type="reset" class="cancelbtn">취소</button>
+        <a href="loginForm.do"><button type="button" class="cancelbtn">취소</button></a>
       </div>
     </div>
   </form>

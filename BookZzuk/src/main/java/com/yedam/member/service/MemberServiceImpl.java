@@ -12,6 +12,7 @@ public class MemberServiceImpl implements MemberService {
 	SqlSession session = DataSource.getInstance().openSession(true);
 	MemberMapper mapper = session.getMapper(MemberMapper.class);
 
+	
 	@Override
 	public MemberVO login(MemberVO member) {
 		return mapper.login(member);
@@ -36,5 +37,6 @@ public class MemberServiceImpl implements MemberService {
 	public int removeMember(String mid) {
 		return mapper.deleteMember(mid);
 	}
+
 }
 

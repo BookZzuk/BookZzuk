@@ -69,6 +69,7 @@ public class FrontController extends HttpServlet{
 		map.put("/findPw.do", new FindPwControl()); // 비밀번호 찾기 기능
 		map.put("/signUpForm.do", new SignUpFormControl()); // 회원가입 페이지
 		map.put("/signUp.do", new SignUpControl()); // 회원가입 기능
+		map.put("/idcheck.do", new IdCheckControl()); // 아이디 중복확인 기능
 		
 		
 		

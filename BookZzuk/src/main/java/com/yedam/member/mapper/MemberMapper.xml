@@ -3,51 +3,57 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yedam.member.mapper.MemberMapper">
-<select id="login" resultType="MemberVO">
-		select * from member where user_id=#{userId} and user_pw=#{userPw}
+	<select id="login" resultType="MemberVO">
+		select * from member where
+		user_id=#{userId} and user_pw=#{userPw}
 	</select>
-	
+
 	<insert id="addMember" parameterType="MemberVO">
-		insert into member(user_id, user_pw, name, age, addr, email, phone)
-		values(#{userId}, #{userPw}, #{name}, #{age}, #{addr}, #{email}, #{phone})
+		insert into member(user_id,
+		user_pw, name, age, addr, email, phone)
+		values(#{userId}, #{userPw},
+		#{name}, #{age}, #{addr}, #{email}, #{phone})
 	</insert>
-	
+
 	<select id="memberList" resultType="MemberVO">
-		select * from member order by user_id
+		select * from member order by
+		user_id
 	</select>
-	
-	<select id="getMember" parameterType="String" resultType="MemberVO">
+
+	<select id="getMember" parameterType="String"
+		resultType="MemberVO">
 		select * from member where user_id=#{id}
 	</select>
-	
-	 <update id="updateMember" parameterType="MemberVO">
+
+	<update id="updateMember" parameterType="MemberVO">
 		update member
 		<set>
-		<if test="userPw != null">
-			user_pw = #{userPw},
-		</if>
-		<if test="name != null">
-			name = #{name},
-		</if>
-		<if test="phone != null">
-			phone = #{phone},
-		</if>
-		<if test="addr != null">
-			addr = #{addr},
-		</if>
-		<if test="email != null">
-			email = #{email},
-		</if>
-		<if test="grade != null">
-			grade = #{grade},
-		</if>
-		</set> 
+			<if test="userPw != null">
+				user_pw = #{userPw},
+			</if>
+			<if test="name != null">
+				name = #{name},
+			</if>
+			<if test="phone != null">
+				phone = #{phone},
+			</if>
+			<if test="addr != null">
+				addr = #{addr},
+			</if>
+			<if test="email != null">
+				email = #{email},
+			</if>
+			<if test="grade != null">
+				grade = #{grade},
+			</if>
+		</set>
 		where user_id = #{userId}
-	</update> 
-	
+	</update>
+
 	<delete id="deleteMember" parameterType="String">
 		delete from member
-		where user_id = #{userId}
+		where
+		user_id = #{userId}
 	</delete>
-	
+
 </mapper>
