@@ -69,10 +69,12 @@ public class FrontController extends HttpServlet{
 		map.put("/findPw.do", new FindPwControl()); // 비밀번호 찾기 기능
 		map.put("/signUpForm.do", new SignUpFormControl()); // 회원가입 페이지
 		map.put("/signUp.do", new SignUpControl()); // 회원가입 기능
+		map.put("/idcheck.do", new IdCheckControl()); // 아이디 중복확인 기능
 		
 		
 		
-		map.put("/noticeList.do", new NoticeListControl()); // 공지사항 목록 조회 페이지
+		//map.put("/noticeList.do", new NoticeListControl()); // 공지사항 목록 조회 페이지
+		map.put("/noticePaging.do", new NoticePagingControl()); // 공지사항 페이징 기능
 		map.put("/noticeDetail.do", new NoticeDetailControl()); // 공지사항 단건 조회 페이지
 		map.put("/memberInfo.do", new MemberInfoControl()); // 회원 정보 페이지(with 수정 버튼)
 		map.put("/memberInfoMod.do", new MemberInfoModControl()); // 회원 수정 페이지
@@ -84,10 +86,14 @@ public class FrontController extends HttpServlet{
 		map.put("/qnaAdd.do", new QnaAddControl()); // 1:1 문의 등록 기능
 		map.put("/qnaAddProcess.do", new QnaAddProcessControl()); // 1:1 문의 등록 처리 기능
 		map.put("/qnaDel.do", new QnaDelControl()); // 1:1 문의 삭제기능
-		map.put("/replyList.do", new ReplyListControl()); // 문의글 댓글 조회 기능
+		//map.put("/replyList.do", new ReplyListControl()); // 문의글 댓글 조회 기능
 		// 수정 기능 대신에 삭제 후 추가하는 식으로 진행한다고 가정했음
 		map.put("/replyAdd.do", new ReplyAddControl()); // 문의글 댓글 등록 기능(관리자 답변)
+		map.put("/replyAddProcess.do", new ReplyAddProcessControl()); // 문의글 댓글 등록 처리기능(관리자 답변)
 		map.put("/replyDelete.do", new ReplyDeleteControl()); // 문의글 댓글 삭제 기능
+		map.put("/qnaAllListPaging.do", new qnaAllListPagingControl());  //관리자 1대1문의 내역 전체조회
+		map.put("/qnaAllDetail.do", new qnaAllDetailControl());  //관리자 1대1문의 내역 상세조회
+		
 		
 		
 		

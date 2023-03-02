@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -19,16 +20,19 @@ public class MemberModControl implements Command {
 
 	@Override
 	public String exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		HttpSession session = req.getSession();
+		String id = (String) session.getAttribute("logId");
+
 		String userId = req.getParameter("userId");
 		String userPw = req.getParameter("userPw");
 		String userName = req.getParameter("userName");
 		String userAddr = req.getParameter("userAddr");
 		String userPhone = req.getParameter("userPhone");
-		String userEmail= req.getParameter("userEmail");
-		String userGrade= req.getParameter("userGrade");
-		
+		String userEmail = req.getParameter("userEmail");
+		String userGrade = req.getParameter("userGrade");
+
 		MemberVO vo = new MemberVO();
-		
+
 		vo.setUserId(userId);
 		vo.setUserPw(userPw);
 		vo.setName(userName);
@@ -36,37 +40,21 @@ public class MemberModControl implements Command {
 		vo.setPhone(userPhone);
 		vo.setEmail(userEmail);
 		vo.setEmail(userGrade);
-		
-		
-		MemberService service = new MemberServiceImpl();
-		
-		service.modifyMember(vo);
-		
-		
-//		Map<String, Object> resultMap = new HashMap<>();
-//		resultMap.put("member",vo);
-//		Gson gson = new GsonBuilder().create();
-//		
-//		
-//		if(service.updateMember(vo)>0) {
-//			resultMap.put("retCode", "Success");
-//		}
-//		else {
-//			resultMap.put("retCode", "Fail");
-//		}
-		
-//		return gson.toJson(resultMap) + ".json";
-		
 
-		
-		MemberVO member = service.getMember("abcd");	
+		MemberService service = new MemberServiceImpl();
+
+		service.modifyMember(vo);
+
+		MemberVO member = service.getMember(id);
 		req.setAttribute("vo", member);
-		
-		//return "member/mypage.tiles";
-	
-			return "memberInfo.do";
-	
-	
+
+		/*
+		 * // int r = service.modifyMember(vo); if( r > 0 ) {
+		 * req.setAttribute("retCode", "Success"); } else { req.setAttribute("retCode",
+		 * "Fail"); } //
+		 */	
+		return "memberInfo.do";
+
 	}
 
 }

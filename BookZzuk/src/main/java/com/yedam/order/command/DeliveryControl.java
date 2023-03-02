@@ -21,8 +21,6 @@ public class DeliveryControl implements Command {
 		OrderService service = new OrderServiceImpl();
 		req.setAttribute("orderList", service.orderList(id));
 		
-		
-		
 		return "member/delivery.tiles";
 	}
 

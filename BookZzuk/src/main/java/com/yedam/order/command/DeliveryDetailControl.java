@@ -15,10 +15,10 @@ public class DeliveryDetailControl implements Command {
 	@Override
 	public String exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String orderNum = req.getParameter("orderNum");
-		
+
 		OrderService service = new OrderServiceImpl();
 		req.setAttribute("orderDetailList", service.getOrder(orderNum));
-		
+
 		return "member/deliveryDetail.tiles";
 	}
 

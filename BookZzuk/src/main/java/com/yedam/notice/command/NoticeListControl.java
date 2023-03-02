@@ -14,12 +14,12 @@ public class NoticeListControl implements Command {
 
 	@Override
 	public String exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+
 		NoticeService service = new NoticeServiceImpl();
 		req.setAttribute("noticeList", service.noticeList());
-		
+
 		return "notice/noticeList.tiles";
-	
+
 	}
 
 }

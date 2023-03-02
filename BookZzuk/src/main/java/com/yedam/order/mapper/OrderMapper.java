@@ -10,4 +10,5 @@ public interface OrderMapper {
 	public List<OrderDetailVO> getOrder(String orderNum); //배송상세조회
 	public int addOrder(OrderVO vo);
 	public int addDetail(OrderDetailVO detailVo);
+
 }

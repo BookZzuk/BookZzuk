@@ -15,13 +15,12 @@ public class NoticeDetailControl implements Command {
 
 	@Override
 	public String exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+
 		String noticeNum = req.getParameter("noticeNum");
-		
+
 		NoticeService service = new NoticeServiceImpl();
 		req.setAttribute("noticeDetail", service.getNotice(Integer.parseInt(noticeNum)));
-		
-		
+
 		return "notice/noticeDetail.tiles";
 	}
 

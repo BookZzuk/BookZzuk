@@ -1,4 +1,4 @@
-package com.yedam.qna.command;
+package com.yedam.qnaReply.command;
 
 import java.io.IOException;
 
@@ -11,20 +11,33 @@ import com.yedam.qna.service.QnaService;
 import com.yedam.qna.service.QnaServiceImpl;
 import com.yedam.qnaReply.service.QnaReplyService;
 import com.yedam.qnaReply.service.QnaReplyServiceImpl;
+import com.yedam.qnaReply.vo.QnaReplyVO;
 
-public class QnaDetailControl implements Command {
+public class ReplyAddProcessControl implements Command {
 
 	@Override
 	public String exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String articleNum = req.getParameter("articleNum");
 
-		QnaService service = new QnaServiceImpl();
-		req.setAttribute("articeDetail", service.getQna(Integer.parseInt(articleNum)));
+		String articleNum = req.getParameter("articleNum");
+		String userId = req.getParameter("userId");
+		String contents = req.getParameter("contents");
+
+		QnaReplyVO vo = new QnaReplyVO();
+
+		vo.setArticleNum(Integer.parseInt(articleNum));
+		vo.setUserId(userId);
+		vo.setContents(contents);
+
+		QnaReplyService service = new QnaReplyServiceImpl();
+		service.addReply(vo);
+
+		QnaService qnaService = new QnaServiceImpl();
+		req.setAttribute("articeDetail", qnaService.getQna(Integer.parseInt(articleNum)));
 
 		QnaReplyService replyService = new QnaReplyServiceImpl();
 		req.setAttribute("qnaReplyDetail", replyService.getQnaReply(Integer.parseInt(articleNum)));
 
-		return "qna/qnaDetail.tiles";
+		return "admin/qnaAllListDetail.tiles";
 	}
 
 }

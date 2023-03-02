@@ -20,6 +20,7 @@
 		<typeAlias alias="QnaVO" type="com.yedam.qna.vo.QnaVO" />
 		<typeAlias alias="QnaReplyVO" type="com.yedam.qnaReply.vo.QnaReplyVO" />
 		<typeAlias alias="ReviewVO" type="com.yedam.review.vo.ReviewVO" />
+		<typeAlias alias="PagingVO" type="com.yedam.common.PagingVO" />
 	</typeAliases>
 	<environments default="development">
 		<environment id="development">

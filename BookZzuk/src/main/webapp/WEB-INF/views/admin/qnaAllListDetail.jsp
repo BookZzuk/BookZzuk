@@ -23,9 +23,10 @@ textarea {
 }
 </style>
 
+
 <div class="container">
 	<div class="checkout__form">
-		<h4>1:1문의내역</h4>
+		<h4>1:1문의내역(관리자)</h4>
 		<div class="row">
 			<div class="col-lg-8 col-md-6">
 				<div class="row">
@@ -49,34 +50,29 @@ textarea {
 					<textarea rows="10" cols="100">${articeDetail.contents}</textarea>
 				</div>
 			</div>
-			<div class="col-lg-4 col-md-6">
-				<div class="checkout__order">
-					<div class="checkout__order__products"
-						onclick="location.href='memberInfoMod.do'">회원정보 수정하기</div>
-					<div class="checkout__order__products"
-						onclick="location.href='delivery.do'">배송조회</div>
-					<div class="checkout__order__products"
-						onclick="location.href='likeBook.do'">찜 목록</div>
-					<div class="checkout__order__products"
-						onclick="location.href='cart.do'">장바구니</div>
-					<div class="checkout__order__products"
-						onclick="location.href='qnaList.do'">1:1문의</div>
-				</div>
-			</div>
 		</div>
-		<c:if test="${!empty qnaReplyDetail.contents}">
-			<div class="checkout__input">
-				<h4>문의글 답변</h4>
-				<textarea rows="10" cols="100">${qnaReplyDetail.contents}</textarea>
-			</div>
-		</c:if>
-		<button class="site-btn" onclick="location.href='qnaList.do'">뒤로가기</button>
+		<c:choose>
+			<c:when test="${!empty qnaReplyDetail.contents}">
+				<div class="checkout__input">
+					<h4>문의글 답변</h4>
+					<textarea rows="10" cols="100">${qnaReplyDetail.contents}</textarea>
+				</div>
+			</c:when>
+		</c:choose>
+		<button class="site-btn" onclick="location.href='qnaAllListPaging.do'">뒤로가기</button>
 		<c:choose>
 			<c:when test="${empty qnaReplyDetail.contents}">
 				<button class="site-btn"
-					onclick="location.href='qnaDel.do?articleNum=${articeDetail.articleNum}'">삭제하기</button>
+					onclick="location.href='replyAdd.do?articleNum=${articeDetail.articleNum}'">답변
+					작성하기</button>
+			</c:when>
+		</c:choose>
+		<c:choose>
+			<c:when test="${!empty qnaReplyDetail.contents}">
+				<button class="site-btn"
+					onclick="location.href='replyDelete.do?articleNum=${articeDetail.articleNum}&&replyNum=${qnaReplyDetail.replyNum}'">답변
+					삭제하기</button>
 			</c:when>
 		</c:choose>
 	</div>
 </div>
-

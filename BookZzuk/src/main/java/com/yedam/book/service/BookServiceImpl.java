@@ -26,7 +26,7 @@ public class BookServiceImpl implements BookService {
 	@Override
 	public int addBook(BookVO Book) {
 		// TODO Auto-generated method stub
-		return mapper.modBook(Book);
+		return mapper.addBook(Book);
 	}
 	@Override
 	public int modBook(BookVO Book) {
