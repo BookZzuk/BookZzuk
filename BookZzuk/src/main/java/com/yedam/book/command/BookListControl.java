@@ -50,8 +50,9 @@ public class BookListControl implements Command {
 		else
 			map.put("search", "");
 		
-
+		
 		req.setAttribute("list", service.getBookList(map));
+		req.setAttribute("count", service.countBookList(map));
 
 		return "book/bookGrid.tiles";
 	}
