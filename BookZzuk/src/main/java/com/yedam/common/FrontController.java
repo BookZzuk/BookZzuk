@@ -74,7 +74,7 @@ public class FrontController extends HttpServlet{
 		
 		
 		//map.put("/noticeList.do", new NoticeListControl()); // 공지사항 목록 조회 페이지
-		map.put("/noticePaging.do", new NoticePagingControl()); // 공지사항 페이징 기능
+		map.put("/noticePaging.do", new NoticePagingControl()); // 공지사항 페이징 목록조회
 		map.put("/noticeDetail.do", new NoticeDetailControl()); // 공지사항 단건 조회 페이지
 		map.put("/memberInfo.do", new MemberInfoControl()); // 회원 정보 페이지(with 수정 버튼)
 		map.put("/memberInfoMod.do", new MemberInfoModControl()); // 회원 수정 페이지
@@ -93,6 +93,7 @@ public class FrontController extends HttpServlet{
 		map.put("/replyDelete.do", new ReplyDeleteControl()); // 문의글 댓글 삭제 기능
 		map.put("/qnaAllListPaging.do", new qnaAllListPagingControl());  //관리자 1대1문의 내역 전체조회
 		map.put("/qnaAllDetail.do", new qnaAllDetailControl());  //관리자 1대1문의 내역 상세조회
+		map.put("/qnaAllListCon.do", new qnaAllListCon());  //테스트
 		
 		
 		

@@ -40,6 +40,15 @@ public class QnaServiceImpl implements QnaService {
 	public List<QnaVO> selectQnaAll(PagingVO vo) {
 		return mapper.selectQnaAll(vo);
 	}
+	//추가
+	@Override
+	public int countQnaAllCon(String con) {
+		return mapper.countQnaAllCon(con);
+	}
+	@Override
+	public List<QnaVO> selectQnaAllCon(PagingVO vo) {
+		return mapper.selectQnaAllCon(vo);
+	}
 
 	
 	

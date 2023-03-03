@@ -39,20 +39,16 @@ public class MemberModControl implements Command {
 		vo.setAddr(userAddr);
 		vo.setPhone(userPhone);
 		vo.setEmail(userEmail);
-		vo.setEmail(userGrade);
+		vo.setGrade(userGrade);
 
 		MemberService service = new MemberServiceImpl();
 
 		service.modifyMember(vo);
 
-		MemberVO member = service.getMember(id);
-		req.setAttribute("vo", member);
+		 MemberVO member = service.getMember(id);
+		 req.setAttribute("vo", member);
 
-		/*
-		 * // int r = service.modifyMember(vo); if( r > 0 ) {
-		 * req.setAttribute("retCode", "Success"); } else { req.setAttribute("retCode",
-		 * "Fail"); } //
-		 */	
+	
 		return "memberInfo.do";
 
 	}

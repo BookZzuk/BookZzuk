@@ -11,7 +11,7 @@
 	padding-top: 50px;
 }
 
-h2 {
+/* h2 {
 	text-align: center;
 }
 
@@ -27,6 +27,27 @@ table {
 
 a {
 	text-decoration: none;
+} */
+
+.product__pagination {
+text-align: center;
+margin:20px;
+}
+.product__pagination b {
+	display: inline-block;
+	width: 30px;
+	height: 30px;
+	border: 1px solid #b2b2b2;
+	font-size: 14px;
+	font-weight: 700;
+	line-height: 28px;
+	text-align: center;
+	margin-right: 16px;
+	-webkit-transition: all, 0.3s;
+	-moz-transition: all, 0.3s;
+	-ms-transition: all, 0.3s;
+	-o-transition: all, 0.3s;
+	transition: all, 0.3s;
 }
 </style>
 <script>
@@ -81,10 +102,10 @@ a {
 				</table>
 			</div>
 		</div>
-		<div style="display: block; text-align: center;">
+		<%-- 		<div style="display: block; text-align: center;">
 			<c:if test="${paging.startPage != 1 }">
 				<a
-					href="http://localhost:8081/BookZzuk_BookZzuk/noticePaging.do?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
+					href="http://localhost:8081/TilesApp/noticePaging.do?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
 			</c:if>
 			<c:forEach begin="${paging.startPage }" end="${paging.endPage }"
 				var="p">
@@ -94,14 +115,39 @@ a {
 					</c:when>
 					<c:when test="${p != paging.nowPage }">
 						<a
-							href="http://localhost:8081/BookZzuk_BookZzuk/noticePaging.do?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
+							href="http://localhost:8081/TilesApp/noticePaging.do?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
 					</c:when>
 				</c:choose>
 			</c:forEach>
 			<c:if test="${paging.endPage != paging.lastPage}">
 				<a
-					href="http://localhost:8081/BookZzuk_BookZzuk/noticePaging.do?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
+					href="http://localhost:8081/TilesApp/noticePaging.do?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
 			</c:if>
+		</div> --%>
+
+		<div class="product__pagination">
+
+			<c:if test="${paging.startPage != 1 }">
+				<a
+					href="http://localhost:8081/TilesApp/noticePaging.do?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
+			</c:if>
+			<c:forEach begin="${paging.startPage }" end="${paging.endPage }"
+				var="p">
+				<c:choose>
+					<c:when test="${p == paging.nowPage }">
+						<b>${p }</b>
+					</c:when>
+					<c:when test="${p != paging.nowPage }">
+						<a
+							href="http://localhost:8081/TilesApp/noticePaging.do?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
+					</c:when>
+				</c:choose>
+			</c:forEach>
+			<c:if test="${paging.endPage != paging.lastPage}">
+				<a
+					href="http://localhost:8081/TilesApp/noticePaging.do?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
+			</c:if>
+
 		</div>
 	</div>
 </div>

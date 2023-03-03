@@ -7,6 +7,7 @@
 	</div>
 	<div class="checkout__form">
 		<h4>My Page</h4>
+		
 		<form action="#">
 			<div class="row">
 				<div class="col-lg-8 col-md-6">
@@ -65,3 +66,9 @@
 		</form>
 	</div>
 </div>
+
+<script>
+/* if(${retCode}.equals("Success")) alert("수정성공"); */
+
+
+</script>

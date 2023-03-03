@@ -20,12 +20,19 @@ public class ReplyDeleteControl implements Command {
 		String articleNum = req.getParameter("articleNum");
 
 		QnaReplyService service = new QnaReplyServiceImpl();
-		service.delReply(Integer.parseInt(replyNum));
+		int r=service.delReply(Integer.parseInt(replyNum));
 
 		QnaService QnaService = new QnaServiceImpl();
 		req.setAttribute("articeDetail", QnaService.getQna(Integer.parseInt(articleNum)));
+		
+		if( r > 0 ) {
+			return "{\"retCode\":\"Success\"}" + ".json";
+		} else {
+			return "{\"retCode\":\"Fail\"}" + ".json";
+		}
+	
 
-		return "admin/qnaAllListDetail.tiles";
+		//return "admin/qnaAllListDetail.tiles";
 	}
 
 }

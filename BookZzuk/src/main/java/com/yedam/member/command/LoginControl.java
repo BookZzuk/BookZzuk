@@ -44,6 +44,8 @@ public class LoginControl implements Command {
 			PrintWriter out = resp.getWriter();
 			out.println("<script>alert('아이디 또는 비밀번호를 잘못 입력했습니다.'); location.href='loginForm.do';</script>");
 			out.flush();
+			
+			return "main.do";
 		}
 	}
 
