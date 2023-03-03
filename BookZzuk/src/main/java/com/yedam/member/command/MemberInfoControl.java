@@ -20,9 +20,9 @@ public class MemberInfoControl implements Command {
 		String id = (String) session.getAttribute("logId");
 
 		MemberService service = new MemberServiceImpl();
-		MemberVO member = service.getMember(id);
+		MemberVO member = service.getMember(id); 
 		req.setAttribute("vo", member);
-
+	
 		return "member/mypage.tiles";
 	}
 

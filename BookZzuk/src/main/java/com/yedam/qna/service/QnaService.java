@@ -13,4 +13,7 @@ public interface QnaService {
 	public List<QnaVO> qnaAllList(); //1:1문의 전체 조회
 	public int countQnaAll();
 	public List<QnaVO> selectQnaAll(PagingVO vo);
+	//
+	public int countQnaAllCon(String con);
+	public List<QnaVO> selectQnaAllCon(PagingVO vo);
 }
