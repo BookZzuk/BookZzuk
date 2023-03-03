@@ -2,7 +2,11 @@
 pageEncoding="UTF-8"%> <%@ taglib uri="http://java.sun.com/jsp/jstl/core"
 prefix="c"%>
 
-<style></style>
+<style>
+  .pageSelected{
+    background-color: green;
+  }
+</style>
 
 <!-- Product Section Begin -->
 <section class="product spad">
@@ -55,11 +59,11 @@ prefix="c"%>
       <div class="col-lg-9 col-md-7">
         <div class="product__discount">
           <div class="section-title product__discount__title">
-            <h2>할인중인 인기도서</h2>
+            <h2>북적북적 서적들</h2>
           </div>
           <div class="row">
             <div class="product__discount__slider owl-carousel">
-              <!-- 할인중인 상품 한블럭 -->
+              <!-- 할인중인 상품 한블럭
               <div class="col-lg-4">
                 <div class="product__discount__item">
                   <div
@@ -90,7 +94,7 @@ prefix="c"%>
                   </div>
                 </div>
               </div>
-              <!-- 할인중인 상품 여기까지 -->
+              할인중인 상품 여기까지 -->
             </div>
           </div>
         </div>
@@ -103,7 +107,7 @@ prefix="c"%>
                   <option value="title">상품명순</option>
                   <option value="pub_date">출판일순</option>
                   <option value="std_price">가격순</option>
-                  <option value="rating?">평점순</option>
+                  <option value="avg_grade">평점순</option>
                 </select>
                 <span></span>
                 <select id="sortMod" onchange=chageSortSelect("sortMod","sortMod")>
@@ -120,13 +124,13 @@ prefix="c"%>
 								</h6>
 							</div>
 						</div> 
-						-->
+						
             <div class="col-lg-4 col-md-3">
               <div class="filter__option">
                 <span class="icon_grid-2x2"></span>
                 <span class="icon_ul"></span>
               </div>
-            </div>
+            </div>-->
           </div>
         </div>
         <div class="row">
@@ -156,7 +160,7 @@ prefix="c"%>
                       >${book.title }</a
                     >
                   </h6>
-                  <h5>${book.stdPrice }</h5>
+                  <h5>${book.salePrice }원</h5>
                 </div>
               </div>
             </div>
@@ -165,9 +169,10 @@ prefix="c"%>
         </div>
 
         <div class="product__pagination">
+          <!-- <a href="#"><i class="fa fa-long-arrow-left"></i></a>
           <a onclick='changeParam("page",1)'>1</a> <a onclick='changeParam("page",2)'>2</a>
           <a onclick='changeParam("page",3)'>3</a>
-          <a href="#"><i class="fa fa-long-arrow-right"></i></a>
+          <a href="#"><i class="fa fa-long-arrow-right"></i></a> -->
         </div>
       </div>
     </div>
@@ -176,6 +181,7 @@ prefix="c"%>
 <script>
   initSortSelected();
   addRecentView();
+  pagelist();
   function initSortSelected() {
     const searchParams = new URLSearchParams(location.search);
     const urlParams = new URL(location.href).searchParams;
@@ -218,7 +224,6 @@ prefix="c"%>
   }
 
   function addRecentView(){
-
       let recentView=JSON.parse(localStorage.getItem("recentItem")).reverse();
       let recentTitle=JSON.parse(localStorage.getItem("recentTitle")).reverse();
       let recentCover=JSON.parse(localStorage.getItem("recentCover")).reverse();
@@ -228,8 +233,6 @@ prefix="c"%>
         let b = recentCover[i];
         let c = recentTitle[i];
         let d = recentPrice[i]
-
-        
         // let single='<a href="'+a+'" class=""><img src="'+b+'" alt="" /><h6>'+c+'</h6></a>';
         let single =  '<a href="bookDetail.do?bid='+a+'" class="latest-product__item">'+
 '                    <div class="latest-product__item__pic">'+
@@ -245,5 +248,49 @@ prefix="c"%>
                   console.log(single);
                 }
               }
+
+    function pagelist(){
+      const urlParams = new URL(location.href).searchParams;
+      let currentPage = urlParams.get('page');
+      console.log("총 검색결과 ${count} 건");
+      let totalPage="${count}"/20
+      let pageContainer = document.getElementsByClassName("product__pagination")[0];
+      if(currentPage==null)
+      currentPage=1;
+      if(currentPage!=1){
+        pageContainer.innerHTML+='<a onclick=changeParam("page",'+(currentPage-1)+')><i class="fa fa-long-arrow-left"></i></a>'
+      }
+      for(i=(currentPage-3);i<=(currentPage*1+3);i++){
+        console.log(i,currentPage*1+3);
+        if(i>0&&i<=totalPage){
+          if (currentPage==i) {
+          pageContainer.innerHTML+='<a onclick=changeParam("page",'+i+') class="pageSelected">'+i+'</a>'
+          }
+          else{
+            pageContainer.innerHTML+='<a onclick=changeParam("page",'+i+')>'+i+'</a>'
+          }
+        }
+      }
+      if(currentPage<totalPage)
+      {
+        pageContainer.innerHTML+='<a onclick=changeParam("page",'+(currentPage+1)+')><i class="fa fa-long-arrow-right"></i></a>'
+      }
+    }
+    categorySelBold();
+    function categorySelBold(){
+      const urlParams = new URL(location.href).searchParams;
+      let currentCat = urlParams.get('category');
+      let catList=document.getElementsByTagName("a")
+      console.log(currentCat)
+      for(i=0;i<catList.length;i++){
+        if(catList[i].innerHTML==currentCat)
+        catList[i].style.fontWeight="bold";
+      }
+    }
+
+    
+    
+
+
 </script>
 <!-- Product Section End -->
