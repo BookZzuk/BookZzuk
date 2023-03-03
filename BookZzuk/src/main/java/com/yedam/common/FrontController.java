@@ -53,7 +53,7 @@ public class FrontController extends HttpServlet{
 		map.put("/bookDelete.do", new BookDeleteControl()); // 도서 정보 삭제 기능
 		map.put("/bookAddForm.do", new BookAddFormControl()); // 도서 등록 페이지
 		map.put("/bookAdd.do", new BookAddControl()); // 도서 등록 기능
-		map.put("/reviewList.do", new ReviewListControl()); // 리뷰 리스트
+		map.put("/reviewAddForm.do", new ReviewAddFormControl()); // 리뷰 추가 화면
 		map.put("/reviewAdd.do", new ReviewAddControl()); // 리뷰 추가 기능
 		map.put("/reviewDelete.do", new ReviewModDeletetrol()); // 리뷰 삭제 기능
 		

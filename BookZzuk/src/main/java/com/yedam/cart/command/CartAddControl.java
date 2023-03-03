@@ -21,6 +21,8 @@ public class CartAddControl implements Command {
 		HttpSession session = req.getSession();
 		String uid = (String) session.getAttribute("logId");
 		String[] itemArr = req.getParameter("itemId").split(",");
+		String itemCnt = req.getParameter("itemCnt");
+		
 		CartService service = new CartServiceImpl();
 		
 		int r = 0;
@@ -39,6 +41,7 @@ public class CartAddControl implements Command {
 			CartVO vo = new CartVO();
 			vo.setItemId(Integer.parseInt(itemId));
 			vo.setUserId(uid);
+			vo.setItemCnt(Integer.parseInt(itemCnt));
 			
 			r += service.cartAdd(vo);
 		}

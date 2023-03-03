@@ -3,4 +3,41 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yedam.review.mapper.ReviewMapper">
+	<!-- 리뷰 갯수 조회 시작 -->
+	<select id="getReviewTotal" resultType="ReviewVO">
+		SELECT review_num
+		  FROM review
+		 WHERE item_id = #{bid}
+	</select>
+	<!-- 리뷰 갯수 조회 끝 -->
+	<!-- 리뷰 페이징 조회 시작 -->
+	<select id="getReview" resultType="ReviewVO">
+		SELECT *
+		  FROM ( SELECT ROWNUM rn
+					  , review_subject
+					  , rating
+					  , user_id
+					  , review_num
+				   FROM ( SELECT review_subject
+							   , rating
+							   , user_id
+							   , review_num
+							FROM review
+						   WHERE item_id = #{bid}
+						   ORDER BY review_date DESC ) )
+		WHERE rn BETWEEN #{nowPage} AND #{nowPage}
+	</select>
+	<!-- 리뷰 페이징 조회 끝 -->
+	<!-- 리뷰 추가 시작 -->
+	<insert id="addReview" parameterType="ReviewVO">
+		INSERT INTO review
+		VALUES (review_pk_seq.nextval, #{itemId}, #{userId}, #{orderNum}, sysdate, #{rating}, #{reviewSubject})
+	</insert>
+	<!-- 리뷰 추가 끝 -->
+	<!-- 리뷰 삭제 시작 -->
+	<delete id="deleteReview" parameterType="string">
+		DELETE review
+		 WHERE review_num = #{delNum}
+	</delete>
+	<!-- 리뷰 삭제 끝 -->
 </mapper>
