@@ -1,6 +1,7 @@
 package com.yedam.member.command;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Calendar;
 
 import javax.servlet.ServletException;
@@ -20,8 +21,8 @@ public class SignUpControl implements Command {
 
 		
 		
-		String id = req.getParameter("user_id");
-		String pw = req.getParameter("user_pw");
+		String id = req.getParameter("mid");
+		String pw = req.getParameter("mpw");
 		String nm = req.getParameter("user_name");
 		
 		//int age = Integer.parseInt(req.getParameter("age"));
@@ -57,6 +58,11 @@ public class SignUpControl implements Command {
 			//page = "redirect:loginForm.do";
 			//page = "redirect:login";
 			page = "member/" + "login";
+			resp.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = resp.getWriter();
+			out.println("<script>alert('회원가입을 축하합니다.'); location.href='loginForm.do';</script>");
+			out.flush();
+			
 		} else {
 			//resp.sendRedirect("errorPage.do");
 			//page = "redirect:errorPage.do";

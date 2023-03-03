@@ -37,8 +37,9 @@ public class LoginControl implements Command {
 			req.setAttribute("vo", mvo);
 			
 			return "main.do";
+			
 		} else {
-			page = "member/" + "login";
+			
 			
 			resp.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = resp.getWriter();
@@ -46,6 +47,7 @@ public class LoginControl implements Command {
 			out.flush();
 			return "main.do";
 		}
+		return "loginForm.do";
 	}
 
 }

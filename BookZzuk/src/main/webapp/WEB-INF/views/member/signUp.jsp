@@ -100,6 +100,51 @@ prefix="c" %>
   }
 </style>
 
+<script>
+
+function check_pw(){
+    var pw = document.getElementById('pw').value;
+    const p2 = document.querySelector('.password-content');
+    if(document.getElementById('pw').value !='' && document.getElementById('pw2').value!=''){
+        if(document.getElementById('pw').value==document.getElementById('pw2').value){
+        	  p2.style.color = 'green';
+        	  p2.textContent = `비밀번호가 일치합니다`;
+        }
+        else{
+        	 p2.style.color = 'red';
+        	 p2.textContent = `비밀번호가 일치하지 않습니다`;
+        }
+    }
+}
+
+
+$('#btnCheck').click(function () {		
+    if ($('#mid').val() != '') {   				
+        // 아이디를 서버로 전송 > DB 유효성 검사 > 결과 반환받기
+        $.ajax({   					
+            type: 'GET',
+            url: 'idCheck.do',
+            data: 'id=' + $('mid').val(),
+            dataType: 'json',
+            success: function(result) {
+                if (result == '0') {
+                	alert('사용 가능한 아이디입니다.');
+                    $('#result').text('사용 가능한 아이디입니다.');
+                } else {
+                	alert('이미 사용중인 아이디입니다.');
+                    $('#result').text('이미 사용중인 아이디입니다.');
+                }
+            }
+        });
+    } else {
+        alert('아이디를 입력하세요.');
+        $('#mid').focus();
+    }
+});
+</script>
+
+
+
 <div id="id01" class="">
   <form
     class="modal-content"
@@ -112,13 +157,16 @@ prefix="c" %>
       <h1>회원 가입</h1>
       <hr />
       <label for="member_id"><b>아이디</b></label>
-      <input class="id_input" type="text" placeholder="Id" name="user_id" required/>
-
+      <input class="id_input" type="text" placeholder="Id" id="mid" name="mid" required/>
+      <button type="button" id="btnCheck">중복체크</button>
+      <span id="result"></span><br><br>
+      
       <label for="member_pw"><b>비밀번호</b></label>
-      <input type="password" placeholder="Password" name="user_pw" required />
+      <input id="pw" type="password" placeholder="Password" name="mpw" required />
 
       <label for="member_pw2"><b>비밀번호 확인</b></label>
-      <input type="password" placeholder="Password" name="user_pw2" required />
+      <p class="password-content"></p>
+      <input id="pw2" type="password" placeholder="Password" name="user_pw2" onKeyUp="check_pw();" required />
 
       <label for="member_name"><b>이름</b></label>
       <input type="text" placeholder="Name" name="user_name" required />
