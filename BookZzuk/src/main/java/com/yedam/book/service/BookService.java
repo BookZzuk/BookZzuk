@@ -21,4 +21,5 @@ public interface BookService {
 	public List<BookVO> muchSellList();
 	public List<BookVO> newBookList();
 	public List<ReviewVO> getReview();
+	public int countBookList(HashMap<String, Object> map);
 }

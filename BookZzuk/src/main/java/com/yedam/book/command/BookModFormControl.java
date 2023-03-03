@@ -21,5 +21,4 @@ public class BookModFormControl implements Command {
 		// TODO Auto-generated method stub
 		return "book/bookModForm.tiles";
 	}
-
 }

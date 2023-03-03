@@ -27,7 +27,7 @@ prefix="c"%>
                 <li><b>할인가격</b><input name="salePrice"></input></li>
                 <li><b>설명</b><input name="description"></input></li>
               </ul>
-              <button type="submit" class="primary-btn" >등록하기</button>
+              
               <ul>
                 <li><b>출판사</b> <input name="publisher"></input></li>
                 <li>
@@ -37,6 +37,7 @@ prefix="c"%>
                 <li><b>출판일</b> <input type="date" name="pubDate" id="pubDate"></input></li>
                 <li><b>ISBN코드</b> <input name="isbn"></input></li>
               </ul>
+              <button type="submit" class="primary-btn" >등록하기</button>
             </div>
         </div>
       </form>

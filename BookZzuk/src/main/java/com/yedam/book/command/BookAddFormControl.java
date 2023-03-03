@@ -13,6 +13,7 @@ public class BookAddFormControl implements Command {
 	@Override
 	public String exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
 		return "book/bookAddForm.tiles";
 	}
 

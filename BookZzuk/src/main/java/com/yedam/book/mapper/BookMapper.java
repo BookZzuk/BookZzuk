@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.yedam.book.vo.BookVO;
-import com.yedam.order.vo.OrderVO;
 import com.yedam.review.vo.ReviewVO;
 
 public interface BookMapper {
@@ -23,5 +22,5 @@ public interface BookMapper {
 	public List<BookVO> newBookList();
 	public List<ReviewVO> getReview();
 	public int addBook(BookVO book);
-
+	public int countBookList(HashMap<String, Object> map);
 }
