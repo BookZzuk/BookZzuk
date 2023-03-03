@@ -73,10 +73,40 @@ textarea {
 		<button class="site-btn" onclick="location.href='qnaList.do'">뒤로가기</button>
 		<c:choose>
 			<c:when test="${empty qnaReplyDetail.contents}">
-				<button class="site-btn"
-					onclick="location.href='qnaDel.do?articleNum=${articeDetail.articleNum}'">삭제하기</button>
+				<%-- <button class="site-btn"
+					onclick="location.href='qnaDel.do?articleNum=${articeDetail.articleNum}'">삭제하기</button> --%>
+				<button class="site-btn" onclick="deleteFnc()">삭제하기</button>n>
+
 			</c:when>
 		</c:choose>
 	</div>
 </div>
 
+<script>
+function deleteFnc() {
+
+ 	if (!window.confirm("삭제하시겠습니까?")) {
+		return;
+	}
+
+	let articleNum = ${articeDetail.articleNum};
+
+	$.ajax({
+		url: 'qnaDel.do',
+		data: { articleNum: articleNum}, 
+		success: function(result) {
+			if (result.retCode == 'Success') {
+				alert('삭제성공');
+			} else {
+				alert('삭제오류');
+			}
+			
+			location.href = 'qnaList.do'
+		},
+		error: function(reject) {
+			console.log(reject);
+		}
+	}); 
+
+}
+</script>

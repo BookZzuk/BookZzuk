@@ -1,6 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%> <%@ taglib uri="http://java.sun.com/jsp/jstl/core"
 prefix="c"%>
+
+<style>
+  .grey {
+    background-color: gray;
+  }
+  .red {
+    background-color: red;
+  }
+</style>
 <!-- Page Preloder
     <div id="preloder">
         <div class="loader"></div>
@@ -57,7 +66,10 @@ prefix="c"%>
               <i class="fa fa-star-half-o"></i>
             </c:if>
           </div>
-          <div class="product__details__price">${book.salePrice}</div>
+          <div class="product__details__price">
+            ${book.salePrice}원
+            <p><del id="std_Price"></del></p>
+          </div>
           <p>${book.description }</p>
           <div class="product__details__quantity">
             <div class="quantity">
@@ -73,7 +85,7 @@ prefix="c"%>
               <b>카테고리분류</b>
               <span>${book.category }</span>
             </li>
-            <li><b>출판일</b> <span>${book.pubDate }</span></li>
+            <li><b>출판일</b> <span id="pubDate"></span></li>
             <li><b>ISBN코드</b> <span>${book.isbn }</span></li>
             <li>
               <b>Share on</b>
@@ -83,6 +95,7 @@ prefix="c"%>
                 <a href="#"><i class="fa fa-instagram"></i></a>
               </div>
             </li>
+            <li id="onlyAdmin"></li>
           </ul>
         </div>
       </div>
@@ -189,7 +202,7 @@ prefix="c"%>
   setRecentVeiw("recentItem", "${book.itemId }");
   setRecentVeiw("recentTitle", "${book.title }");
   setRecentVeiw("recentCover", "${book.cover }");
-  setRecentVeiw("recentPrice", "${book.stdPrice }");
+  setRecentVeiw("recentPrice", "${book.salePrice }");
   function setRecentVeiw(itemName, AttValue) {
     //로컬스토리지 아이템 이름, 값 어트리뷰트받을거 예: '${book.title}'
     //localStorage.clear();
@@ -269,5 +282,43 @@ prefix="c"%>
 				console.log(reject)
       }
     })
+  }
+  
+  pubdateParse();
+  function pubdateParse() {
+    let str = "${book.pubDate }";
+    document.getElementById("pubDate").innerHTML = str.slice(0, 10);
+  }
+  console.log("${logId}");
+  adminMenu();
+
+  function adminMenu() {
+    const urlParams = new URL(location.href).searchParams;
+    const bid = urlParams.get("bid");
+    console.log(bid);
+    if ("admin" == "${logId}") {
+      console.log("관리자계정입니다");
+      document.getElementById("onlyAdmin").innerHTML =
+        '<a href="bookModForm.do?bid=' +
+        bid +
+        '" class="primary-btn grey" id="mod">수정</a>' +
+        '<a onclick="delConfirm(' +
+        bid +
+        ')"' +
+        bid +
+        '" class="primary-btn red" id="del">삭제</a>';
+    }
+  }
+  function delConfirm(bid) {
+    if (confirm("정말 삭제 하시겠습니까?")) {
+      location.href = "bookDelete.do?bid=" + bid;
+      alert("삭제되었습니다.");
+    }
+  }
+  salePriceCheck();
+  function salePriceCheck() {
+    if ("${book.stdPrice}" != "${book.salePrice}") {
+      document.getElementById("std_Price").innerHTML = "${book.stdPrice}원";
+    }
   }
 </script>

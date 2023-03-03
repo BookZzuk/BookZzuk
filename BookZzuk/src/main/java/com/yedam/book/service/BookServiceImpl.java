@@ -71,5 +71,10 @@ public class BookServiceImpl implements BookService {
 	public List<ReviewVO> getReview() {
 		return mapper.getReview();
 	}
+	@Override
+	public int countBookList(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return mapper.countBookList(map);
+	}
 	
 }

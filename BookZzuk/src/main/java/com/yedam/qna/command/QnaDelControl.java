@@ -21,10 +21,17 @@ public class QnaDelControl implements Command {
 		String id = (String) session.getAttribute("logId");
 
 		QnaService service = new QnaServiceImpl();
-		service.delQna(Integer.parseInt(articleNum));
+		int r = service.delQna(Integer.parseInt(articleNum));
 		req.setAttribute("qnaList", service.qnaList(id));
+		
+	
+		if( r > 0 ) {
+			return "{\"retCode\":\"Success\"}" + ".json";
+		} else {
+			return "{\"retCode\":\"Fail\"}" + ".json";
+		}
 
-		return "qna/qnaList.tiles";
+		//return "qna/qnaList.tiles";
 
 	}
 

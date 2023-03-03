@@ -23,6 +23,7 @@
 		SELECT * FROM member WHERE user_id=#{id}
 	</select>
 	
+	
 	 <update id="updateMember" parameterType="MemberVO">
 		UPDATE member
 		<set>

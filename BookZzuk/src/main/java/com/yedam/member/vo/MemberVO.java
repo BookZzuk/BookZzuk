@@ -14,3 +14,4 @@ public class MemberVO {
 	private int age;
 	private String grade;
 }
+

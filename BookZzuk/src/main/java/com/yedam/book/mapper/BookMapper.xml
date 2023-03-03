@@ -6,7 +6,6 @@
 
 	<select id="getBookList" resultType="BookVO"
 		parameterType="hashmap">
-
 		SELECT item_id, cover, title, sale_price, std_price
 		from
 		(select ROWNUM RNUM, b.* from
@@ -16,6 +15,10 @@
 		where category Like '%${category}%' and title like '%${search}%')
 		where RNUM
 		BETWEEN ${page-1}*20+1 AND ${page}*20
+	</select>
+	<select id="countBookList" resultType="int"	parameterType="hashmap">
+		SELECT count(item_id) cnt
+		from (select item_id from book where category Like '%${category}%' and title like '%${search}%')
 	</select>
 
 
@@ -28,7 +31,7 @@
 
 	<insert id="addBook" parameterType="BookVO">
 		INSERT INTO book VALUES (
-		seq.NEXTVAL,
+		book_pk_seq.NEXTVAL,
 		'${title }',
 		'${author }',
 		'${pubDate}',
@@ -39,32 +42,36 @@
 		'${cover }',
 		'${category }',
 		'${publisher }',
-		'n'
+		'n',
+		0
 		)
 
 		<selectKey keyProperty="itemId" resultType="int"
 			order="AFTER">
-			SELECT SEQ.CURRVAL FROM DUAL
+			SELECT book_pk_seq.CURRVAL FROM DUAL
 		</selectKey>
 
 	</insert>
 	<update id="modBook" parameterType="BookVO">
-		Update book set item_id = bid  (
-		${itemId },
-		'${title }',
-		'${author }',
-		'${pubDate}',
-		'${description }',
-		'${isbn }',
-		${salePrice },
-		${stdPrice },
-		'${cover }',
-		'${category }',
-		'${publisher }',
-		'n'
-		)
+		Update book set
+		title='${title }',
+		author='${author }',
+		pub_date='${pubDate}',
+		Description='${description }',
+		isbn='${isbn }',
+		sale_price=${salePrice },
+		std_price=${stdPrice },
+		cover='${cover }',
+		category='${category }',
+		publisher='${publisher }'
+		where item_id = ${itemId}
 	</update>
 
+		<update id="remBook" parameterType="int">
+		delete from book where item_id = ${itemId}
+	</update>
+	
+	
 	<select id="getRelatedBook" resultType="BookVO"
 		parameterType="int">
 		select item_id, cover, title, sale_Price,std_Price

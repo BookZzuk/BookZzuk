@@ -69,10 +69,44 @@ textarea {
 		</c:choose>
 		<c:choose>
 			<c:when test="${!empty qnaReplyDetail.contents}">
-				<button class="site-btn"
-					onclick="location.href='replyDelete.do?articleNum=${articeDetail.articleNum}&&replyNum=${qnaReplyDetail.replyNum}'">답변
-					삭제하기</button>
+				<%-- <button class="site-btn"
+					onclick="location.href='replyDelete.do?articleNum=${articeDetail.articleNum}&&replyNum=${qnaReplyDetail.replyNum}'">답변삭제하기</button> --%>
+			
+			<button class="site-btn" onclick="deleteFnc()">삭제하기</button>
+			
 			</c:when>
 		</c:choose>
 	</div>
 </div>
+
+<script>
+function deleteFnc() {
+
+ 	if (!window.confirm("삭제하시겠습니까?")) {
+		return;
+	}
+
+	let articleNum = ${articeDetail.articleNum};
+	let replyNum = ${qnaReplyDetail.replyNum};
+
+	$.ajax({
+		url: 'replyDelete.do',
+		data: { articleNum: articleNum, replyNum: replyNum }, 
+		success: function(result) {
+			if (result.retCode == 'Success') {
+				alert('삭제성공');
+			} else {
+				alert('삭제오류');
+			}
+			
+			location.href = 'qnaAllDetail.do?articleNum=' + articleNum;
+		},
+		error: function(reject) {
+			console.log(reject);
+		}
+	}); 
+
+}
+
+
+</script>

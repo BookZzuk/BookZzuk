@@ -51,7 +51,7 @@
 						<li><a href="main.do">메인페이지</a></li>
 						<li><a href="bookList.do">도서리스트</a></li>
 						<li><a href="memberInfo.do">마이페이지</a></li>
-						<li><a href="noticeList.do">고객 센터</a></li>
+						<li><a href="noticePaging.do?nowPage=1&cntPerPage=10">고객 센터</a></li>
 					</ul>
 				</nav>
 			</div>
