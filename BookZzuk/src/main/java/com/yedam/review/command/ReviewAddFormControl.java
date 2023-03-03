@@ -8,12 +8,17 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.common.Command;
 
-public class ReviewListControl implements Command {
-
+public class ReviewAddFormControl implements Command {
 	@Override
 	public String exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		return null;
+		String bid = req.getParameter("itemId");
+		String title = req.getParameter("title");
+		String orderNum = req.getParameter("orderNum");
+		req.setAttribute("itemId", bid);
+		req.setAttribute("title", title);
+		req.setAttribute("orderNum", orderNum);
+		
+		return "review/reviewAddForm.tiles";
 	}
 
 }

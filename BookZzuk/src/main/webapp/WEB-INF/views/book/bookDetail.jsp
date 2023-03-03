@@ -59,30 +59,26 @@ prefix="c"%>
         <div class="product__details__text">
           <h3>${book.title }</h3>
           <div class="product__details__rating">
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star-half-o"></i>
-            <span>(18 reviews)</span>
+            <c:forEach begin="1" end="${book.avgGrade / 1}" step="1">
+              <i class="fa fa-star"></i>
+            </c:forEach>
+            <c:if test="${book.avgGrade % 1 >= 0.5}">
+              <i class="fa fa-star-half-o"></i>
+            </c:if>
           </div>
           <div class="product__details__price">
             ${book.salePrice}원
             <p><del id="std_Price"></del></p>
           </div>
-
           <p>${book.description }</p>
           <div class="product__details__quantity">
             <div class="quantity">
               <div class="pro-qty">
-                <input type="text" value="1" />
+                <input type="text" value="1" id="itemCnt" />
               </div>
             </div>
           </div>
-          <a href="#" class="primary-btn">ADD TO CARD</a>
-          <a href="#" class="heart-icon"
-            ><span class="icon_heart_alt"></span
-          ></a>
+          <a onclick="addCart(event)" class="primary-btn" style="color: white" onmouseover="this.style.cursor='pointer'"><input type="hidden" value="${book.itemId}" > ADD TO CARD</a>
           <ul>
             <li><b>출판사</b> <span>${book.publisher }</span></li>
             <li>
@@ -97,7 +93,6 @@ prefix="c"%>
                 <a href="#"><i class="fa fa-facebook"></i></a>
                 <a href="#"><i class="fa fa-twitter"></i></a>
                 <a href="#"><i class="fa fa-instagram"></i></a>
-                <a href="#"><i class="fa fa-pinterest"></i></a>
               </div>
             </li>
             <li id="onlyAdmin"></li>
@@ -118,29 +113,46 @@ prefix="c"%>
               </a>
             </li>
           </ul>
-          <div class="tab-content">
+          <div class="tab-content" style="text-align: center;">
             <div class="tab-pane-active" id="tabs-3" role="tabpanel">
               <!-- 리뷰 Details Section 시작 -->
-              <div class="product__details__tab__desc">
-                <h6>Products Infomation</h6>
-                <p>
-                  Vestibulum ac diam sit amet quam vehicula elementum sed sit
-                  amet dui. Pellentesque in ipsum id orci porta dapibus. Proin
-                  eget tortor risus. Vivamus suscipit tortor eget felis
-                  porttitor volutpat. Vestibulum ac diam sit amet quam vehicula
-                  elementum sed sit amet dui. Donec rutrum congue leo eget
-                  malesuada. Vivamus suscipit tortor eget felis porttitor
-                  volutpat. Curabitur arcu erat, accumsan id imperdiet et,
-                  porttitor at sem. Praesent sapien massa, convallis a
-                  pellentesque nec, egestas non nisi. Vestibulum ac diam sit
-                  amet quam vehicula elementum sed sit amet dui. Vestibulum ante
-                  ipsum primis in faucibus orci luctus et ultrices posuere
-                  cubilia Curae; Donec velit neque, auctor sit amet aliquam vel,
-                  ullamcorper sit amet ligula. Proin eget tortor risus.
-                </p>
-              </div>
+                <c:forEach var="list" items="${review }" varStatus="g">
+                  <div>
+                    <br><br>
+                    <c:forEach begin="1" end="${list.rating / 1}" step="1">
+                      <i class="fa fa-star" style="color: #EDBB0E"></i>
+                    </c:forEach>
+                    <br><br>
+                    <p class="paging${g.index + 1}">${list.reviewSubject }</p>
+                    <c:if test="${list.userId eq logId}">
+                      <br><br>
+                      <button type="button" class="primary-btn" style="border: none" onclick="delReview(event)"><input type="hidden" value="${list.reviewNum}" >삭제</button>
+                    </c:if>
+                  </div>
+                </c:forEach>
               <!-- 리뷰 Details Section 끝 -->
+              </div>
             </div>
+            
+	          <div style="display: block; text-align: center;">
+	          	<c:if test="${paging.startPage != 1 }">
+	          		<a href="bookDetail.do?bid=${book.itemId}&paging${paging.startPage - 1 }">&lt;</a>
+	          	</c:if>
+	          	<c:forEach begin="${paging.startPage }" end="${paging.endPage }"
+	          		var="p">
+                <c:choose>
+                  <c:when test="${p == paging.nowPage }">
+                    <b>${p }</b>
+                  </c:when>
+                  <c:when test="${p != paging.nowPage }">
+                    <a href="bookDetail.do?bid=${book.itemId}&nowPage=${p }">${p }</a>
+                  </c:when>
+                </c:choose>
+              </c:forEach>
+	          	<c:if test="${paging.endPage != paging.lastPage}">
+	          		<a href="bookDetail.do?bid=${book.itemId}&nowPage=${pagingendPage+1 }">&gt;</a>
+	          	</c:if>
+	          </div>
           </div>
         </div>
       </div>
@@ -155,7 +167,7 @@ prefix="c"%>
     <div class="row">
       <div class="col-lg-12">
         <div class="section-title related__product__title">
-          <h2>Related Product</h2>
+          <h2>연관 도서</h2>
         </div>
       </div>
     </div>
@@ -168,17 +180,6 @@ prefix="c"%>
               class="product__item__pic set-bg"
               data-setbg="${relatedBook.cover }"
             >
-              <ul class="product__item__pic__hover">
-                <li>
-                  <a href="#"><i class="fa fa-heart"></i></a>
-                </li>
-                <li>
-                  <a href="#"><i class="fa fa-retweet"></i></a>
-                </li>
-                <li>
-                  <a href="#"><i class="fa fa-shopping-cart"></i></a>
-                </li>
-              </ul>
             </div>
             <div class="product__item__text">
               <h6>
@@ -186,7 +187,7 @@ prefix="c"%>
                   >${relatedBook.title }</a
                 >
               </h6>
-              <h5>${relatedBook.stdPrice }</h5>
+              <h5>${relatedBook.salePrice }</h5>
             </div>
           </div>
         </div>
@@ -219,8 +220,70 @@ prefix="c"%>
       recentViewList.push(AttValue);
     } //어트리뷰트값 push
     localStorage.setItem(itemName, JSON.stringify(recentViewList)); //로컬스토리지에 배열넣기
-    console.log(localStorage.getItem(itemName));
   }
+
+  function delReview(e) {
+    let delNum = e.target.closest("button").children[0].value;
+
+    $.ajax({
+				method: "post",
+				url: "reviewDelete.do?delNum=" + delNum,
+				success: function(result) {
+    	  if(result.retCode == "Success"){
+          location.reload();
+    	  } else if (result.retCode == "Fail") {
+    	    alert("처리중 오류 발생");
+    	  }
+    	},
+    	error: function(reject) {
+				console.log(reject)
+      }
+    })
+  }
+
+  
+  var proQty = $(".pro-qty");
+  proQty.prepend('<span class="dec qtybtn">-</span>');
+  proQty.append('<span class="inc qtybtn">+</span>');
+  proQty.on("click", ".qtybtn", function() {
+    var $button = $(this);
+    var oldValue = $button.parent().find("input").val();
+    if ($button.hasClass("inc")) {
+      var newVal = parseFloat(oldValue) + 1;
+    } else {
+      // Don't allow decrementing below zero
+      if (oldValue > 1) {
+        var newVal = parseFloat(oldValue) - 1;
+      } else {
+        newVal = 1;
+      }
+    }
+    $button.parent().find("input").val(newVal); 
+		});
+
+  function addCart(e) {
+    let itemId = e.target.closest("a").children[0].value
+    let itemCnt = $("#itemCnt").val()
+
+    $.ajax({
+				method: "post",
+				url: "cartAdd.do",
+        data: {"itemId":itemId, "itemCnt":itemCnt},
+				success: function(result) {
+    	  if(result.retCode == "Success"){
+          if(confirm("장바구니에 추가되었습니다. \n장바구니로 이동하시겠습니까?")){
+            location.href="cart.do"
+          } 
+    	  } else if (result.retCode == "Fail") {
+    	    alert("처리중 오류 발생");
+    	  }
+    	},
+    	error: function(reject) {
+				console.log(reject)
+      }
+    })
+  }
+  
   pubdateParse();
   function pubdateParse() {
     let str = "${book.pubDate }";

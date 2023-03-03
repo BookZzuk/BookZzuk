@@ -130,7 +130,7 @@
 									   WHERE o.order_num = d.order_num
 										 AND d.item_id   = b.item_id
 										 AND o.user_id = #{uid} )
-				  ORDER BY avg_grade DESC ) a
+				  ORDER BY NVL(avg_grade, 0) DESC ) a
 		 WHERE ROWNUM BETWEEN 1 AND 7
 	</select>
 	<!-- 로그인 추천 도서 조회 끝 -->
@@ -139,7 +139,7 @@
 		SELECT a.*
 		  FROM ( SELECT *
 				   FROM book
-				  ORDER BY avg_grade DESC ) a
+				  ORDER BY NVL(avg_grade, 0) DESC ) a
 		 WHERE ROWNUM BETWEEN 1 AND 7
 	</select>
 	<!-- 비회원 추천 도서 조회 끝 -->
