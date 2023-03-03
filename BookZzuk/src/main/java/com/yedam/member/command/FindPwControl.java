@@ -12,6 +12,10 @@ public class FindPwControl implements Command {
 
 	@Override
 	public String exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		return null;
+
+		
+
+		return "loginForm.do";
 	}
+
 }
