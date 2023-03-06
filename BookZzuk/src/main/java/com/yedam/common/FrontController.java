@@ -134,5 +134,9 @@ public class FrontController extends HttpServlet{
 			resp.setContentType("text/json;charset=utf-8");
 			resp.getWriter().print(viewPage.substring(0, viewPage.length() - 5));
 		}
+		else if(viewPage.contains("bookDetail.do?bid=")) {
+			resp.sendRedirect(viewPage);
+		}
+		System.out.println();
 	}
 }
