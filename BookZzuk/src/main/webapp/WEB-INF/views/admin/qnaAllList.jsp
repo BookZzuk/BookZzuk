@@ -79,7 +79,8 @@ a {
 							<c:if test="${paging.cntPerPage == 20}">selected</c:if>>20줄
 							보기</option>
 							</select>
-					</select> <select id="sel" onchange="test()">
+					</select>
+					<select id="sel" onchange="test()">
 						<option value="total">전체보기</option>
 						<option value="wait">답변대기중</option>
 						<option value="com">답변완료</option>
@@ -101,7 +102,7 @@ a {
 						<tbody>
 							<c:forEach items="${viewAll }" var="list">
 								<tr
-									onclick="location.href='qnaAllDetail.do?articleNum=${list.articleNum}'">
+									onclick="location.href='qnaAllDetail.do?articleNum=${list.articleNum}'" onmouseover="this.style.cursor='pointer'">
 									<td>${list.articleNum }</td>
 									<td>${list.title}</a></td>
 									<td>${list.userId }</td>

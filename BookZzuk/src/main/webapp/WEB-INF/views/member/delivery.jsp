@@ -42,6 +42,7 @@ prefix="c"%>
                 <c:forEach var="list" items="${orderList}">
                   <tr
                     onclick="location.href='deliveryDetail.do?orderNum=${list.orderNum}'"
+                    onmouseover="this.style.cursor='pointer'"
                   >
                     <td>${list.orderNum}</td>
                     <td>${list.orderDate}</td>
