@@ -96,17 +96,19 @@
 		LEFT JOIN service_reply s
 		ON
 		c.article_num = s.article_num
+			<if test="con == '답변대기중'">
+			WHERE reply_num IS null 
+		</if>
+		<if test="con == '답변완료'">
+			WHERE reply_num IS NOT null
+		</if>
+		
 		ORDER BY
 		article_num DESC
 		) A
 		)
 		WHERE RN BETWEEN #{start} AND #{end}
-		<if test="con == '답변대기중'">
-			AND reply_num IS null 
-		</if>
-		<if test="con == '답변완료'">
-			AND reply_num IS NOT null
-		</if>
+	
 	</select>
 
 </mapper>

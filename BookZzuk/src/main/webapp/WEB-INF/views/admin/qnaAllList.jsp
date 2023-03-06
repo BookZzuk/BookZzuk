@@ -60,7 +60,7 @@ a {
 
 <div class="container">
 	<div class="checkout__form">
-		<h4>1:1문의내역(관리자)${con } </h4>
+		<h4>1:1문의내역(관리자) </h4>
 		<div class="a">
 			<div class="shoping-cart shoping__cart__table">
 				<div style="float: right;">
@@ -105,7 +105,10 @@ a {
 									<td>${list.articleNum }</td>
 									<td>${list.title}</a></td>
 									<td>${list.userId }</td>
-									<td>${list.writeDate}</td>
+									<td>
+									<fmt:formatDate
+                                       value="${list.writeDate}" pattern="yyyy-MM-dd" var="date" />
+                                    ${date }</td>
 									<c:choose>
 										<c:when test="${list.replyNum != 0}">
 											<td>답변완료</td>
@@ -124,7 +127,7 @@ a {
 			<c:if test="${paging.startPage != 1 }">
 				<a
 					href="qnaAllListCon.do?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}&con=
-					${con}">&lt;</a>
+					c">&lt;</a>
 			</c:if>
 			<c:forEach begin="${paging.startPage }" end="${paging.endPage }"
 				var="p">
@@ -140,8 +143,8 @@ a {
 			</c:forEach>
 			<c:if test="${paging.endPage != paging.lastPage}">
 				<a
-					href="qnaAllListCon.do??nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}&con="
-					+${con}>&gt;</a>
+					href="qnaAllListCon.do??nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}&con=
+					${con}">&gt;</a>
 			</c:if>
 		</div>
 
@@ -154,7 +157,7 @@ a {
 	function test() {
 		sel = document.getElementById('sel');
 		text = sel.options[sel.selectedIndex].text;
-		location.href = 'qnaAllListCon.do?nowPage=${paging.nowPage}&cntPerPage=${paging.cntPerPage}&con='
+		location.href = 'qnaAllListCon.do?nowPage=1&cntPerPage=${paging.cntPerPage}&con='
 				+ text;
 	}
 	
