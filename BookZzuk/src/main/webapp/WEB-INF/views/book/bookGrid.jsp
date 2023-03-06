@@ -141,16 +141,19 @@ prefix="c"%>
                 <div
                   class="product__item__pic set-bg"
                   data-setbg="${book.cover }"
-                >
+                  >
                   <ul class="product__item__pic__hover">
                     <li>
-                      <a href="#"><i class="fa fa-heart"></i></a>
+                      <a class="mainToLike" onclick="mainToLike(event)">
+                        <input type="hidden" value="${book.itemId}">
+                        <i class="fa fa-heart"></i>
+                      </a>
                     </li>
                     <li>
-                      <a href="#"><i class="fa fa-retweet"></i></a>
-                    </li>
-                    <li>
-                      <a href="#"><i class="fa fa-shopping-cart"></i></a>
+                      <a class="mainToCart" onclick=mainToCart(event)>
+                        <input type="hidden" value="${book.itemId}">
+                        <i class="fa fa-shopping-cart"></i>
+                      </a>
                     </li>
                   </ul>
                 </div>
@@ -287,8 +290,42 @@ prefix="c"%>
         catList[i].style.fontWeight="bold";
       }
     }
-
     
+    function mainToLike(e) {
+      $.ajax({
+        method: "post",
+        url: "likeBookAdd.do",
+        data: { "itemId":e.target.closest("a").children[0].value},
+        success: function(result) {
+          if(result.retCode == 'Success') {
+            alert("찜하기 추가 완료!")
+          } else {
+            alert("찜하기 추가 중 오류 발생")
+          }
+        },
+        error: function(reject) {
+          console.log(reject)
+        }
+      })
+    }
+    
+    function mainToCart(e) {
+      $.ajax({
+        method: "post",
+        url: "cartAdd.do",
+        data: { "itemId":e.target.closest("a").children[0].value},
+        success: function(result) {
+          if(result.retCode == 'Success') {
+            alert("장바구니 추가 완료!")
+          } else {
+            alert("장바구니 추가 중 오류 발생")
+          }
+        },
+        error: function(reject) {
+          console.log(reject)
+        }
+      })
+    }
     
 
 

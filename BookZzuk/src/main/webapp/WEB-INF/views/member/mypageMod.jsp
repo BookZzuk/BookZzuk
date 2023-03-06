@@ -3,19 +3,19 @@
 <script
 	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <style>
-.site-btn {
-	font-size: 14px;
-	color: #ffffff;
-	font-weight: 800;
-	text-transform: uppercase;
-	display: inline-block;
-	padding: 13px 30px 12px;
-	background: #7fad39;
-	border: none;
-	position: relative;
-	top: -70px;
-	right: -880px;
-}
+  .site-btn {
+    font-size: 14px;
+    color: #ffffff;
+    font-weight: 800;
+    text-transform: uppercase;
+    display: inline-block;
+    padding: 13px 30px 12px;
+    background: #7fad39;
+    border: none;
+    position: relative;
+    top: -70px;
+    right: -880px;
+  }
 </style>
 
 <form action="memberMod.do" method="post">
@@ -72,14 +72,31 @@
 					<!-- <p>
 					GRADE
 				</p> -->
-					<input type="hidden" style="color: black;" type="text"
-						name=userGrade value="${vo.grade}">
-				</div>
-			</div>
-		</div>
-		<button onclick="location.href='memberInfo.do'" class="site-btn">수정취소</button>
-		<button type="submit" class="site-btn" id>수정완료</button>
-	</div>
+          <input
+            type="hidden"
+            style="color: black"
+            type="text"
+            name="userGrade"
+            value="${vo.grade}"
+          />
+        </div>
+        <button
+          onclick="location.href='memberInfo.do'"
+          class="primary-btn"
+          style="border: none; margin: 0 auto"
+        >
+          수정취소
+        </button>
+        <button
+          type="submit"
+          class="primary-btn"
+          style="border: none; margin: 0 auto"
+        >
+          수정완료
+        </button>
+      </div>
+    </div>
+  </div>
 </form>
 
 <script>

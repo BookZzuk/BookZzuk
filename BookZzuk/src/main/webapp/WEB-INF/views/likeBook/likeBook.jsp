@@ -46,7 +46,7 @@
 										type="hidden" value="${bookLike.itemId }"></td>
 									<td class="shoping__cart__item"><img
 										src="${bookLike.cover }" alt="" />
-										<h5>${bookLike.title }</h5></td>
+										<h5><a href="bookDetail.do?bid=${bookLike.itemId}" style="color: black">${bookLike.title}</a></h5></td>
 									<td class="shoping__cart__price">${bookLike.stdPrice }</td>
 									<td class="shoping__cart__price">${bookLike.salePrice }</td>
 									<td class="shoping__cart__item__close"><span

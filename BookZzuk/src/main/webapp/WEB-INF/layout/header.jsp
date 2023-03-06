@@ -31,7 +31,11 @@
 									<a href="loginForm.do"><i class="fa fa-user"></i> Login</a>
 								</c:otherwise>
 							</c:choose>
-
+						</div>
+						<div class="header__top__right__auth">
+							<c:if test='${grade == "admin"}'>
+								<a href="qnaAllListPaging.do"><i class="fa fa-user"></i>관리자 페이지</a>
+							</c:if>
 						</div>
 					</div>
 				</div>
@@ -46,7 +50,7 @@
 				</div>
 			</div>
 			<div class="col-lg-6">
-				<nav class="header__menu">
+				<nav class="header__menu" style="margin-top: 30px; text-align: center;">
 					<ul>
 						<li><a href="main.do">메인페이지</a></li>
 						<li><a href="bookList.do">도서리스트</a></li>
@@ -75,20 +79,19 @@
 		<div class="col-lg-3">
 			<div class="hero__categories">
 				<div class="hero__categories__all">
-					<i class="fa fa-bars"></i> <span>All departments</span>
+					<i class="fa fa-bars"></i> <span>도서분류</span>
 				</div>
 				<ul>
-					<li><a href="#">Fresh Meat</a></li>
-					<li><a href="#">Vegetables</a></li>
-					<li><a href="#">Fruit & Nut Gifts</a></li>
-					<li><a href="#">Fresh Berries</a></li>
-					<li><a href="#">Ocean Foods</a></li>
-					<li><a href="#">Butter & Eggs</a></li>
-					<li><a href="#">Fastfood</a></li>
-					<li><a href="#">Fresh Onion</a></li>
-					<li><a href="#">Papayaya & Crisps</a></li>
-					<li><a href="#">Oatmeal</a></li>
-					<li><a href="#">Fresh Bananas</a></li>
+					<li><a onclick='changeParam("category","소설/시/희곡")'>소설/시/희곡</a></li>
+					<li><a onclick='changeParam("category","에세이")'>에세이</a></li>
+					<li><a onclick='changeParam("category","여행")'>여행</a></li>
+					<li><a onclick='changeParam("category","역사")'>역사</a></li>
+					<li><a onclick='changeParam("category","예술/대중문화")'>예술/대중문화</a></li>
+					<li><a onclick='changeParam("category","인문학")'>인문학</a></li>
+					<li><a onclick='changeParam("category","어린이")'>어린이</a></li>
+					<li><a onclick='changeParam("category","자기계발")'>자기계발</a></li>
+					<li><a onclick='changeParam("category","만화")'>만화</a></li>
+					<li><a onclick='changeParam("category","수험서")'>수험서</a></li>
 				</ul>
 			</div>
 		</div>
@@ -96,9 +99,6 @@
 			<div class="hero__search">
 				<div class="hero__search__form">
 					<form>
-						<div class="hero__search__categories">
-							All Categories <span class="arrow_carrot-down"></span>
-						</div>
 						<input type="text" placeholder="찾는 도서명을 입력해주세요" id="searchKey" onkeypress="searchEnter(event)" />
 						<button type="button" class="site-btn" onclick="searchParam()"
 							id="searchButton">검색</button>
@@ -153,6 +153,13 @@
 		  let param = URLSearch.toString();
 		  location.href="bookList.do?"+param;
 		}
+  }
+	
+  function changeParam(paramname, value) {
+    let URLSearch = new URLSearchParams(location.search);
+    URLSearch.set(paramname, String(value));
+    let param = URLSearch.toString();
+    window.open("bookList.do?" + param, "_self");
   }
 </script>
 <!-- Hero Section End -->
