@@ -48,7 +48,7 @@ public class LoginControl implements Command {
 
 			return "loginForm.do";
 		}
-		return "loginForm.do";
+		//return "loginForm.do";
 	}
 
 }

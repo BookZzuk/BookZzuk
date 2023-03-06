@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<script
+	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <style>
 .site-btn {
 	font-size: 14px;
@@ -46,8 +48,15 @@
 				</div>
 				<div class="checkout__input">
 					<p>ADDRESS</p>
-					<input type="text" style="color: black;" name=userAddr
-						value="${vo.addr}">
+					<%-- <input type="text" style="color: black;" name=userAddr
+						value="${vo.addr}"> --%>
+					<div id="div"></div>
+					<!-- <input id="zoneCode" type="text" style="color: black;" class="checkout__input__add"  style="margin-bottom: 0; width: 50%"  placeholder="우편번호">
+						<input id="addr" type="text" style="color: black;" class="checkout__input__add"  placeholder="도로명 주소"> -->
+					<input id="addrDetail" type="text" style="color: black;"
+						name=userAddr value="${vo.addr}">
+					<button type="button" id="addrBtn" class="primary-btn" border:none;>우편번호
+						검색</button>
 				</div>
 				<div class="checkout__input">
 					<p>PHONE</p>
@@ -74,6 +83,21 @@
 </form>
 
 <script>
-
+$("#addrBtn").on("click", function () {
+    new daum.Postcode({
+      oncomplete: function (data) {
+        // 우편번호와 주소 정보를 해당 필드에 넣는다.
+        document.getElementById("zoneCode").value = data.zonecode;
+        document.getElementById("addr").value = data.roadAddress;
+        // 커서를 상세주소 필드로 이동한다.
+        document.getElementById("addrDetail").focus();   
+      },
+    }).open();
+    div = document.getElementById("div");
+    div.innerHTML="";
+    div.innerHTML +=  '<input id="zoneCode" type="text" style="color: black;" class="checkout__input__add"  style="margin-bottom: 0; width: 50%"  placeholder="우편번호">' +
+	'<br><input id="addr" type="text" style="color: black;" class="checkout__input__add"  placeholder="도로명 주소">';
+   
+  });
 
 </script>
