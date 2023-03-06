@@ -18,22 +18,24 @@ public class qnaAllListPagingControl implements Command {
 		QnaService service = new QnaServiceImpl();
 		String nowPage = req.getParameter("nowPage");
 		String cntPerPage = req.getParameter("cntPerPage");
-
+		String con = req.getParameter("con");
+		
 		int total = service.countQnaAll();
 
 		if (nowPage == null && cntPerPage == null) {
 			nowPage = "1";
-			cntPerPage = "9";
+			cntPerPage = "10";
 		} else if (nowPage == null) {
 			nowPage = "1";
 		} else if (cntPerPage == null) {
-			cntPerPage = "9";
+			cntPerPage = "10";
 		}
 
 		PagingVO vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
 		req.setAttribute("paging", vo);
 		req.setAttribute("viewAll", service.selectQnaAll(vo));
-
+		req.setAttribute("con", con);
+		
 		return "admin/qnaAllList.tiles";
 	}
 

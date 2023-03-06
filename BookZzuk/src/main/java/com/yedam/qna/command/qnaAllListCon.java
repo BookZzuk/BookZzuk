@@ -19,7 +19,7 @@ public class qnaAllListCon implements Command {  //추가한거
 		String nowPage = req.getParameter("nowPage");
 		String cntPerPage = req.getParameter("cntPerPage");
 		String con = req.getParameter("con");
-
+		
 		int total = service.countQnaAllCon(con);
 
 		if (nowPage == null && cntPerPage == null) {
@@ -34,6 +34,7 @@ public class qnaAllListCon implements Command {  //추가한거
 		PagingVO vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage),con);
 		req.setAttribute("paging", vo);
 		req.setAttribute("viewAll", service.selectQnaAllCon(vo));
+		req.setAttribute("con", con);
 
 		return "admin/qnaAllList.tiles";
 	}
