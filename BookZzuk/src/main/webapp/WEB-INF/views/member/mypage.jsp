@@ -37,10 +37,18 @@ pageEncoding="UTF-8"%>
           <div class="checkout__input">
             <p>ADDRESS</p>
             <input
-              readonly
               type="text"
-              style="color: black"
-              value="${vo.addr}"
+              class="checkout__input__add"
+              id="addr"
+              value='${vo.addr.split(",")[0]}'
+              readonly
+            />
+            <input
+              type="text"
+              name="addr"
+              id="addrDetail"
+              value='${vo.addr.split(",")[1]}'
+              readonly
             />
           </div>
           <div class="checkout__input">

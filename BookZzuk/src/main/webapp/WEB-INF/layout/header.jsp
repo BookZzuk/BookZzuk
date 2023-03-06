@@ -21,7 +21,7 @@
 								class="fa fa-twitter"></i></a> <a href="#"><i
 								class="fa fa-linkedin"></i></a>
 						</div>
-						<div class="header__top__right__auth">
+						<div class="header__top__right__social">
 							<c:choose>
 								<c:when test="${!empty logId }">
 									<a href="logout.do"><i class="fa fa-user"></i>
