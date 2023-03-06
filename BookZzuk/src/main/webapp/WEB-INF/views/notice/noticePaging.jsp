@@ -95,7 +95,10 @@ margin:20px;
 									<td>${list.noticeNum }</td>
 									<td>${list.title}</a></td>
 									<td>${list.userId }</td>
-									<td>${list.writeDate}</td>
+									<td>
+									<fmt:formatDate
+                                       value="${list.writeDate}" pattern="yyyy-MM-dd" var="date" />
+                                    ${date }</td>
 								</tr>
 							</c:forEach>
 						</tbody>
