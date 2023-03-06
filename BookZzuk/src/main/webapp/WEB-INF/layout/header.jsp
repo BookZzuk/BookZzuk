@@ -81,7 +81,7 @@
 				<div class="hero__categories__all">
 					<i class="fa fa-bars"></i> <span>도서분류</span>
 				</div>
-				<ul>
+				<ul onmouseover="this.style.cursor='pointer'">
 					<li><a onclick='changeParam("category","소설/시/희곡")'>소설/시/희곡</a></li>
 					<li><a onclick='changeParam("category","에세이")'>에세이</a></li>
 					<li><a onclick='changeParam("category","여행")'>여행</a></li>

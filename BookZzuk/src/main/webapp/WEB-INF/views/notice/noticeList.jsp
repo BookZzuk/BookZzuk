@@ -3,9 +3,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <style>
-.a {
-	margin-top: -50px;
-}
+  .a {
+    margin-top: -50px;
+  }
 </style>
 
 <div class="container">
