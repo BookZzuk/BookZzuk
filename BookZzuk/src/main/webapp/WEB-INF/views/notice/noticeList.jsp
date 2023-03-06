@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <style>
 .a {
 	margin-top: -50px;
@@ -23,8 +24,9 @@
 					</thead>
 					<tbody>
 						<c:forEach var="notice" items="${noticeList}">
-							<tr
-								onclick="location.href='noticeDetail.do?noticeNum=${notice.noticeNum}'">
+							<tr 
+								onclick="location.href='noticeDetail.do?noticeNum=${notice.noticeNum}'"
+								>
 								<td>${notice.noticeNum}</td>
 								<td>${notice.title}</td>
 								<td>${notice.userId}</td>
