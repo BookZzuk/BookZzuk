@@ -90,7 +90,7 @@ margin:20px;
 						</thead>
 						<tbody>
 							<c:forEach items="${viewAll }" var="list">
-								<tr
+								<tr onmouseover="this.style.cursor='pointer'"
 									onclick="location.href='noticeDetail.do?noticeNum=${list.noticeNum}'">
 									<td>${list.noticeNum }</td>
 									<td>${list.title}</a></td>
