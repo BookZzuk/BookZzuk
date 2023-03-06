@@ -137,5 +137,6 @@ public class FrontController extends HttpServlet{
 		else if(viewPage.contains("bookDetail.do?bid=")) {
 			resp.sendRedirect(viewPage);
 		}
+		System.out.println();
 	}
 }
