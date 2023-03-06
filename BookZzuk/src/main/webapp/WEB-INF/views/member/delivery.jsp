@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%> <%@ taglib uri="http://java.sun.com/jsp/jstl/core"
-prefix="c"%>
+prefix="c"%> <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <style>
   .a {
@@ -45,7 +45,11 @@ prefix="c"%>
                     onmouseover="this.style.cursor='pointer'"
                   >
                     <td>${list.orderNum}</td>
-                    <td>${list.orderDate}</td>
+                    <td>
+                    	<fmt:formatDate
+                                       value="${list.orderDate}" pattern="yyyy-MM-dd" var="date" />
+                                    ${date }
+                    </td>
                     <td>${list.totalPrice}</td>
                     <td>${list.progress}</td>
                   </tr>

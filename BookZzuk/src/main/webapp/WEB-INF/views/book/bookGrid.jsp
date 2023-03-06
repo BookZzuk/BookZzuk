@@ -61,6 +61,7 @@ prefix="c"%>
           <div class="section-title product__discount__title">
             <h2>북적북적 서적들</h2>
           </div>
+          <div id="onlyAdmin"></div>
           <div class="row">
             <div class="product__discount__slider owl-carousel">
               <!-- 할인중인 상품 한블럭
@@ -185,6 +186,7 @@ prefix="c"%>
   initSortSelected();
   addRecentView();
   pagelist();
+  adminMenu();
   function initSortSelected() {
     const searchParams = new URLSearchParams(location.search);
     const urlParams = new URL(location.href).searchParams;
@@ -326,7 +328,14 @@ prefix="c"%>
         }
       })
     }
-    
+    function adminMenu() {
+        if ("admin" == "${logId}") {
+          console.log("관리자계정입니다");
+          document.getElementById("onlyAdmin").innerHTML =
+            '<a href="bookAddForm.do'+
+            '" class="primary-btn">도서 추가</a>'
+        }
+      }
 
 
 </script>

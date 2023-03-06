@@ -58,8 +58,10 @@ textarea {
 				<h4>문의글 답변</h4>
 				<textarea rows="10" cols="100" name="contents"></textarea>
 			</div>
-			<button class="site-btn"
-				onclick="location.href='qnaAllListPaging.do'">뒤로가기</button>
+			 <button class="site-btn"
+				onclick="location.href='qnaAllDetail.do?articleNum=${articeDetail.articleNum}'" type="button">뒤로가기</button>
+				 <!-- <button class="site-btn"
+				onclick="location.href='qnaAllListCon.do'" type="button">뒤로가기</button>  -->
 			<button class="site-btn" type="submit">작성완료</button>
 		</div>
 	</div>

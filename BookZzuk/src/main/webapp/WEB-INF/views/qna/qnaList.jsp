@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%> <%@ taglib uri="http://java.sun.com/jsp/jstl/core"
-prefix="c"%>
+prefix="c"%> <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <style>
   .a {
     margin-top: -50px;
@@ -40,13 +40,16 @@ prefix="c"%>
               </thead>
               <tbody>
                 <c:forEach var="qna" items="${qnaList}">
-                  <tr
+                  <tr onmouseover="this.style.cursor='pointer'"
                     onclick="location.href='qnaDetail.do?articleNum=${qna.articleNum}'"
                   >
                     <td>${qna.articleNum}</td>
                     <td>${qna.title}</td>
                     <td>${qna.userId}</td>
-                    <td>${qna.writeDate}</td>
+                    <td>
+                    	<fmt:formatDate
+  							value="${qna.writeDate}" pattern="yyyy-MM-dd" var="date" />
+                                    ${date }</td>
                     <c:choose>
                       <c:when test="${qna.replyNum != 0}">
                         <td>답변완료</td>

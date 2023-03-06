@@ -45,7 +45,7 @@ pageEncoding="UTF-8"%>
             />
             <input
               type="text"
-              name="addr"
+              name="UserAddr"
               id="addrDetail"
               value='${vo.addr.split(",")[1]}'
               readonly

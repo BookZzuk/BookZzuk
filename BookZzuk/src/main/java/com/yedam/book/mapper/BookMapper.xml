@@ -6,21 +6,21 @@
 
 	<select id="getBookList" resultType="BookVO"
 		parameterType="hashmap">
-		SELECT item_id, cover, title, sale_price, std_price
+		SELECT item_id, cover, title, sale_price, std_price , avg_grade
 		from
 		(select ROWNUM RNUM, b.* from
-		((select * from book
+		((select item_id, cover, title, sale_price, std_price, NVL(avg_grade,0) avg_grade,category from book
 		order by ${sortCol}
 		${sortMod}) b)
 		where category Like '%${category}%' and title like '%${search}%')
 		where RNUM
 		BETWEEN ${page-1}*20+1 AND ${page}*20
 	</select>
+	
 	<select id="countBookList" resultType="int"	parameterType="hashmap">
 		SELECT count(item_id) cnt
 		from (select item_id from book where category Like '%${category}%' and title like '%${search}%')
 	</select>
-
 
 	<select id="getBook" resultType="BookVO" parameterType="int">
 		SELECT *

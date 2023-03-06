@@ -94,7 +94,7 @@ pageEncoding="UTF-8"%>
           <input
             type="text"
             placeholder="상세 주소"
-            name="addr"
+            name="userAddr"
             id="addrDetail"
             value='${vo.addr.split(",")[1]}'
           />
@@ -134,6 +134,7 @@ pageEncoding="UTF-8"%>
           onclick="location.href='memberInfo.do'"
           class="primary-btn"
           style="border: none; margin: 0 auto"
+          type="button"
         >
           수정취소
         </button>

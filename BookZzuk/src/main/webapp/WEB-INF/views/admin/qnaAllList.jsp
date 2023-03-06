@@ -60,12 +60,13 @@ a {
 
 <div class="container">
 	<div class="checkout__form">
-		<h4>1:1문의내역(관리자) </h4>
+		<h4>1:1문의내역(관리자)</h4>
 		<div class="a">
 			<div class="shoping-cart shoping__cart__table">
 				<div style="float: right;">
 
 					<select id="cntPerPage" name="sel" onchange="selChange()">
+					
 						<option value="5"
 							<c:if test="${paging.cntPerPage == 5}">selected</c:if>>5줄
 							보기</option>
@@ -78,12 +79,24 @@ a {
 						<option value="20"
 							<c:if test="${paging.cntPerPage == 20}">selected</c:if>>20줄
 							보기</option>
-							</select>
-					</select>
-					<select id="sel" onchange="test()">
+					</select> <select id="sel" onchange="test()">
+					<c:choose>
+						<c:when test="${con=='답변대기중'}">
 						<option value="total">전체보기</option>
-						<option value="wait">답변대기중</option>
+						<option value="wait" selected>답변대기중</option>
 						<option value="com">답변완료</option>
+						</c:when>
+						<c:when test="${con=='답변완료'}">
+						<option value="total">전체보기</option>
+						<option value="wait" >답변대기중</option>
+						<option value="com" selected>답변완료</option>
+						</c:when>
+						<c:when test="${con != '답변대기중' && con != '답변완료'}">
+						<option value="total" selected>전체보기</option>
+						<option value="wait" >답변대기중</option>
+						<option value="com" >답변완료</option>
+						</c:when>
+						</c:choose>
 					</select>
 
 				</div>
@@ -101,15 +114,13 @@ a {
 						</thead>
 						<tbody>
 							<c:forEach items="${viewAll }" var="list">
-								<tr
-									onclick="location.href='qnaAllDetail.do?articleNum=${list.articleNum}'" onmouseover="this.style.cursor='pointer'">
+								<tr onmouseover="this.style.cursor='pointer'"
+									onclick="location.href='qnaAllDetail.do?articleNum=${list.articleNum}'">
 									<td>${list.articleNum }</td>
 									<td>${list.title}</a></td>
 									<td>${list.userId }</td>
-									<td>
-									<fmt:formatDate
-                                       value="${list.writeDate}" pattern="yyyy-MM-dd" var="date" />
-                                    ${date }</td>
+									<td><fmt:formatDate value="${list.writeDate}"
+											pattern="yyyy-MM-dd" var="date" /> ${date }</td>
 									<c:choose>
 										<c:when test="${list.replyNum != 0}">
 											<td>답변완료</td>
@@ -154,17 +165,17 @@ a {
 
 <script>
 	let text = "";
-
+	let sel="";
 	function test() {
 		sel = document.getElementById('sel');
 		text = sel.options[sel.selectedIndex].text;
 		location.href = 'qnaAllListCon.do?nowPage=1&cntPerPage=${paging.cntPerPage}&con='
 				+ text;
 	}
-	
+
 	function selChange() {
 		var sel = document.getElementById('cntPerPage').value;
 		location.href = "qnaAllListCon.do?nowPage=${paging.nowPage}&cntPerPage="
-				+ sel +"&con=" + text;
+				+ sel + "&con=" + text;
 	}
 </script>

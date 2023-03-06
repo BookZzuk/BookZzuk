@@ -66,9 +66,9 @@ public class BookAddControl implements Command {
 			int bid=vo.getItemId();
 
 			
-			req.setAttribute("book", service.getBook(bid));
-			req.setAttribute("related", service.getRelatedBook(bid));
-			return "book/bookDetail.tiles";
+//			req.setAttribute("book", service.getBook(bid));
+//			req.setAttribute("related", service.getRelatedBook(bid));
+			return "bookDetail.do?bid="+bid;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "bookAddForm.do";
