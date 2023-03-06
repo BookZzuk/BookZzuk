@@ -45,7 +45,7 @@
 									<td class="shoping__cart__item"><input type="hidden"
 										value="${cart.itemId }" name="${cart.itemId }Id"><img src="${cart.cover }"
 										alt="" />
-										<h5>${cart.title }</h5></td>
+										<h5><a href="bookDetail.do?bid=${cart.itemId}" style="color: black">${cart.title}</a></h5></td>
 									<td class="shoping__cart__price">${cart.salePrice }</td>
 									<td class="shoping__cart__quantity">
 										<div class="quantity">

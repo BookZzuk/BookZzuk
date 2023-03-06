@@ -22,7 +22,8 @@
 							<c:forEach var="list" items="${orderDetailList}">
 								<tr>
 									<td class="shoping__cart__item"><img src="${list.cover}" alt="${list.cover}">
-										<h5><a href="bookDetail.do?bid=${list.itemId}" style="color: black">${list.title}</a></h5></td>
+										<h5><a href="bookDetail.do?bid=${list.itemId}" style="color: black">${list.title}</a></h5>
+									</td>
 									<td class="shoping__cart__price">${list.price}</td>
 									<td class="shoping__cart__price">${list.itemCnt}</td>
 									<td class="shoping__cart__total">

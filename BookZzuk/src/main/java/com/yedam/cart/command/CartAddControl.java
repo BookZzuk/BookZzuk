@@ -41,7 +41,11 @@ public class CartAddControl implements Command {
 			CartVO vo = new CartVO();
 			vo.setItemId(Integer.parseInt(itemId));
 			vo.setUserId(uid);
-			vo.setItemCnt(Integer.parseInt(itemCnt));
+			if(itemCnt != null) {
+				vo.setItemCnt(Integer.parseInt(itemCnt));
+			} else {
+				vo.setItemCnt(1);
+			}
 			
 			r += service.cartAdd(vo);
 		}

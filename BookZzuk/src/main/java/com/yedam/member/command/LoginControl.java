@@ -33,6 +33,9 @@ public class LoginControl implements Command {
 			MemberVO mvo = service.getMember(id);
 			session.setAttribute("logName", mvo.getName());
 			session.setAttribute("logId", mvo.getUserId());
+			if(mvo.getGrade().equals("admin")) {
+				session.setAttribute("grade", "admin");
+			}
 
 			req.setAttribute("vo", mvo);
 			
@@ -48,7 +51,6 @@ public class LoginControl implements Command {
 
 			return "loginForm.do";
 		}
-		return "loginForm.do";
 	}
 
 }
