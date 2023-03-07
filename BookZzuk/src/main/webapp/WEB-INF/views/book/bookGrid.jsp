@@ -263,7 +263,7 @@ prefix="c"%>
       if(currentPage==null)
       currentPage=1;
       if(currentPage!=1){
-        pageContainer.innerHTML+='<a onclick=changeParam("page",'+(currentPage-1)+')><i class="fa fa-long-arrow-left"></i></a>'
+        pageContainer.innerHTML+='<a onclick=changeParam("page",'+((currentPage*1)-1)+')><i class="fa fa-long-arrow-left"></i></a>'
       }
       for(i=(currentPage-3);i<=(currentPage*1+3);i++){
         console.log(i,currentPage*1+3);
@@ -278,9 +278,10 @@ prefix="c"%>
       }
       if(currentPage<totalPage)
       {
-        pageContainer.innerHTML+='<a onclick=changeParam("page",'+(currentPage+1)+')><i class="fa fa-long-arrow-right"></i></a>'
+        pageContainer.innerHTML+='<a onclick=changeParam("page",'+((currentPage*1)+1)+')><i class="fa fa-long-arrow-right"></i></a>'
       }
     }
+    
     categorySelBold();
     function categorySelBold(){
       const urlParams = new URL(location.href).searchParams;
