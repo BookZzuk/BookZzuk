@@ -15,9 +15,14 @@ pageEncoding="UTF-8"%>
     top: -70px;
     right: -880px;
   }
+  
+  .checkout__input input{
+  color: black; 
+  }
+  
 </style>
 
-<form action="memberMod.do" method="post">
+<form action="memberMod.do" method="post" onsubmit="return check()">
   <div class="container">
     <div class="checkout__form">
       <h4>My Page</h4>
@@ -33,6 +38,7 @@ pageEncoding="UTF-8"%>
                 style="color: black"
                 type="text"
                 name="userId"
+                id="userId"
                 value="${vo.userId}"
               />
             </div>
@@ -44,6 +50,7 @@ pageEncoding="UTF-8"%>
                 style="color: black"
                 type="text"
                 name="userName"
+                id="userName"
                 value="${vo.name}"
               />
             </div>
@@ -55,6 +62,7 @@ pageEncoding="UTF-8"%>
             type="text"
             style="color: black"
             name="userPw"
+            id="userPw"
             value="${vo.userPw}"
           />
         </div>
@@ -89,12 +97,13 @@ pageEncoding="UTF-8"%>
             placeholder="도로명 주소"
             class="checkout__input__add"
             id="addr"
+            name="userAddr"
             value='${vo.addr.split(",")[0]}'
           />
           <input
             type="text"
             placeholder="상세 주소"
-            name="userAddr"
+            name="userAddr2"
             id="addrDetail"
             value='${vo.addr.split(",")[1]}'
           />
@@ -107,6 +116,7 @@ pageEncoding="UTF-8"%>
             class="checkout__input__add"
             name="userPhone"
             value="${vo.phone}"
+            id="userPhone"
           />
         </div>
         <div class="checkout__input">
@@ -116,6 +126,7 @@ pageEncoding="UTF-8"%>
             type="text"
             name="userEmail"
             value="${vo.email}"
+            id="userEmail"
           />
         </div>
         <div class="checkout__input">
@@ -128,6 +139,7 @@ pageEncoding="UTF-8"%>
             type="text"
             name="userGrade"
             value="${vo.grade}"
+            id="userGrade"
           />
         </div>
         <button
@@ -162,4 +174,28 @@ pageEncoding="UTF-8"%>
       },
     }).open();
   });
+
+  function check() {
+    let userId = document.querySelector("#userId").value;
+    let userName = document.querySelector("#userName").value;
+    let userPw = document.querySelector("#userPw").value;
+    let addrDetail = document.querySelector("#addrDetail").value;
+    let userPhone = document.querySelector("#userPhone").value;
+    let userEmail = document.querySelector("#userEmail").value;
+
+    if (
+      !userId ||
+      !userName ||
+      !userPw ||
+      !addrDetail ||
+      !userPhone ||
+      !userEmail
+    ) {
+      alert("필수 내용을 입력해주세요");
+      return false;
+    } else {
+      alert("수정완료");
+      return true;
+    }
+  }
 </script>

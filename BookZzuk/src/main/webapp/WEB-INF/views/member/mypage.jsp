@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
+
+<style>
+  .checkout__input input{
+  color: black; 
+  }
+ </style>
+ 
 <div class="container">
   <div class="row">
     <div class="col-lg-12"></div>
@@ -40,16 +47,16 @@ pageEncoding="UTF-8"%>
               type="text"
               class="checkout__input__add"
               id="addr"
-              value='${vo.addr.split(",")[0]}'
+              value='${vo.addr}'
               readonly
             />
-            <input
+          <%--   <input
               type="text"
               name="UserAddr"
               id="addrDetail"
               value='${vo.addr.split(",")[1]}'
               readonly
-            />
+            /> --%>
           </div>
           <div class="checkout__input">
             <p>PHONE</p>

@@ -39,14 +39,14 @@ textarea {
 						<div class="col-lg-6">
 							<div class="checkout__input">
 								<p>제목</p>
-								<input style="color: black;" type="text"
+								<input readonly style="color: black;" type="text"
 									value="${noticeDetail.title}">
 							</div>
 						</div>
 						<div class="col-lg-6">
 							<div class="checkout__input">
 								<p>작성자</p>
-								<input style="color: black;" type="text"
+								<input readonly style="color: black;" type="text"
 									value="${noticeDetail.userId}">
 							</div>
 						</div>
@@ -54,7 +54,7 @@ textarea {
 					<div class="a">
 						<div class="checkout__input">
 							<p>내용</p>
-							<textarea rows="10" cols="120">${noticeDetail.noticeSubject}</textarea>
+							<textarea readonly rows="10" cols="120">${noticeDetail.noticeSubject}</textarea>
 						</div>
 					</div>
 				</div>

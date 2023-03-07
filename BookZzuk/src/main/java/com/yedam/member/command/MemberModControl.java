@@ -26,7 +26,8 @@ public class MemberModControl implements Command {
 		String userId = req.getParameter("userId");
 		String userPw = req.getParameter("userPw");
 		String userName = req.getParameter("userName");
-		String userAddr = req.getParameter("userAddr");
+		String userAddr = req.getParameter("userAddr") + req.getParameter("userAddr2");
+		//String userAddr2 = req.getParameter("yserAddr2");
 		String userPhone = req.getParameter("userPhone");
 		String userEmail = req.getParameter("userEmail");
 		String userGrade = req.getParameter("userGrade");
