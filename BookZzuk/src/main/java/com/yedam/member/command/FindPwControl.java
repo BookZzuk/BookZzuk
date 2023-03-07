@@ -15,7 +15,7 @@ public class FindPwControl implements Command {
 
 		
 
-		return "loginForm.do";
+		return null;
 	}
 
 }

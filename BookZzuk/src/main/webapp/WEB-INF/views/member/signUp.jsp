@@ -118,29 +118,30 @@ function check_pw(){
 }
 
 
-$('#btnCheck').click(function () {		
-    if ($('#mid').val() != '') {   				
-        // 아이디를 서버로 전송 > DB 유효성 검사 > 결과 반환받기
-        $.ajax({   					
+function btn_chk() {
+	console.log($('#mid').val())
+	if($('#mid').val() != ''){
+        $.ajax({
+ 
             type: 'GET',
-            url: 'idCheck.do',
-            data: 'id=' + $('mid').val(),
+            url: 'idcheck.do',
+            data: 'id=' + $('#mid').val(),
             dataType: 'json',
             success: function(result) {
-                if (result == '0') {
+                if (result.retCode == "Success") {
                 	alert('사용 가능한 아이디입니다.');
-                    $('#result').text('사용 가능한 아이디입니다.');
-                } else {
+                } else if(result.retCode == "Fail") {
                 	alert('이미 사용중인 아이디입니다.');
-                    $('#result').text('이미 사용중인 아이디입니다.');
+                
                 }
             }
         });
+    
     } else {
         alert('아이디를 입력하세요.');
         $('#mid').focus();
     }
-});
+};
 </script>
 
 
@@ -158,7 +159,7 @@ $('#btnCheck').click(function () {
       <hr />
       <label for="member_id"><b>아이디</b></label>
       <input class="id_input" type="text" placeholder="Id" id="mid" name="mid" required/>
-      <button type="button" id="btnCheck">중복체크</button>
+      <button type="button" onclick="btn_chk()">중복체크</button>
       <span id="result"></span><br><br>
       
       <label for="member_pw"><b>비밀번호</b></label>
