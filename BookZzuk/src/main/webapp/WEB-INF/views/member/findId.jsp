@@ -92,6 +92,41 @@ prefix="c" %>
   
 </style>
 
+<script>
+function btn_fid(){
+	var name = $('#name').val();
+ 	var email = $('#email').val();
+ 	var tel = $('#tel').val();
+
+ 	var postData = {'user_name' : name , 'user_email' : email , 'user_phone' : tel};
+
+	$.ajax({
+        url:'findId.do',
+        type:'POST',
+        data: postData,
+        contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+        dataType : "json",
+		
+success: function(result) {
+	var emailLists = data.user_email;
+	var emailLength = emailLists.length
+	var emailfind = emailLists.substring(1, emailLength-1)
+    if (result.retCode == "Success") {
+    	alert($("#emailList").append("<h1>"+"회원님의 정보로 등록된 이메일은 : "+emailfind+" 입니다.</h1>"));
+    } else if(result.retCode == "Fail") {
+    	alert('해당 정보가 없습니다.');
+    
+    }
+}
+});
+
+} else {
+alert('아이디를 입력하세요.');
+$('#mid').focus();
+}
+};
+</script>
+
 <div id="id01" class="">
   <form
     class="modal-content"
@@ -102,16 +137,16 @@ prefix="c" %>
       <h1>아이디 찾기</h1>
       <hr />
       <label for="member_email"><b>이메일</b></label>
-      <input type="text" placeholder="Email" name="email" required />
+      <input type="text" placeholder="Email" name="user_email" id="email" required />
 
       <label for="member_name"><b>이름</b></label>
-      <input type="text" placeholder="Name" name="name" required />
+      <input type="text" placeholder="Name" name="user_name" id="name" required />
 
       <label for="member_phone"><b>연락처</b></label>
-      <input type="text" placeholder="Phone" name="phone" required />
+      <input type="text" placeholder="Phone" name="user_phone" id="tel" required />
 
       <div class="clearfix">
-        <button type="submit" class="signupbtn">확인</button>
+        <button type="button" class="signupbtn" onclick="btn_fid()">확인</button>
         <a href="loginForm.do"><button type="button" class="cancelbtn">취소</button></a>
       </div>
     </div>

@@ -20,9 +20,13 @@
 	</select>
 	
 	<select id="getMember" parameterType="String" resultType="MemberVO">
-		SELECT * FROM member WHERE user_id=#{id}
+		SELECT * FROM member WHERE user_id=#{userId}
 	</select>
-	
+
+    <select id="findId" resultType="MemberVO">
+		SELECT user_id FROM member WHERE name = #{name} and email = #{email} and phone = #{phone}
+	</select>
+
 	
 	 <update id="updateMember" parameterType="MemberVO">
 		UPDATE member
