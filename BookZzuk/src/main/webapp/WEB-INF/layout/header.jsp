@@ -54,7 +54,12 @@
 					<ul>
 						<li><a href="main.do">메인페이지</a></li>
 						<li><a href="bookList.do">도서리스트</a></li>
-						<li><a href="memberInfo.do">마이페이지</a></li>
+						<c:if test='${logId != null}'>
+							<li><a href="memberInfo.do">마이페이지</a></li>
+						</c:if>
+						<c:if test="${logId == null}">
+							<li onclick="plzLog()" onmouseover="this.style.cursor='pointer'"><a>비회원</a></li>
+						</c:if>
 						<li><a href="noticePaging.do?nowPage=1&cntPerPage=10">고객 센터</a></li>
 					</ul>
 				</nav>
@@ -161,5 +166,9 @@
     let param = URLSearch.toString();
     window.open("bookList.do?" + param, "_self");
   }
+
+	function plzLog() {
+		alert("비회원 상태입니다 \n로그인 해주세요!")
+	}
 </script>
 <!-- Hero Section End -->
