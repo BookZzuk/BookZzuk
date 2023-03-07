@@ -3,8 +3,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!-- Product Details Section Begin -->
 <section class="product-details spad">
+
 	<div class="container">
+	<h2>도서수정</h2>
 		<div class="row">
+		
 			<form action="bookMod.do" enctype="multipart/form-data" method="post">
 				<div class="col-lg-6 col-md-6">
 					<div class="product__details__pic">
@@ -36,7 +39,10 @@
 								value="${book.pubDate}"></input></li>
 							<li><b>ISBN코드</b> <input name="isbn" value="${book.isbn}"></input></li>
 						</ul>
-						<button type="submit" class="primary-btn">수정완료</button>
+						<ul>
+						<li><button type="submit" class="primary-btn">수정완료</button></li>
+						</ul>
+						
 					</div>
 				</div>
 			</form>

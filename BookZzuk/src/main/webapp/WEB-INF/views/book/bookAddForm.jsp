@@ -3,8 +3,11 @@ pageEncoding="UTF-8"%> <%@ taglib uri="http://java.sun.com/jsp/jstl/core"
 prefix="c"%>
 <!-- Product Details Section Begin -->
 <section class="product-details spad">
+    
   <div class="container">
+  <h2>도서추가</h2>
     <div class="row">
+
       <form action="bookAdd.do" enctype="multipart/form-data" method="post">
         <div class="col-lg-6 col-md-6">
           <div class="product__details__pic">
@@ -18,6 +21,8 @@ prefix="c"%>
             </div>
           </div>
         </div>
+        
+        
         <div class="col-lg-6 col-md-6">
             <div class="product__details__text">
               <ul>
@@ -37,7 +42,9 @@ prefix="c"%>
                 <li><b>출판일</b> <input type="date" name="pubDate" id="pubDate"></input></li>
                 <li><b>ISBN코드</b> <input name="isbn"></input></li>
               </ul>
-              <button type="submit" class="primary-btn" >등록하기</button>
+             <ul>
+             <li> <button type="submit" class="primary-btn" >등록하기</button></li>
+             </ul>
             </div>
         </div>
       </form>
